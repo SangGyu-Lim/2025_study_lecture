@@ -5,27 +5,16 @@ public class GameManager : MonoBehaviour
 {
     public Transform canvas;
 
-    private Button loginBtn;
-    private Button loginBtn2;
-
-    private Text loginText;
-    private Text loginText2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        loginBtn = GameObject.Find("LoginBtn").GetComponent<Button>();
-        loginBtn.onClick.AddListener(OnClickLoginBtn);
+        InitLogin();
+    }
 
-        loginText = GameObject.Find("LoginBtn/Text").GetComponent<Text>();
-        loginText.text = "loginText1";
-
-
-        loginBtn2 = canvas.Find("LoginBtn2").GetComponent<Button>();
-        loginBtn2.onClick.AddListener(OnClickLoginBtn2);
-
-        loginText2 = canvas.Find("LoginBtn2/Text").GetComponent<Text>();
-        loginText2.text = "loginText2";
+    void InitLogin()
+    {
+        canvas.Find("Login/LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
     }
 
     // Update is called once per frame
@@ -34,19 +23,16 @@ public class GameManager : MonoBehaviour
         
     }
 
-    void OnClickLoginBtn()
+    void OnClickLogin()
     {
-        Debug.Log("OnClickLoginBtn");
+        string id = canvas.Find("Login/ID/Text").GetComponent<Text>().text;
+        string password = canvas.Find("Login/Password/Text").GetComponent<Text>().text;
+
+        Debug.Log("id : " + id + " pwd : " + password);
+
+        NetworkManager.Instance.SendServer("das");
     }
 
-    void OnClickLoginBtn2()
-    {
-        Debug.Log("OnClickLoginBtn2");
-    }
 
-    public void OnClickLoginBtn3()
-    {
-        Debug.Log("OnClickLoginBtn3");
-    }
 
 }
