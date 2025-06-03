@@ -1,46 +1,52 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    void Awake()
-    {
-        Debug.Log("GameManager Awake");
-    }
+    public Transform canvas;
 
-    void OnEnable()
-    {
-        Debug.Log("GameManager OnEnable");
-    }
+    private Button loginBtn;
+    private Button loginBtn2;
+
+    private Text loginText;
+    private Text loginText2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("GameManager Start");
+        loginBtn = GameObject.Find("LoginBtn").GetComponent<Button>();
+        loginBtn.onClick.AddListener(OnClickLoginBtn);
+
+        loginText = GameObject.Find("LoginBtn/Text").GetComponent<Text>();
+        loginText.text = "loginText1";
+
+
+        loginBtn2 = canvas.Find("LoginBtn2").GetComponent<Button>();
+        loginBtn2.onClick.AddListener(OnClickLoginBtn2);
+
+        loginText2 = canvas.Find("LoginBtn2/Text").GetComponent<Text>();
+        loginText2.text = "loginText2";
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("GameManager Update");
+        
     }
 
-    void LateUpdate()
+    void OnClickLoginBtn()
     {
-        Debug.Log("GameManager LateUpdate");
+        Debug.Log("OnClickLoginBtn");
     }
 
-    void OnApplicationQuit()
+    void OnClickLoginBtn2()
     {
-        Debug.Log("GameManager OnApplicationQuit");
+        Debug.Log("OnClickLoginBtn2");
     }
 
-    void OnDisable()
+    public void OnClickLoginBtn3()
     {
-        Debug.Log("GameManager OnDisable");
+        Debug.Log("OnClickLoginBtn3");
     }
 
-    void OnDestroy()
-    {
-        Debug.Log("GameManager OnDestroy  ");
-    }
 }
