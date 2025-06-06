@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -30,7 +31,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("id : " + id + " pwd : " + password);
 
-        NetworkManager.Instance.SendServer("das");
+        SceneManager.LoadScene("GameScene");
+        //NetworkManager.Instance.SendServer(API_TYPE.login, id, password);
     }
 
 
