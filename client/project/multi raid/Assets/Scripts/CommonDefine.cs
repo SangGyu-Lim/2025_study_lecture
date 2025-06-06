@@ -13,5 +13,6 @@ public static class CommonDefine
 public enum API_TYPE
 {
     None = 0,
-    login = 1,
+    join = 1,
+    login = 2,
 }

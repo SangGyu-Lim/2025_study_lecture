@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -273,12 +273,12 @@ MonoBehaviour:
     height: 424
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 16}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi
     raid"
@@ -344,9 +344,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 2cb10000
-    m_LastClickedID: 45356
-    m_ExpandedIDs: 0000000054af000000ca9a3bffffff7f
+    m_SelectedIDs: 32b10000
+    m_LastClickedID: 45362
+    m_ExpandedIDs: 000000005eaf000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -375,7 +375,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000054af0000
+    m_ExpandedIDs: 000000005eaf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -521,9 +521,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 48d8ffffdad8ffff56e1ffff8ef0ffff08f1ffff0cfbfffff4ffffffc4b10000f2b1000016b2000026b200005eb40000b0b40000c0b40000
+      m_SelectedIDs: facdffff
+      m_LastClickedID: -12806
+      m_ExpandedIDs: f8cdffff06cfffff2ecfffff02d0ffffa2d0ffff46d1ffff12ebffff0ceeffff0cfbfffff4fffffff4ae000006af0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -540,7 +540,7 @@ MonoBehaviour:
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
-        m_ClientGUIView: {fileID: 0}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -1015,9 +1015,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 980.42566, y: 747.07947, z: -0.037553415}
+    m_Target: {x: 819.2249, y: 595.31415, z: 0}
     speed: 2
-    m_Value: {x: 980.42566, y: 747.07947, z: -0.037553415}
+    m_Value: {x: 819.2249, y: 595.31415, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1067,9 +1067,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 260.00745
+    m_Target: 301.47073
     speed: 2
-    m_Value: 260.00745
+    m_Value: 301.47073
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1183,18 +1183,18 @@ MonoBehaviour:
       y: 21
       width: 880.4
       height: 377
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 436.87384, y: 183.63795}
+    m_Scale: {x: 0.5864079, y: 0.5864079}
+    m_Translation: {x: 435.91003, y: 208.82545}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -436.87384
-      y: -183.63795
-      width: 880.4
-      height: 377
+      x: -743.3563
+      y: -356.10956
+      width: 1501.3441
+      height: 642.8972
     m_MinimalGUI: 1
   m_defaultScale: 0.4363426
   m_LastWindowPixelSize: {x: 1100.5, y: 497.5}

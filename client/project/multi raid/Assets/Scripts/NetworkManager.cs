@@ -25,7 +25,7 @@ public class NetworkManager : Singleton<NetworkManager>
     {
         base.Awake();  // ΩÃ±€≈Ê √ ±‚»≠
 
-        Debug.Log("NetworkManager √ ±‚»≠µ ");
+        Debug.Log("NetworkManager init");
     }
 
 
@@ -52,8 +52,8 @@ public class NetworkManager : Singleton<NetworkManager>
         PostData data = new PostData
         {
             api = api,
-            packetName = "test_user",
-            packetData = "123456"
+            packetName = packetName,
+            packetData = packetData
         };
         string json = JsonUtility.ToJson(data);
 
