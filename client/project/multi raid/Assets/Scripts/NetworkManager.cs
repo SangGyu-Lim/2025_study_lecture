@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using WebSocketSharp;
 
 public class NetworkManager : Singleton<NetworkManager>
 {
-    [System.Serializable]
-    public class PostData
-    {
-        public API_TYPE api;
-        public string packetName;
-        public string packetData;
-    }
+    
 
     [System.Serializable]
     public class LoginData
@@ -41,6 +36,16 @@ public class NetworkManager : Singleton<NetworkManager>
 
     }
 
+    #region WEB_POST
+
+    [System.Serializable]
+    public class PostData
+    {
+        public API_TYPE api;
+        public string packetName;
+        public string packetData;
+    }
+
     public void SendServer(API_TYPE api, string packetName, string packetData)
     {
         Debug.Log(api);
@@ -58,7 +63,7 @@ public class NetworkManager : Singleton<NetworkManager>
         string json = JsonUtility.ToJson(data);
 
         Debug.LogError("before return www");
-        UnityWebRequest request = new UnityWebRequest(CommonDefine.serverURL, "POST");
+        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_URL, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -83,4 +88,57 @@ public class NetworkManager : Singleton<NetworkManager>
 
     }
 
+    #endregion
+
+    #region WEB_SOCKET
+
+    private WebSocket ws;
+
+    public void ConnectSocket()
+    {
+        if (ws == null) {
+            ws = new WebSocket(CommonDefine.WEB_SOCKET_URL);
+
+            ws.OnOpen += OnWebSocketOpen;
+            ws.OnMessage += OnWebSocketMessage;
+            ws.OnError += OnWebSocketError;
+            ws.OnClose += OnWebSocketClose;
+
+            ws.Connect();
+        }
+        
+    }
+
+    private void OnWebSocketOpen(object sender, System.EventArgs e)
+    {
+        Debug.Log("서버와 연결되었습니다.");
+        ws.Send("Hello from Unity!");
+    }
+
+    private void OnWebSocketMessage(object sender, MessageEventArgs e)
+    {
+        Debug.Log("서버 메시지 수신: " + e.Data);
+    }
+
+    private void OnWebSocketError(object sender, ErrorEventArgs e)
+    {
+        Debug.LogError("에러 발생: " + e.Message);
+    }
+
+    private void OnWebSocketClose(object sender, CloseEventArgs e)
+    {
+        Debug.Log("서버 연결 종료됨. 이유: " + e.Reason);
+    }
+
+
+
+    #endregion
+
+    void OnApplicationQuit()
+    {
+        if (ws != null && ws.IsAlive)
+        {
+            ws.Close();
+        }
+    }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public static class CommonDefine
 {
-    public const string serverURL = "http://127.0.0.1:80/";
+    public const string WEB_POST_URL = "http://127.0.0.1:80/";
+    public const string WEB_SOCKET_URL = "http://127.0.0.1:80/";
 
-    
 }
 
 public enum API_TYPE
