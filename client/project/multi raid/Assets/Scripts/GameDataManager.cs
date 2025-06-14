@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
-    public string token;
+    public string sessionId;
 
     protected override void Awake()
     {

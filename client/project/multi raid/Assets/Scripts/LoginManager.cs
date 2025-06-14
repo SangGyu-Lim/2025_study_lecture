@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -37,7 +39,7 @@ public class LoginManager : MonoBehaviour
 
         // todo 로그인 연결 - 임시로 씬전환
         SceneManager.LoadScene("GameScene");
-        //NetworkManager.Instance.SendServer(API_TYPE.login, id, password);
+        //NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, LoginAction);
     }
 
     void OnClickJoinPage()
@@ -68,8 +70,35 @@ public class LoginManager : MonoBehaviour
         Debug.Log("id : " + id + " pwd : " + password);
 
         // todo 회원가입 연결 + 회원가입 이후 패킷 처리
-        //NetworkManager.Instance.SendServer(API_TYPE.join, id, password);
+        //NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, JoinAction);
     }
+
+    void JoinAction(bool result)
+    {
+        if(result)
+        {
+            // todo 회원가입 완료창
+            OnClickLoginPage();
+        }
+        else
+        {
+            // todo 에러창 띄우기
+        }
+    }
+
+    void LoginAction(bool result)
+    {
+        if (result)
+        {
+            // todo 로그인 완료 안내창
+            SceneManager.LoadScene("GameScene");
+        }
+        else
+        {
+            // todo 에러창 띄우기
+        }
+    }
+
 
 
 }
