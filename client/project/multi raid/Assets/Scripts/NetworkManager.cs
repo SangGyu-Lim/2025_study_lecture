@@ -1,10 +1,12 @@
+using SocketIOClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-using WebSocketSharp;
+using System.Threading.Tasks;
 
 public class NetworkManager : Singleton<NetworkManager>
 {
@@ -152,53 +154,97 @@ public class NetworkManager : Singleton<NetworkManager>
 
     #region WEB_SOCKET
 
-    private WebSocket ws;
+    private SocketIO client;
+    public string roomId = "room123";
 
-    public void ConnectSocket()
+    public async Task ConnectSocket()
     {
-        if (ws == null) {
-            ws = new WebSocket(CommonDefine.WEB_SOCKET_URL);
+        client = new SocketIO(CommonDefine.WEB_SOCKET_URL, new SocketIOOptions
+        {
+            Reconnection = true,
+            ReconnectionAttempts = 5,
+            ReconnectionDelay = 1000,
+            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
+        });
 
-            ws.OnOpen += OnWebSocketOpen;
-            ws.OnMessage += OnWebSocketMessage;
-            ws.OnError += OnWebSocketError;
-            ws.OnClose += OnWebSocketClose;
+        // 이벤트 등록
+        client.OnConnected += OnConnected;
+        client.On("RoomUpdate", OnRoomUpdate);
+        client.On("MessageResponse", OnMessageResponse);
 
-            ws.Connect();
+        await client.ConnectAsync();
+    }
+
+    private async void OnConnected(object sender, EventArgs e)
+    {
+        Debug.Log("Connected to Socket.IO server");
+
+        var payload = new Dictionary<string, string>
+        {
+            { "roomId", roomId }
+        };
+
+        await client.EmitAsync("joinRoom", payload);
+    }
+
+    private void OnRoomUpdate(SocketIOResponse response)
+    {
+        try
+        {
+            string json = response.GetValue().ToString();
+            Debug.Log($"RoomUpdate: {json}");
         }
-        
+        catch (Exception ex)
+        {
+            Debug.LogError($"RoomUpdate error: {ex.Message}");
+        }
     }
 
-    private void OnWebSocketOpen(object sender, System.EventArgs e)
+    private void OnMessageResponse(SocketIOResponse response)
     {
-        Debug.Log("서버와 연결되었습니다.");
-        ws.Send("Hello from Unity!");
+        try
+        {
+            JsonElement json = response.GetValue();
+
+            string from = json.GetProperty("from").GetString();
+            string message = json.GetProperty("message").GetString();
+
+            Debug.Log($"Message from {from}: {message}");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"MessageResponse error: {ex.Message}");
+        }
     }
 
-    private void OnWebSocketMessage(object sender, MessageEventArgs e)
+    public async void SendMessageToRoom(string messageText)
     {
-        Debug.Log("서버 메시지 수신: " + e.Data);
+        var payload = new Dictionary<string, string>
+        {
+            { "roomId", roomId },
+            { "message", messageText }
+        };
+
+        await client.EmitAsync("message", payload);
     }
 
-    private void OnWebSocketError(object sender, ErrorEventArgs e)
+    public async void LeaveRoom()
     {
-        Debug.LogError("에러 발생: " + e.Message);
-    }
+        var payload = new Dictionary<string, string>
+        {
+            { "roomId", roomId }
+        };
 
-    private void OnWebSocketClose(object sender, CloseEventArgs e)
-    {
-        Debug.Log("서버 연결 종료됨. 이유: " + e.Reason);
+        await client.EmitAsync("leaveRoom", payload);
     }
 
 
 
     #endregion
 
-    void OnApplicationQuit()
+    async void OnApplicationQuit()
     {
-        if (ws != null && ws.IsAlive)
-        {
-            ws.Close();
-        }
+        if (client != null)
+            await client.DisconnectAsync();
     }
 }
