@@ -1,0 +1,4225 @@
+fileFormatVersion: 2
+guid: fadac2b477d63734399af9d02683986f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -569160215706793162
+    second: back_poket_0
+  - first:
+      213: 1814059589849390066
+    second: back_poket_1
+  - first:
+      213: -3735729906024506393
+    second: back_poket_2
+  - first:
+      213: -4381446777830196656
+    second: back_poket_3
+  - first:
+      213: 2122712095489540976
+    second: back_poket_4
+  - first:
+      213: 1738135291203172918
+    second: back_poket_5
+  - first:
+      213: 4257778902178915366
+    second: back_poket_6
+  - first:
+      213: -643506389933873050
+    second: back_poket_7
+  - first:
+      213: 841584246020743644
+    second: back_poket_8
+  - first:
+      213: -9054559412841487345
+    second: back_poket_9
+  - first:
+      213: -1223377488830134053
+    second: back_poket_10
+  - first:
+      213: 162305806624129045
+    second: back_poket_11
+  - first:
+      213: -2347284303499466371
+    second: back_poket_12
+  - first:
+      213: -7266871210950988193
+    second: back_poket_13
+  - first:
+      213: -5803620049692715142
+    second: back_poket_14
+  - first:
+      213: 2693581108962474954
+    second: back_poket_15
+  - first:
+      213: -7710553212232424371
+    second: back_poket_16
+  - first:
+      213: 8942865106207991893
+    second: back_poket_17
+  - first:
+      213: -7738529171003127347
+    second: back_poket_18
+  - first:
+      213: 6584779817413340242
+    second: back_poket_19
+  - first:
+      213: 3768358196359448496
+    second: back_poket_20
+  - first:
+      213: -5222686907626830350
+    second: back_poket_21
+  - first:
+      213: -4236866273220951842
+    second: back_poket_22
+  - first:
+      213: -6390249114242854106
+    second: back_poket_23
+  - first:
+      213: -6866959476700068960
+    second: back_poket_24
+  - first:
+      213: 3441393059106160910
+    second: back_poket_25
+  - first:
+      213: -634315902240125183
+    second: back_poket_26
+  - first:
+      213: -2759824151114335497
+    second: back_poket_27
+  - first:
+      213: 3571774604106970516
+    second: back_poket_28
+  - first:
+      213: -4979353773828235613
+    second: back_poket_29
+  - first:
+      213: 7871217717809055223
+    second: back_poket_30
+  - first:
+      213: 4958333426512552090
+    second: back_poket_31
+  - first:
+      213: -6683859225090596482
+    second: back_poket_32
+  - first:
+      213: 3951670113056191116
+    second: back_poket_33
+  - first:
+      213: 2394947001924813496
+    second: back_poket_34
+  - first:
+      213: -2260143717838905991
+    second: back_poket_35
+  - first:
+      213: -3314346787566019244
+    second: back_poket_36
+  - first:
+      213: 1693580936688656182
+    second: back_poket_37
+  - first:
+      213: 4619216206021567018
+    second: back_poket_38
+  - first:
+      213: -1566515284894241699
+    second: back_poket_39
+  - first:
+      213: 7260226307193177327
+    second: back_poket_40
+  - first:
+      213: -1575178383938493355
+    second: back_poket_41
+  - first:
+      213: 1580180834343045677
+    second: back_poket_42
+  - first:
+      213: 2480773498460607244
+    second: back_poket_43
+  - first:
+      213: -4245430737767044692
+    second: back_poket_44
+  - first:
+      213: 9202046084874823471
+    second: back_poket_45
+  - first:
+      213: 7967466470803088202
+    second: back_poket_46
+  - first:
+      213: 5701130111693900234
+    second: back_poket_47
+  - first:
+      213: 1422868117506437542
+    second: back_poket_48
+  - first:
+      213: 1789887549344835132
+    second: back_poket_49
+  - first:
+      213: -4773247704612479448
+    second: back_poket_50
+  - first:
+      213: 5191708271126619799
+    second: back_poket_51
+  - first:
+      213: 578616943767453725
+    second: back_poket_52
+  - first:
+      213: 8012837563526208582
+    second: back_poket_53
+  - first:
+      213: -4753342570634142957
+    second: back_poket_54
+  - first:
+      213: -1075085336538033026
+    second: back_poket_55
+  - first:
+      213: -8082315599149484171
+    second: back_poket_56
+  - first:
+      213: -7923901196685257655
+    second: back_poket_57
+  - first:
+      213: -1608239899261881593
+    second: back_poket_58
+  - first:
+      213: 365011448185299838
+    second: back_poket_59
+  - first:
+      213: 7154094875165030177
+    second: back_poket_60
+  - first:
+      213: 4740229547157747417
+    second: back_poket_61
+  - first:
+      213: 6917143806298013866
+    second: back_poket_62
+  - first:
+      213: 2075470459592881770
+    second: back_poket_63
+  - first:
+      213: 2280482807911538201
+    second: back_poket_64
+  - first:
+      213: -5427556307933361896
+    second: back_poket_65
+  - first:
+      213: 1440884683020719227
+    second: back_poket_66
+  - first:
+      213: 8060123844968162810
+    second: back_poket_67
+  - first:
+      213: 8244385120012107040
+    second: back_poket_68
+  - first:
+      213: 7405055615746102163
+    second: back_poket_69
+  - first:
+      213: -513244546915751000
+    second: back_poket_70
+  - first:
+      213: -5995821542084157086
+    second: back_poket_71
+  - first:
+      213: 2137320188858241653
+    second: back_poket_72
+  - first:
+      213: 6427779947706233489
+    second: back_poket_73
+  - first:
+      213: 7129421328303447514
+    second: back_poket_74
+  - first:
+      213: -1320371006469682645
+    second: back_poket_75
+  - first:
+      213: -4252112460421992361
+    second: back_poket_76
+  - first:
+      213: -9094115090339690679
+    second: back_poket_77
+  - first:
+      213: -8475009391877105987
+    second: back_poket_78
+  - first:
+      213: -2545721249585931254
+    second: back_poket_79
+  - first:
+      213: -3971223836844668173
+    second: back_poket_80
+  - first:
+      213: -65846961688392110
+    second: back_poket_81
+  - first:
+      213: 2985605143960268258
+    second: back_poket_82
+  - first:
+      213: 753722352053615157
+    second: back_poket_83
+  - first:
+      213: 1653444947623401062
+    second: back_poket_84
+  - first:
+      213: -1680069852531959011
+    second: back_poket_85
+  - first:
+      213: -8302480301929992944
+    second: back_poket_86
+  - first:
+      213: -9115394378873847316
+    second: back_poket_87
+  - first:
+      213: -7051118641728561883
+    second: back_poket_88
+  - first:
+      213: 3385526949057315808
+    second: back_poket_89
+  - first:
+      213: 8478433235924575984
+    second: back_poket_90
+  - first:
+      213: 5135311006015943637
+    second: back_poket_91
+  - first:
+      213: 7438534628883691916
+    second: back_poket_92
+  - first:
+      213: -2065475730698304304
+    second: back_poket_93
+  - first:
+      213: -8588448064890626898
+    second: back_poket_94
+  - first:
+      213: 3615912106118481218
+    second: back_poket_95
+  - first:
+      213: 3025190979553383387
+    second: back_poket_96
+  - first:
+      213: 9336954892390772
+    second: back_poket_97
+  - first:
+      213: -435903285423752094
+    second: back_poket_98
+  - first:
+      213: 7291857455996115597
+    second: back_poket_99
+  - first:
+      213: 3791458883245387189
+    second: back_poket_100
+  - first:
+      213: -8033861779137216390
+    second: back_poket_101
+  - first:
+      213: -8424230138862317115
+    second: back_poket_102
+  - first:
+      213: -8808381748747096618
+    second: back_poket_103
+  - first:
+      213: 1624241459694024464
+    second: back_poket_104
+  - first:
+      213: -8437137211179493222
+    second: back_poket_105
+  - first:
+      213: 8357957180380666662
+    second: back_poket_106
+  - first:
+      213: 1461321893886801210
+    second: back_poket_107
+  - first:
+      213: 3563557777656606232
+    second: back_poket_108
+  - first:
+      213: 8367897168305664933
+    second: back_poket_109
+  - first:
+      213: 377853424771820753
+    second: back_poket_110
+  - first:
+      213: 5783042888167707773
+    second: back_poket_111
+  - first:
+      213: 7720561399354545421
+    second: back_poket_112
+  - first:
+      213: 4426456621645201478
+    second: back_poket_113
+  - first:
+      213: 9162395276893170187
+    second: back_poket_114
+  - first:
+      213: -5265083880336770290
+    second: back_poket_115
+  - first:
+      213: -1156009173323699581
+    second: back_poket_116
+  - first:
+      213: -6011922025491369399
+    second: back_poket_117
+  - first:
+      213: 2444715394597272257
+    second: back_poket_118
+  - first:
+      213: -5785112970665643461
+    second: back_poket_119
+  - first:
+      213: 9037281884970582966
+    second: back_poket_120
+  - first:
+      213: -1512314664785974958
+    second: back_poket_121
+  - first:
+      213: -5242994637993634614
+    second: back_poket_122
+  - first:
+      213: 3482766259907130995
+    second: back_poket_123
+  - first:
+      213: -7539488468242415198
+    second: back_poket_124
+  - first:
+      213: -4184233718824671927
+    second: back_poket_125
+  - first:
+      213: 5346118539711563264
+    second: back_poket_126
+  - first:
+      213: 4723272910547294183
+    second: back_poket_127
+  - first:
+      213: -5003487944192837775
+    second: back_poket_128
+  - first:
+      213: 4367531169019539039
+    second: back_poket_129
+  - first:
+      213: -6877763961253401865
+    second: back_poket_130
+  - first:
+      213: -150408040101295203
+    second: back_poket_131
+  - first:
+      213: 1637525483637164145
+    second: back_poket_132
+  - first:
+      213: 976894297941277202
+    second: back_poket_133
+  - first:
+      213: -406777613498839077
+    second: back_poket_134
+  - first:
+      213: -5559939501303210304
+    second: back_poket_135
+  - first:
+      213: 4901781587578174242
+    second: back_poket_136
+  - first:
+      213: -3312876058894035230
+    second: back_poket_137
+  - first:
+      213: -3066788138524400588
+    second: back_poket_138
+  - first:
+      213: -1455793826598348444
+    second: back_poket_139
+  - first:
+      213: -4851420481850515356
+    second: back_poket_140
+  - first:
+      213: -4252526108453934547
+    second: back_poket_141
+  - first:
+      213: 6471780088382529948
+    second: back_poket_142
+  - first:
+      213: 8378292517865923011
+    second: back_poket_143
+  - first:
+      213: -4090214544502834484
+    second: back_poket_144
+  - first:
+      213: -5319577244722072728
+    second: back_poket_145
+  - first:
+      213: -8005717304237228844
+    second: back_poket_146
+  - first:
+      213: -8030700078248223059
+    second: back_poket_147
+  - first:
+      213: 7047532227070986472
+    second: back_poket_148
+  - first:
+      213: -7929144814704392648
+    second: back_poket_149
+  - first:
+      213: 8225389667046666653
+    second: back_poket_150
+  - first:
+      213: -6479175280638196126
+    second: back_poket_151
+  - first:
+      213: 6587900399712728911
+    second: back_poket_152
+  - first:
+      213: 1166427700745250080
+    second: back_poket_153
+  - first:
+      213: 6690346988553273904
+    second: back_poket_154
+  - first:
+      213: 6185822246145119714
+    second: back_poket_155
+  - first:
+      213: -4893881156003114967
+    second: back_poket_156
+  - first:
+      213: 1248216457886718147
+    second: back_poket_157
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: back_poket_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 591
+        width: 47
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b0382accfe918f0800000000000000
+      internalID: -569160215706793162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 585
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fb1d5ee595dc2910800000000000000
+      internalID: 1814059589849390066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 585
+        width: 66
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eb1b967175082cc0800000000000000
+      internalID: -3735729906024506393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_3
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 585
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05ab6259e59f133c0800000000000000
+      internalID: -4381446777830196656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_4
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 620
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 073441c7763657d10800000000000000
+      internalID: 2122712095489540976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_5
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 582
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63a3cbb96d81f1810800000000000000
+      internalID: 1738135291203172918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_6
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 579
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 624e6845a5ba61b30800000000000000
+      internalID: 4257778902178915366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_7
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 590
+        width: 47
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6682c49095ec117f0800000000000000
+      internalID: -643506389933873050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_8
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 585
+        width: 57
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd1a1a0b968edab00800000000000000
+      internalID: 841584246020743644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_9
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 585
+        width: 66
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f04e9e7ef2eb75280800000000000000
+      internalID: -9054559412841487345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_10
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 590
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd80218d7a0b50fe0800000000000000
+      internalID: -1223377488830134053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_11
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 587
+        width: 39
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51080dc6540a04200800000000000000
+      internalID: 162305806624129045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_12
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 579
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d796017cc55cc6fd0800000000000000
+      internalID: -2347284303499466371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_13
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 586
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5ee0ca9223e62b90800000000000000
+      internalID: -7266871210950988193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_14
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 585
+        width: 30
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a771bbe4056657fa0800000000000000
+      internalID: -5803620049692715142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_15
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 584
+        width: 65
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb39655fb5816520800000000000000
+      internalID: 2693581108962474954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_16
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 583
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d44a32ba4bc9ef490800000000000000
+      internalID: -7710553212232424371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_17
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 586
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55863c9ce607b1c70800000000000000
+      internalID: 8942865106207991893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_18
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 523
+        width: 58
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc94c5e28b83b9490800000000000000
+      internalID: -7738529171003127347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_19
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 517
+        width: 63
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25c65153b56d16b50800000000000000
+      internalID: 6584779817413340242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_20
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 524
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b7cf6060d5eb4430800000000000000
+      internalID: 3768358196359448496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_21
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 524
+        width: 54
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f5c1d1bde94587b0800000000000000
+      internalID: -5222686907626830350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_22
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 523
+        width: 45
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed005d78290a335c0800000000000000
+      internalID: -4236866273220951842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_23
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 516
+        width: 66
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 623dc4f99464157a0800000000000000
+      internalID: -6390249114242854106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_24
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 520
+        width: 12
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a34a481db8a3b0a0800000000000000
+      internalID: -6866959476700068960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_25
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 520
+        width: 36
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e01848401c842cf20800000000000000
+      internalID: 3441393059106160910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_26
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 515
+        width: 52
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f88933c057237f0800000000000000
+      internalID: -634315902240125183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_27
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 518
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa39468e8223b9d0800000000000000
+      internalID: -2759824151114335497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_28
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 519
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 495be8f041e719130800000000000000
+      internalID: 3571774604106970516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_29
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 524
+        width: 45
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ae97fbdf18c5eab0800000000000000
+      internalID: -4979353773828235613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_30
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 520
+        width: 60
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f505c39fce2c3d60800000000000000
+      internalID: 7871217717809055223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_31
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 523
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a90e9352bf98fc440800000000000000
+      internalID: 4958333426512552090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_32
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 521
+        width: 58
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e71e1c782792e33a0800000000000000
+      internalID: -6683859225090596482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_33
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 517
+        width: 57
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c82fd3ee70727d630800000000000000
+      internalID: 3951670113056191116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_34
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 519
+        width: 40
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b28d99fb9f8c3120800000000000000
+      internalID: 2394947001924813496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_35
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 456
+        width: 62
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d91ec634b52a0e0800000000000000
+      internalID: -2260143717838905991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_36
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 450
+        width: 66
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d9ba828231102d0800000000000000
+      internalID: -3314346787566019244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_37
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 460
+        width: 48
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f53b193eec08710800000000000000
+      internalID: 1693580936688656182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_38
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 457
+        width: 56
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22a4ac6aa0ca1040800000000000000
+      internalID: 4619216206021567018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_39
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 456
+        width: 53
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ca8ace5ae924ae0800000000000000
+      internalID: -1566515284894241699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_40
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 451
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4023d2c5181c460800000000000000
+      internalID: 7260226307193177327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_41
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 460
+        width: 45
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 554e87ffa97d32ae0800000000000000
+      internalID: -1575178383938493355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_42
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 455
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ac5efb81eede510800000000000000
+      internalID: 1580180834343045677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_43
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 458
+        width: 56
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0392f76a5a7d6220800000000000000
+      internalID: 2480773498460607244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_44
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 453
+        width: 59
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca9eedcbc333515c0800000000000000
+      internalID: -4245430737767044692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_45
+      rect:
+        serializedVersion: 2
+        x: 653
+        y: 455
+        width: 44
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f27ecbfd82c34bf70800000000000000
+      internalID: 9202046084874823471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_46
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 458
+        width: 52
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43ad00ba80229e60800000000000000
+      internalID: 7967466470803088202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_47
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 454
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac94cc571ab7e1f40800000000000000
+      internalID: 5701130111693900234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_48
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 467
+        width: 49
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a13332a30b0fb310800000000000000
+      internalID: 1422868117506437542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_49
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 454
+        width: 61
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c36e79e2e35f6d810800000000000000
+      internalID: 1789887549344835132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_50
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 453
+        width: 53
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82edf9d908402cdb0800000000000000
+      internalID: -4773247704612479448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_51
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 387
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 796a5fd6a27ac0840800000000000000
+      internalID: 5191708271126619799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_52
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 399
+        width: 41
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1008427b09a70800800000000000000
+      internalID: 578616943767453725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_53
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 394
+        width: 50
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64cd2e86f41533f60800000000000000
+      internalID: 8012837563526208582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_54
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 395
+        width: 49
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31b1c95cd1cb80eb0800000000000000
+      internalID: -4753342570634142957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_55
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 390
+        width: 63
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e745b6c15978411f0800000000000000
+      internalID: -1075085336538033026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_56
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 390
+        width: 47
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577b816d8c8d5df80800000000000000
+      internalID: -8082315599149484171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_57
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 388
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 944584028d5a80290800000000000000
+      internalID: -7923901196685257655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_58
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 394
+        width: 53
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 703b2ea15526ea9e0800000000000000
+      internalID: -1608239899261881593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_59
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 390
+        width: 54
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73290c6af7c01500800000000000000
+      internalID: 365011448185299838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_60
+      rect:
+        serializedVersion: 2
+        x: 585
+        y: 391
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12777ab8263784360800000000000000
+      internalID: 7154094875165030177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_61
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 389
+        width: 65
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d6f52888ada8c140800000000000000
+      internalID: 4740229547157747417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_62
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 399
+        width: 51
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa0cfaaa4a1aeff50800000000000000
+      internalID: 6917143806298013866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_63
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 396
+        width: 46
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a66b9ddf26d8dcc10800000000000000
+      internalID: 2075470459592881770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_64
+      rect:
+        serializedVersion: 2
+        x: 834
+        y: 393
+        width: 60
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ed3f10807e5af10800000000000000
+      internalID: 2280482807911538201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_65
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 395
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 819833b5b427da4b0800000000000000
+      internalID: -5427556307933361896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_66
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 392
+        width: 64
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7450cd2cfc0ff310800000000000000
+      internalID: 1440884683020719227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 325
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af5abf0ceef4bdf60800000000000000
+      internalID: 8060123844968162810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_68
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 325
+        width: 18
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02d76d50690f96270800000000000000
+      internalID: 8244385120012107040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_69
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 331
+        width: 48
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 393de8e49da04c660800000000000000
+      internalID: 7405055615746102163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_70
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 328
+        width: 53
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ab2e2acdc690e8f0800000000000000
+      internalID: -513244546915751000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_71
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 323
+        width: 50
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 261607f13109acca0800000000000000
+      internalID: -5995821542084157086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_72
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 329
+        width: 49
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5729a24436949ad10800000000000000
+      internalID: 2137320188858241653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_73
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 328
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 192b86d7ecf043950800000000000000
+      internalID: 6427779947706233489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_74
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 325
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: addde9fbceac0f260800000000000000
+      internalID: 7129421328303447514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_75
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 329
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a46a3b0991dade0800000000000000
+      internalID: -1320371006469682645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_76
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 330
+        width: 62
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 750f883fe367df4c0800000000000000
+      internalID: -4252112460421992361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_77
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 330
+        width: 48
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94788cd02863bc180800000000000000
+      internalID: -9094115090339690679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_78
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 331
+        width: 51
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db6d0115cd7b26a80800000000000000
+      internalID: -8475009391877105987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_79
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 335
+        width: 64
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0c5445e208cbacd0800000000000000
+      internalID: -2545721249585931254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_80
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 328
+        width: 50
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa4f49f5f063e8c0800000000000000
+      internalID: -3971223836844668173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_81
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 324
+        width: 64
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25e46078980161ff0800000000000000
+      internalID: -65846961688392110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_82
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 333
+        width: 59
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eda45d5f000f6920800000000000000
+      internalID: 2985605143960268258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_83
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 329
+        width: 65
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53a7d6d5c72c57a00800000000000000
+      internalID: 753722352053615157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_84
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 275
+        width: 33
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 666d1c66b6732f610800000000000000
+      internalID: 1653444947623401062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_85
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 265
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b5df9de513fa8e0800000000000000
+      internalID: -1680069852531959011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_86
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 265
+        width: 50
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01de8c0672aa7cc80800000000000000
+      internalID: -8302480301929992944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_87
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 263
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1c1ab9b1d9f7180800000000000000
+      internalID: -9115394378873847316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_88
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52d52aa24f4652e90800000000000000
+      internalID: -7051118641728561883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_89
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 265
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3c218a2decbfe20800000000000000
+      internalID: 3385526949057315808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_90
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 260
+        width: 52
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f6662f7b1279a570800000000000000
+      internalID: 8478433235924575984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_91
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 268
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3fbb4e62a444740800000000000000
+      internalID: 5135311006015943637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_92
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 268
+        width: 66
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c89fd0c75dbfa3760800000000000000
+      internalID: 7438534628883691916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_93
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 266
+        width: 54
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d4898b24c4f553e0800000000000000
+      internalID: -2065475730698304304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_94
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 261
+        width: 59
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac9d401df3bfc880800000000000000
+      internalID: -8588448064890626898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_95
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 269
+        width: 66
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2450a3017ec4e2230800000000000000
+      internalID: 3615912106118481218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_96
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 264
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd3def1fa23abf920800000000000000
+      internalID: 3025190979553383387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_97
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 265
+        width: 65
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47115a739eb212000800000000000000
+      internalID: 9336954892390772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_98
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 255
+        width: 58
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c34eb754c53f9f0800000000000000
+      internalID: -435903285423752094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_99
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 268
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8a9e69e8b1e13560800000000000000
+      internalID: 7291857455996115597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_100
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 200
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd275c24c7fd9430800000000000000
+      internalID: 3791458883245387189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_101
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 201
+        width: 50
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7040ffe64df18090800000000000000
+      internalID: -8033861779137216390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_102
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 195
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c1d8fa725f171b80800000000000000
+      internalID: -8424230138862317115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_103
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 205
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd25e3e77752c580800000000000000
+      internalID: -8808381748747096618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_104
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 204
+        width: 47
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017368280077a8610800000000000000
+      internalID: 1624241459694024464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_105
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 204
+        width: 47
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a989a66886449ea80800000000000000
+      internalID: -8437137211179493222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_106
+      rect:
+        serializedVersion: 2
+        x: 353
+        y: 219
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62bd380f5cd6df370800000000000000
+      internalID: 8357957180380666662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_107
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 198
+        width: 65
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35bf932588a74410800000000000000
+      internalID: 1461321893886801210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_108
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 201
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e6dc11bec447130800000000000000
+      internalID: 3563557777656606232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_109
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 199
+        width: 42
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a33bd9b32eb02470800000000000000
+      internalID: 8367897168305664933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_110
+      rect:
+        serializedVersion: 2
+        x: 586
+        y: 203
+        width: 45
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc60b810b76e3500800000000000000
+      internalID: 377853424771820753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_111
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 203
+        width: 48
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d74d51eedde714050800000000000000
+      internalID: 5783042888167707773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_112
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 205
+        width: 64
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d05de1bffa1f42b60800000000000000
+      internalID: 7720561399354545421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_113
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 200
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64086d258deed6d30800000000000000
+      internalID: 4426456621645201478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_114
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 237
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a2feab5fd572f70800000000000000
+      internalID: 9162395276893170187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_115
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 203
+        width: 61
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b34ef3b1aaee6b0800000000000000
+      internalID: -5265083880336770290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_116
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 203
+        width: 60
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38aa2fa18c705ffe0800000000000000
+      internalID: -1156009173323699581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_117
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 194
+        width: 63
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9427d3535cc519ca0800000000000000
+      internalID: -6011922025491369399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_118
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 141
+        width: 63
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca36efd2bf5de120800000000000000
+      internalID: 2444715394597272257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_119
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 141
+        width: 61
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3238fd676627bfa0800000000000000
+      internalID: -5785112970665643461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_120
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 132
+        width: 57
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b38eb82effda6d70800000000000000
+      internalID: 9037281884970582966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_121
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 136
+        width: 44
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25961d033dd230be0800000000000000
+      internalID: -1512314664785974958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_122
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 135
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac49c13c7242d37b0800000000000000
+      internalID: -5242994637993634614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_123
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 135
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 376fa7df575455030800000000000000
+      internalID: 3482766259907130995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_124
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 138
+        width: 55
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a1c14e1f2b5e5790800000000000000
+      internalID: -7539488468242415198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_125
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 140
+        width: 51
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9456e3c0a9d9ee5c0800000000000000
+      internalID: -4184233718824671927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_126
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 141
+        width: 61
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00643a6ac7a313a40800000000000000
+      internalID: 5346118539711563264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_127
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 140
+        width: 66
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e7956aefaf6c8140800000000000000
+      internalID: 4723272910547294183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_128
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 131
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 177bf60793a009ab0800000000000000
+      internalID: -5003487944192837775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_129
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 140
+        width: 64
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5e2bd245769c9c30800000000000000
+      internalID: 4367531169019539039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_130
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 135
+        width: 50
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fae1800e164d80a0800000000000000
+      internalID: -6877763961253401865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_131
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 134
+        width: 51
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9b46663fa4a9edf0800000000000000
+      internalID: -150408040101295203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_132
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 136
+        width: 50
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 178c7da50c8a9b610800000000000000
+      internalID: 1637525483637164145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_133
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 140
+        width: 65
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21af4eb2030ae8d00800000000000000
+      internalID: 976894297941277202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_134
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 131
+        width: 17
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdf02dc6ae5da5af0800000000000000
+      internalID: -406777613498839077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_135
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 72
+        width: 54
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ced82c3b7027d2b0800000000000000
+      internalID: -5559939501303210304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_136
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 63
+        width: 64
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22bb5261260a60440800000000000000
+      internalID: 4901781587578174242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_137
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 67
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e699bcd6cc4602d0800000000000000
+      internalID: -3312876058894035230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_138
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 80
+        width: 40
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4342fd1cf649075d0800000000000000
+      internalID: -3066788138524400588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_139
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 73
+        width: 50
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46916635a3bfbcbe0800000000000000
+      internalID: -1455793826598348444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_140
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 73
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 460ee3396ca4cacb0800000000000000
+      internalID: -4851420481850515356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_141
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 69
+        width: 62
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2a6783090efbf4c0800000000000000
+      internalID: -4252526108453934547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_142
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 68
+        width: 48
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c91ac7093b160d950800000000000000
+      internalID: 6471780088382529948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_143
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 76
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c126b7a7aca54470800000000000000
+      internalID: 8378292517865923011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_144
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 73
+        width: 49
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccab5cbea83ac37c0800000000000000
+      internalID: -4090214544502834484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_145
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 71
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863f6152ea01d26b0800000000000000
+      internalID: -5319577244722072728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_146
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 76
+        width: 48
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dcfdb4278af5e090800000000000000
+      internalID: -8005717304237228844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_147
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 68
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dae105ac3d83d8090800000000000000
+      internalID: -8030700078248223059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_148
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 71
+        width: 63
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e80fa9983dddc160800000000000000
+      internalID: 7047532227070986472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_149
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 74
+        width: 64
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8360aea2dc406f190800000000000000
+      internalID: -7929144814704392648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_150
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 75
+        width: 49
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d913c7b7254762270800000000000000
+      internalID: 8225389667046666653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_151
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 10
+        width: 58
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 266811019685516a0800000000000000
+      internalID: -6479175280638196126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_152
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 3
+        width: 56
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f47f784628cec6b50800000000000000
+      internalID: 6587900399712728911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_153
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 8
+        width: 47
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 025a81750dbff2010800000000000000
+      internalID: 1166427700745250080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_154
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 53
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03282dc9323e8dc50800000000000000
+      internalID: 6690346988553273904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_155
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 5
+        width: 65
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e550391f8478d550800000000000000
+      internalID: 6185822246145119714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_156
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 52
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920d47b7401751cb0800000000000000
+      internalID: -4893881156003114967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back_poket_157
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 0
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8522f414e825110800000000000000
+      internalID: 1248216457886718147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      back_poket_0: -569160215706793162
+      back_poket_1: 1814059589849390066
+      back_poket_10: -1223377488830134053
+      back_poket_100: 3791458883245387189
+      back_poket_101: -8033861779137216390
+      back_poket_102: -8424230138862317115
+      back_poket_103: -8808381748747096618
+      back_poket_104: 1624241459694024464
+      back_poket_105: -8437137211179493222
+      back_poket_106: 8357957180380666662
+      back_poket_107: 1461321893886801210
+      back_poket_108: 3563557777656606232
+      back_poket_109: 8367897168305664933
+      back_poket_11: 162305806624129045
+      back_poket_110: 377853424771820753
+      back_poket_111: 5783042888167707773
+      back_poket_112: 7720561399354545421
+      back_poket_113: 4426456621645201478
+      back_poket_114: 9162395276893170187
+      back_poket_115: -5265083880336770290
+      back_poket_116: -1156009173323699581
+      back_poket_117: -6011922025491369399
+      back_poket_118: 2444715394597272257
+      back_poket_119: -5785112970665643461
+      back_poket_12: -2347284303499466371
+      back_poket_120: 9037281884970582966
+      back_poket_121: -1512314664785974958
+      back_poket_122: -5242994637993634614
+      back_poket_123: 3482766259907130995
+      back_poket_124: -7539488468242415198
+      back_poket_125: -4184233718824671927
+      back_poket_126: 5346118539711563264
+      back_poket_127: 4723272910547294183
+      back_poket_128: -5003487944192837775
+      back_poket_129: 4367531169019539039
+      back_poket_13: -7266871210950988193
+      back_poket_130: -6877763961253401865
+      back_poket_131: -150408040101295203
+      back_poket_132: 1637525483637164145
+      back_poket_133: 976894297941277202
+      back_poket_134: -406777613498839077
+      back_poket_135: -5559939501303210304
+      back_poket_136: 4901781587578174242
+      back_poket_137: -3312876058894035230
+      back_poket_138: -3066788138524400588
+      back_poket_139: -1455793826598348444
+      back_poket_14: -5803620049692715142
+      back_poket_140: -4851420481850515356
+      back_poket_141: -4252526108453934547
+      back_poket_142: 6471780088382529948
+      back_poket_143: 8378292517865923011
+      back_poket_144: -4090214544502834484
+      back_poket_145: -5319577244722072728
+      back_poket_146: -8005717304237228844
+      back_poket_147: -8030700078248223059
+      back_poket_148: 7047532227070986472
+      back_poket_149: -7929144814704392648
+      back_poket_15: 2693581108962474954
+      back_poket_150: 8225389667046666653
+      back_poket_151: -6479175280638196126
+      back_poket_152: 6587900399712728911
+      back_poket_153: 1166427700745250080
+      back_poket_154: 6690346988553273904
+      back_poket_155: 6185822246145119714
+      back_poket_156: -4893881156003114967
+      back_poket_157: 1248216457886718147
+      back_poket_16: -7710553212232424371
+      back_poket_17: 8942865106207991893
+      back_poket_18: -7738529171003127347
+      back_poket_19: 6584779817413340242
+      back_poket_2: -3735729906024506393
+      back_poket_20: 3768358196359448496
+      back_poket_21: -5222686907626830350
+      back_poket_22: -4236866273220951842
+      back_poket_23: -6390249114242854106
+      back_poket_24: -6866959476700068960
+      back_poket_25: 3441393059106160910
+      back_poket_26: -634315902240125183
+      back_poket_27: -2759824151114335497
+      back_poket_28: 3571774604106970516
+      back_poket_29: -4979353773828235613
+      back_poket_3: -4381446777830196656
+      back_poket_30: 7871217717809055223
+      back_poket_31: 4958333426512552090
+      back_poket_32: -6683859225090596482
+      back_poket_33: 3951670113056191116
+      back_poket_34: 2394947001924813496
+      back_poket_35: -2260143717838905991
+      back_poket_36: -3314346787566019244
+      back_poket_37: 1693580936688656182
+      back_poket_38: 4619216206021567018
+      back_poket_39: -1566515284894241699
+      back_poket_4: 2122712095489540976
+      back_poket_40: 7260226307193177327
+      back_poket_41: -1575178383938493355
+      back_poket_42: 1580180834343045677
+      back_poket_43: 2480773498460607244
+      back_poket_44: -4245430737767044692
+      back_poket_45: 9202046084874823471
+      back_poket_46: 7967466470803088202
+      back_poket_47: 5701130111693900234
+      back_poket_48: 1422868117506437542
+      back_poket_49: 1789887549344835132
+      back_poket_5: 1738135291203172918
+      back_poket_50: -4773247704612479448
+      back_poket_51: 5191708271126619799
+      back_poket_52: 578616943767453725
+      back_poket_53: 8012837563526208582
+      back_poket_54: -4753342570634142957
+      back_poket_55: -1075085336538033026
+      back_poket_56: -8082315599149484171
+      back_poket_57: -7923901196685257655
+      back_poket_58: -1608239899261881593
+      back_poket_59: 365011448185299838
+      back_poket_6: 4257778902178915366
+      back_poket_60: 7154094875165030177
+      back_poket_61: 4740229547157747417
+      back_poket_62: 6917143806298013866
+      back_poket_63: 2075470459592881770
+      back_poket_64: 2280482807911538201
+      back_poket_65: -5427556307933361896
+      back_poket_66: 1440884683020719227
+      back_poket_67: 8060123844968162810
+      back_poket_68: 8244385120012107040
+      back_poket_69: 7405055615746102163
+      back_poket_7: -643506389933873050
+      back_poket_70: -513244546915751000
+      back_poket_71: -5995821542084157086
+      back_poket_72: 2137320188858241653
+      back_poket_73: 6427779947706233489
+      back_poket_74: 7129421328303447514
+      back_poket_75: -1320371006469682645
+      back_poket_76: -4252112460421992361
+      back_poket_77: -9094115090339690679
+      back_poket_78: -8475009391877105987
+      back_poket_79: -2545721249585931254
+      back_poket_8: 841584246020743644
+      back_poket_80: -3971223836844668173
+      back_poket_81: -65846961688392110
+      back_poket_82: 2985605143960268258
+      back_poket_83: 753722352053615157
+      back_poket_84: 1653444947623401062
+      back_poket_85: -1680069852531959011
+      back_poket_86: -8302480301929992944
+      back_poket_87: -9115394378873847316
+      back_poket_88: -7051118641728561883
+      back_poket_89: 3385526949057315808
+      back_poket_9: -9054559412841487345
+      back_poket_90: 8478433235924575984
+      back_poket_91: 5135311006015943637
+      back_poket_92: 7438534628883691916
+      back_poket_93: -2065475730698304304
+      back_poket_94: -8588448064890626898
+      back_poket_95: 3615912106118481218
+      back_poket_96: 3025190979553383387
+      back_poket_97: 9336954892390772
+      back_poket_98: -435903285423752094
+      back_poket_99: 7291857455996115597
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
