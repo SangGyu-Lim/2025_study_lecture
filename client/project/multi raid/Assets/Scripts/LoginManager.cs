@@ -99,7 +99,7 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            // todo 에러창 띄우기
+            CreateMsgBoxOneBtn("helhel");
         }
     }
 
@@ -112,7 +112,7 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            // todo 에러창 띄우기
+            CreateMsgBoxOneBtn("helhel2");
         }
     }
 
@@ -123,6 +123,27 @@ public class LoginManager : MonoBehaviour
         await NetworkManager.Instance.ConnectSocket();
     }
 
+    void CreateMsgBoxOneBtn(string desc)
+    {
+        GameObject msgBoxPrefabOneBtn = Resources.Load<GameObject>("prefabs/MessageBox_1Button");
+        GameObject obj = Instantiate(msgBoxPrefabOneBtn, canvas);
 
+        obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
+        obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+    }
 
+    void DestroyObject(GameObject obj)
+    {
+        Destroy(obj);
+    }
+
+    void CreateMsgBoxTwoBtn(string desc, Action<bool> yesResult, Action<bool> noResult)
+    {
+        GameObject msgBoxPrefabOneBtn = Resources.Load<GameObject>("prefabs/MessageBox_2Button");
+        GameObject obj = Instantiate(msgBoxPrefabOneBtn, canvas);
+
+        obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
+        obj.transform.Find("YesBtn").GetComponent<Button>().onClick.AddListener(() => yesResult(obj));
+        obj.transform.Find("NoBtn").GetComponent<Button>().onClick.AddListener(() => noResult(obj));
+    }
 }

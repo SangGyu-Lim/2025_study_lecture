@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 37
+  controlID: 107
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -326,7 +326,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Resources/prefabs
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Resources/prefabs
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi
     raid"
@@ -344,9 +344,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: d8b10000
-    m_LastClickedID: 45528
-    m_ExpandedIDs: 00000000d8af0000daaf0000dcaf0000deaf000000ca9a3bffffff7f
+    m_SelectedIDs: 76b10000
+    m_LastClickedID: 45430
+    m_ExpandedIDs: 0000000074af000076af000078af00007aaf000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -375,7 +375,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d8af0000daaf0000dcaf0000deaf0000
+    m_ExpandedIDs: 0000000074af000076af000078af00007aaf0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -523,7 +523,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 98a3fffff6c4ffff08c5ffff1ec5ffff60e7ffff0ae8ffff92f4ffffb8f6ffffbcf6ffff0cfbfffff4ffffff6aaf0000
+      m_ExpandedIDs: aad0ffffc0d0ffff6cd7ffff64daffff0edcffff5adeffff70defffffee5ffff14e6fffff2efffff08f0ffff18f3ffff2ef3ffffeef5ffff38f7ffff0cfbfffff4ffffff20af0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
