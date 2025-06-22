@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,20 +9,24 @@ public class LoginManager : MonoBehaviour
 {
     public Transform canvas;
 
+    GameObject loginObj;
+    GameObject joinObj;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InitBtn();
+        Init();
     }
 
-    void InitBtn()
+   
+    void Init()
     {
-        canvas.Find("Login/LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
-        canvas.Find("Login/JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoinPage);
+        GameObject loginPrefab = Resources.Load<GameObject>("prefabs/Login");
+        loginObj = Instantiate(loginPrefab, canvas);
 
-        canvas.Find("Join/BackBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginPage);
-        canvas.Find("Join/JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoin);
+        loginObj.transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
+        loginObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoinPage);
+
     }
 
     // Update is called once per frame
@@ -32,45 +37,54 @@ public class LoginManager : MonoBehaviour
 
     void OnClickLogin()
     {
-        string id = canvas.Find("Login/ID").GetComponent<InputField>().text;
-        string password = canvas.Find("Login/Password").GetComponent<InputField>().text;
+        string id = loginObj.transform.Find("ID").GetComponent<TMP_InputField>().text;
+        string password = loginObj.transform.Find("Password").GetComponent<TMP_InputField>().text;
 
         Debug.Log("id : " + id + " pwd : " + password);
 
         // todo 로그인 연결 - 임시로 씬전환
-        SceneManager.LoadScene("GameScene");
-        //NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, LoginAction);
+        //SceneManager.LoadScene("GameScene");
+        NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, LoginAction);
     }
 
     void OnClickJoinPage()
     {
-        canvas.Find("Login").gameObject.SetActive(false);
-        canvas.Find("Join").gameObject.SetActive(true);
+        if(joinObj == null)
+        {
+            GameObject joinPrefab = Resources.Load<GameObject>("prefabs/Join");
+            joinObj = Instantiate(joinPrefab, canvas);
 
-        canvas.Find("Join/ID").GetComponent<InputField>().text = "";
-        canvas.Find("Join/Password").GetComponent<InputField>().text = "";
+            joinObj.transform.Find("BackBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginPage);
+            joinObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoin);
+        }
+        else
+        {
+            joinObj.SetActive(true);
+        }
+
+        joinObj.transform.Find("ID").GetComponent<TMP_InputField>().text = "";
+        joinObj.transform.Find("Password").GetComponent<TMP_InputField>().text = "";
 
     }
 
     void OnClickLoginPage()
     {
-        canvas.Find("Login").gameObject.SetActive(true);
-        canvas.Find("Join").gameObject.SetActive(false);
+        joinObj.SetActive(false);
 
-        canvas.Find("Login/ID").GetComponent<InputField>().text = "";
-        canvas.Find("Login/Password").GetComponent<InputField>().text = "";
+        loginObj.transform.Find("ID").GetComponent<TMP_InputField>().text = "";
+        loginObj.transform.Find("Password").GetComponent<TMP_InputField>().text = "";
 
     }
 
     void OnClickJoin()
     {
-        string id = canvas.Find("Join/ID").GetComponent<InputField>().text;
-        string password = canvas.Find("Join/Password").GetComponent<InputField>().text;
+        string id = joinObj.transform.Find("ID").GetComponent<TMP_InputField>().text;
+        string password = joinObj.transform.Find("Password").GetComponent<TMP_InputField>().text;
 
         Debug.Log("id : " + id + " pwd : " + password);
 
         // todo 회원가입 연결 + 회원가입 이후 패킷 처리
-        //NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, JoinAction);
+        NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, JoinAction);
     }
 
     void JoinAction(bool result)
@@ -97,6 +111,13 @@ public class LoginManager : MonoBehaviour
         {
             // todo 에러창 띄우기
         }
+    }
+
+    async void TestScoket()
+    {
+        //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, "", "");
+
+        await NetworkManager.Instance.ConnectSocket();
     }
 
 

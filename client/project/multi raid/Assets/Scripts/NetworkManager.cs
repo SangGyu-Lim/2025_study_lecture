@@ -27,9 +27,12 @@ public class NetworkManager : Singleton<NetworkManager>
     [System.Serializable]
     public class PostData
     {
-        public API_TYPE api;
-        public string packetName;
-        public string packetData;
+        public string sessionId;
+    }
+
+    public class PostData2
+    {
+        public string roomId;
     }
 
     protected override void Awake()
@@ -108,28 +111,27 @@ public class NetworkManager : Singleton<NetworkManager>
 
 
 
-    public void SendServer(API_TYPE api, string packetName, string packetData)
+    public void SendServer(string api, string packetName, string packetData)
     {
         Debug.Log(api);
         StartCoroutine(ServerCall(api, packetName, packetData));
     }
 
-    IEnumerator ServerCall(API_TYPE api, string packetName, string packetData)
+    IEnumerator ServerCall(string api, string packetName, string packetData)
     {
         PostData data = new PostData
         {
-            api = api,
-            packetName = packetName,
-            packetData = packetData
+            sessionId = GameDataManager.Instance.sessionId,
         };
         string json = JsonUtility.ToJson(data);
 
         Debug.LogError("before return www");
-        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL, "POST");
+        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL + api, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("authorization", "f5039751-d229-46b2-bfa2-1edc32e092ca");
 
         yield return request.SendWebRequest();
 
@@ -159,7 +161,7 @@ public class NetworkManager : Singleton<NetworkManager>
 
     public async Task ConnectSocket()
     {
-        client = new SocketIO(CommonDefine.WEB_SOCKET_URL, new SocketIOOptions
+        client = new SocketIO(CommonDefine.WEB_SOCKET_URL + "?sessionId=f5039751-d229-46b2-bfa2-1edc32e092ca", new SocketIOOptions
         {
             Reconnection = true,
             ReconnectionAttempts = 5,
@@ -183,6 +185,12 @@ public class NetworkManager : Singleton<NetworkManager>
         {
             { "roomId", roomId }
         };
+
+        PostData2 data = new PostData2
+        {
+            roomId = roomId,
+        };
+        string json = JsonUtility.ToJson(data);
 
         await client.EmitAsync("joinRoom", payload);
     }

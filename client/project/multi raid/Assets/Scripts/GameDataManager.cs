@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
-    public string sessionId;
+    public string sessionId = "8335e46c-4900-45ca-ad25-63c41598269e";
 
     protected override void Awake()
     {
