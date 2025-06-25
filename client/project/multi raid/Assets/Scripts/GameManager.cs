@@ -5,6 +5,8 @@ public class GameManager : Singleton<GameManager>
 {
     public Transform canvas;
 
+    GameObject lobbyObj;
+
     protected override void Awake()
     {
         base.Awake();  // ΩÃ±€≈Ê √ ±‚»≠
@@ -15,14 +17,17 @@ public class GameManager : Singleton<GameManager>
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InitBtn();
+        Init();
     }
 
-    void InitBtn()
+    void Init()
     {
+        GameObject lobbyPrefab = Resources.Load<GameObject>("prefabs/GameLobby");
+        lobbyObj = Instantiate(lobbyPrefab, canvas);
+
         //canvas.Find("RoomBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
         //canvas.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
-        canvas.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickInventory);
+        lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickInventory);
     }
 
     // Update is called once per frame
