@@ -3,36 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\loginmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|c:\\users\\limsg\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\loginmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\loginmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\networkmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\commondefine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\commondefine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|c:\\users\\limsg\\onedrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\dontdestroyobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dontdestroyobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\assets\\scripts\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD581419-8944-5D22-50EA-04C658204220}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\singleton.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,43 +38,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
               "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\GameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAQwEAAAABiAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAswFwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T08:38:00.826Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "LoginManager.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\LoginManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\LoginManager.cs",
               "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\LoginManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\LoginManager.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAmwC4AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAqwIwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T08:36:28.243Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "GameDataManager.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\GameDataManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameDataManager.cs",
               "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\GameDataManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameDataManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-06T06:41:04.404Z",
               "EditorCaption": ""
@@ -91,14 +87,14 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\CommonDefine.cs",
               "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\CommonDefine.cs",
               "RelativeToolTip": "Assets\\Scripts\\CommonDefine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-03T08:36:45.563Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Singleton.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\Singleton.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Singleton.cs",
@@ -106,12 +102,11 @@
               "RelativeToolTip": "Assets\\Scripts\\Singleton.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T08:26:15.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-03T08:26:15.298Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "DontDestroyObject.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\DontDestroyObject.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\DontDestroyObject.cs",
@@ -119,32 +114,21 @@
               "RelativeToolTip": "Assets\\Scripts\\DontDestroyObject.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T08:08:55.812Z"
+              "WhenOpened": "2025-06-03T08:08:55.812Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "NetworkManager.cs",
               "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\NetworkManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\NetworkManager.cs",
               "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Assets\\Scripts\\NetworkManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\NetworkManager.cs",
-              "ViewState": "AgIAACAAAAAAAAAAAAAgwFoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAswAoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-03T08:06:36.473Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LayoutUtility.cs",
-              "DocumentMoniker": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs",
-              "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs",
-              "ToolTip": "C:\\Users\\limsg\\OneDrive\\\uBC14\uD0D5 \uD654\uBA74\\2025_study_lecture\\client\\project\\multi raid\\Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs",
-              "RelativeToolTip": "Library\\PackageCache\\com.unity.ugui@9b7e7eef789d\\Runtime\\UGUI\\UI\\Core\\Layout\\LayoutUtility.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAASwH0AAACCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-15T04:35:53.058Z"
             }
           ]
         }

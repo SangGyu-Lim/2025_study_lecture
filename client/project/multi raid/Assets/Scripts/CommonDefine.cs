@@ -14,10 +14,3 @@ public static class CommonDefine
     public const string WEB_SOCKET_URL = "ws://localhost:3000/rooms";
 
 }
-
-public enum API_TYPE
-{
-    None = 0,
-    join = 1,
-    login = 2,
-}

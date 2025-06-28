@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     public Transform canvas;
 
-    GameObject lobbyObj;
+    GameObject lobbyObj = null;
 
     protected override void Awake()
     {
@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 
         lobbyObj.transform.Find("MakeRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickMakeRoom);
         //lobbyObj.transform.Find("EnterRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
-        //lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
+        lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickInventory);
     }
 
@@ -39,6 +39,63 @@ public class GameManager : Singleton<GameManager>
     {
         
     }
+
+    void OnClickEnterShop()
+    {
+        // todo GameDataManager의 포켓몬 데이터 확인후 없으면 서버에서 포켓몬 데이터 받아오기
+        if(GameDataManager.Instance.pokemonShopList == null)
+        {
+            //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
+            GameDataManager.Instance.pokemonShopList = new List<GameDataManager.PokemonShop>();
+            for (int i = 0; i < 5; ++i)
+            {
+                GameDataManager.PokemonShop data = new GameDataManager.PokemonShop
+                {
+                    idx = i,
+                    name = "이상해씨" + i.ToString(),
+                    desc = "이상해씨가 이상해" + i.ToString(),
+                };
+
+                GameDataManager.Instance.pokemonShopList.Add(data);
+            }
+            
+        }
+        
+
+        CreateShop();
+
+    }
+
+    void CreateShop()
+    {
+        GameObject ShopPrefab = Resources.Load<GameObject>("prefabs/ShopContainer");
+        GameObject shopObj = Instantiate(ShopPrefab, canvas);
+
+        shopObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(shopObj));
+
+        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Count; i++)
+        {
+            var pokemon = GameDataManager.Instance.pokemonShopList[i];
+
+            GameObject ShopItemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
+            GameObject itemObj = Instantiate(ShopItemPrefab, shopObj.transform.Find("ShopItemScrollView/Viewport/Content"));
+
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
+
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
+
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => BuyPokemon(pokemon.idx));
+        }
+
+    }
+
+    void BuyPokemon(int idx)
+    {
+        Debug.Log("BuyPokemon : " + idx);
+    }
+    
 
     void OnClickMakeRoom()
     {
@@ -67,12 +124,7 @@ public class GameManager : Singleton<GameManager>
         string dropdownText = dropdown.options[dropdown.value].text;
         Debug.Log("title : " + title + " / ropdown : " + dropdownText);
 
-        //GameObject MakeRoomPrefab = Resources.Load<GameObject>("prefabs/MakeRoom");
-        //GameObject obj = Instantiate(MakeRoomPrefab, canvas);
-
-        //obj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => firstResult(true));
-        //obj.transform.Find("CancelBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
-
+        NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
 
     }
 

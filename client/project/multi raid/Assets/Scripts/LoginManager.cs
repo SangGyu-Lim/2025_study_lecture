@@ -9,8 +9,8 @@ public class LoginManager : MonoBehaviour
 {
     public Transform canvas;
 
-    GameObject loginObj;
-    GameObject joinObj;
+    GameObject loginObj = null;
+    GameObject joinObj = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -82,9 +82,6 @@ public class LoginManager : MonoBehaviour
         string password = joinObj.transform.Find("Password").GetComponent<TMP_InputField>().text;
 
         Debug.Log("id : " + id + " pwd : " + password);
-        string temp = GameDataManager.Instance.sessionId;
-        GameDataManager.Instance.sessionId = "temp";
-        string temp2 = GameDataManager.Instance.temp;
 
         // todo 회원가입 연결 + 회원가입 이후 패킷 처리
         NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, JoinAction);
