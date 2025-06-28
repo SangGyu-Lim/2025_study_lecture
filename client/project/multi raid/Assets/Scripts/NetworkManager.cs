@@ -131,7 +131,7 @@ public class NetworkManager : Singleton<NetworkManager>
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("authorization", "f5039751-d229-46b2-bfa2-1edc32e092ca");
+        request.SetRequestHeader("authorization", GameDataManager.Instance.sessionId);
 
         yield return request.SendWebRequest();
 

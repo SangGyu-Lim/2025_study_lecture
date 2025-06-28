@@ -44,7 +44,7 @@ public class LoginManager : MonoBehaviour
 
         // todo 로그인 연결 - 임시로 씬전환
         //SceneManager.LoadScene("GameScene");
-        NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, LoginAction);
+        NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, CallbackLogin);
     }
 
     void OnClickJoinPage()
@@ -84,10 +84,10 @@ public class LoginManager : MonoBehaviour
         Debug.Log("id : " + id + " pwd : " + password);
 
         // todo 회원가입 연결 + 회원가입 이후 패킷 처리
-        NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, JoinAction);
+        NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, CallbackJoin);
     }
 
-    void JoinAction(bool result)
+    void CallbackJoin(bool result)
     {
         if(result)
         {
@@ -100,7 +100,7 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    void LoginAction(bool result)
+    void CallbackLogin(bool result)
     {
         if (result)
         {
@@ -113,11 +113,9 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    async void TestScoket()
+    void DestroyObject(GameObject obj)
     {
-        //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, "", "");
-
-        await NetworkManager.Instance.ConnectSocket();
+        Destroy(obj);
     }
 
     void CreateMsgBoxOneBtn(string desc)
@@ -127,11 +125,6 @@ public class LoginManager : MonoBehaviour
 
         obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
         obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
-    }
-
-    void DestroyObject(GameObject obj)
-    {
-        Destroy(obj);
     }
 
     void CreateMsgBoxTwoBtn(string desc, Action<bool> yesResult, Action<bool> noResult)
