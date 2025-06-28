@@ -8,7 +8,16 @@ public class GameDataManager : Singleton<GameDataManager>
     public string temp = "8335e46c-4900-45ca-ad25-63c41598269e";
 
     public List<PokemonShop> pokemonShopList = null;
+    public List<Pokemon> myPokemonList = null;
+
     public class PokemonShop
+    {
+        public int idx;
+        public string name;
+        public string desc;
+    }
+
+    public class Pokemon
     {
         public int idx;
         public string name;

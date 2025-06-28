@@ -31,7 +31,7 @@ public class GameManager : Singleton<GameManager>
         lobbyObj.transform.Find("MakeRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickMakeRoom);
         //lobbyObj.transform.Find("EnterRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
-        lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickInventory);
+        lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
     }
 
     // Update is called once per frame
@@ -127,20 +127,61 @@ public class GameManager : Singleton<GameManager>
         NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
 
     }
-
-    void OnClickInventory()
+    
+   void OnClickEnterInventory()
     {
-        GameObject InvenPrefab = Resources.Load<GameObject>("prefabs/Inventory");
-
-        GameObject inven = Instantiate(InvenPrefab, canvas);
-
-        for (int i = 0; i < 3; i++)
+        // todo GameDataManager의 내 포켓몬 데이터 확인후 없으면 서버에서 포켓몬 데이터 받아오기
+        if (GameDataManager.Instance.myPokemonList == null)
         {
-            GameObject InvenItemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+            //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
+            GameDataManager.Instance.myPokemonList = new List<GameDataManager.Pokemon>();
+            for (int i = 0; i < 5; ++i)
+            {
+                GameDataManager.Pokemon data = new GameDataManager.Pokemon
+                {
+                    idx = i,
+                    name = "이상해씨" + i.ToString(),
+                    desc = "이상해씨가 이상해" + i.ToString(),
+                };
 
-            GameObject invenItem = Instantiate(InvenItemPrefab, inven.transform.Find("Scroll View/Viewport/Content"));
+                GameDataManager.Instance.myPokemonList.Add(data);
+            }
+
         }
 
+
+        CreateInventory();
+
+    }
+
+    void CreateInventory()
+    {
+        GameObject InventoryPrefab = Resources.Load<GameObject>("prefabs/Inventory");
+        GameObject invenObj = Instantiate(InventoryPrefab, canvas);
+
+        invenObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(invenObj));
+
+        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < GameDataManager.Instance.myPokemonList.Count; i++)
+        {
+            var pokemon = GameDataManager.Instance.myPokemonList[i];
+
+            GameObject InventoryItemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+            GameObject itemObj = Instantiate(InventoryItemPrefab, invenObj.transform.Find("InventoryItemScrollView/Viewport/Content"));
+
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
+
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
+
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon(pokemon.idx));
+        }
+
+    }
+
+    void UsePokemon(int idx)
+    {
+        Debug.Log("UsePokemon : " + idx);
     }
 
     void SetTransformTwoBtn(Transform trans, Action<bool> firstResult, Action<bool> secondResult)
