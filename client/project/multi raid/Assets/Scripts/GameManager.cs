@@ -68,7 +68,7 @@ public class GameManager : Singleton<GameManager>
 
     void CreateShop()
     {
-        GameObject ShopPrefab = Resources.Load<GameObject>("prefabs/ShopContainer");
+        GameObject ShopPrefab = Resources.Load<GameObject>("prefabs/Shop");
         GameObject shopObj = Instantiate(ShopPrefab, canvas);
 
         shopObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(shopObj));
