@@ -32,6 +32,7 @@ AssetStoreTools*
 
 # VS Code settings
 .vscode/
+*.vs/
 
 # Rider settings
 .idea/
