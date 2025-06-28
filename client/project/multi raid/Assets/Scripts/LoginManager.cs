@@ -99,7 +99,7 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            CreateMsgBoxOneBtn("helhel");
+            CreateMsgBoxOneBtn("회원가입 실패");
         }
     }
 
@@ -112,7 +112,7 @@ public class LoginManager : MonoBehaviour
         }
         else
         {
-            CreateMsgBoxOneBtn("helhel2");
+            CreateMsgBoxOneBtn("로그인 실패");
         }
     }
 
