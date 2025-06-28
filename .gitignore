@@ -32,7 +32,7 @@ AssetStoreTools*
 
 # VS Code settings
 .vscode/
-*.vs/
+.vs/
 
 # Rider settings
 .idea/
@@ -69,6 +69,9 @@ node_modules/
 
 # Unity Cache Server data
 unitycache/
+
+# Unity Log data
+Logs/
 
 # External packages (optional)
 Packages/manifest.json
