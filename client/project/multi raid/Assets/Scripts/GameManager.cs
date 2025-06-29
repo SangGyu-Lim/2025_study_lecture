@@ -76,7 +76,7 @@ public class GameManager : Singleton<GameManager>
             roomList.Add(data);
         }
 
-        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < roomList.Count; i++)
         {
             var room = roomList[i];
@@ -84,7 +84,7 @@ public class GameManager : Singleton<GameManager>
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[room.masterPokeIdx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.masterPokeIdx];
 
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
             itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
@@ -134,7 +134,7 @@ public class GameManager : Singleton<GameManager>
 
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
-        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Count; i++)
         {
             var pokemon = GameDataManager.Instance.pokemonShopList[i];
@@ -142,7 +142,7 @@ public class GameManager : Singleton<GameManager>
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.idx];
 
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
@@ -236,7 +236,7 @@ public class GameManager : Singleton<GameManager>
 
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
-        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Count; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
@@ -244,7 +244,7 @@ public class GameManager : Singleton<GameManager>
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.idx];
 
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
