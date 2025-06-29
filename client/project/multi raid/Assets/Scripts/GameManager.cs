@@ -26,8 +26,8 @@ public class GameManager : Singleton<GameManager>
 
     void Init()
     {
-        GameObject lobbyPrefab = Resources.Load<GameObject>("prefabs/GameLobby");
-        lobbyObj = Instantiate(lobbyPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/GameLobby");
+        lobbyObj = Instantiate(prefab, canvas);
 
         lobbyObj.transform.Find("MakeRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickMakeRoom);
         lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(OnClickRoomList);
@@ -57,10 +57,10 @@ public class GameManager : Singleton<GameManager>
 
     void CallbackRoomList(bool result)
     {
-        GameObject RoomListPrefab = Resources.Load<GameObject>("prefabs/RoomList");
-        GameObject roomListObj = Instantiate(RoomListPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/RoomList");
+        GameObject obj = Instantiate(prefab, canvas);
 
-        roomListObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomListObj));
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
         List<Room> roomList = new List<Room>();
         for(int i = 0; i < 5; ++i)
@@ -81,8 +81,8 @@ public class GameManager : Singleton<GameManager>
         {
             var room = roomList[i];
 
-            GameObject RoomListItemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
-            GameObject itemObj = Instantiate(RoomListItemPrefab, roomListObj.transform.Find("RoomListItemScrollView/Viewport/Content"));
+            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
+            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[room.masterPokeIdx];
 
@@ -129,18 +129,18 @@ public class GameManager : Singleton<GameManager>
 
     void CreateShop()
     {
-        GameObject ShopPrefab = Resources.Load<GameObject>("prefabs/Shop");
-        GameObject shopObj = Instantiate(ShopPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Shop");
+        GameObject obj = Instantiate(prefab, canvas);
 
-        shopObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(shopObj));
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
         Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Count; i++)
         {
             var pokemon = GameDataManager.Instance.pokemonShopList[i];
 
-            GameObject ShopItemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
-            GameObject itemObj = Instantiate(ShopItemPrefab, shopObj.transform.Find("ShopItemScrollView/Viewport/Content"));
+            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
+            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
 
@@ -161,8 +161,8 @@ public class GameManager : Singleton<GameManager>
 
     void OnClickMakeRoom()
     {
-        GameObject MakeRoomPrefab = Resources.Load<GameObject>("prefabs/MakeRoom");
-        GameObject obj = Instantiate(MakeRoomPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/MakeRoom");
+        GameObject obj = Instantiate(prefab, canvas);
 
         var dropdown = obj.transform.Find("Level/Dropdown").GetComponent<TMP_Dropdown>();
         dropdown.ClearOptions();
@@ -231,18 +231,18 @@ public class GameManager : Singleton<GameManager>
 
     void CreateInventory()
     {
-        GameObject InventoryPrefab = Resources.Load<GameObject>("prefabs/Inventory");
-        GameObject invenObj = Instantiate(InventoryPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Inventory");
+        GameObject obj = Instantiate(prefab, canvas);
 
-        invenObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(invenObj));
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
         Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Count; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
 
-            GameObject InventoryItemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
-            GameObject itemObj = Instantiate(InventoryItemPrefab, invenObj.transform.Find("InventoryItemScrollView/Viewport/Content"));
+            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
 

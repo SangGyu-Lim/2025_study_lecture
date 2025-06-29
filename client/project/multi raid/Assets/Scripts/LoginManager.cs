@@ -21,8 +21,8 @@ public class LoginManager : MonoBehaviour
    
     void Init()
     {
-        GameObject loginPrefab = Resources.Load<GameObject>("prefabs/Login");
-        loginObj = Instantiate(loginPrefab, canvas);
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Login");
+        loginObj = Instantiate(prefab, canvas);
 
         loginObj.transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
         loginObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoinPage);
@@ -51,8 +51,8 @@ public class LoginManager : MonoBehaviour
     {
         if(joinObj == null)
         {
-            GameObject joinPrefab = Resources.Load<GameObject>("prefabs/Join");
-            joinObj = Instantiate(joinPrefab, canvas);
+            GameObject prefab = Resources.Load<GameObject>("prefabs/Join");
+            joinObj = Instantiate(prefab, canvas);
 
             joinObj.transform.Find("BackBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginPage);
             joinObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoin);
