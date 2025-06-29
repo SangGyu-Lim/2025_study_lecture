@@ -105,10 +105,10 @@ public class GameManager : Singleton<GameManager>
         if(GameDataManager.Instance.pokemonShopList == null)
         {
             //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
-            GameDataManager.Instance.pokemonShopList = new List<GameDataManager.PokemonShop>();
+            GameDataManager.Instance.pokemonShopList = new List<PokemonShop>();
             for (int i = 0; i < 5; ++i)
             {
-                GameDataManager.PokemonShop data = new GameDataManager.PokemonShop
+                PokemonShop data = new PokemonShop
                 {
                     idx = i,
                     name = "이상해씨" + i.ToString(),
@@ -198,7 +198,7 @@ public class GameManager : Singleton<GameManager>
         }
         else
         {
-            CreateMsgBoxOneBtn("로그인 실패");
+            CreateMsgBoxOneBtn("방생성 실패");
         }
     }
 
@@ -208,10 +208,10 @@ public class GameManager : Singleton<GameManager>
         if (GameDataManager.Instance.myPokemonList == null)
         {
             //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
-            GameDataManager.Instance.myPokemonList = new List<GameDataManager.Pokemon>();
+            GameDataManager.Instance.myPokemonList = new List<Pokemon>();
             for (int i = 0; i < 5; ++i)
             {
-                GameDataManager.Pokemon data = new GameDataManager.Pokemon
+                Pokemon data = new Pokemon
                 {
                     idx = i,
                     name = "이상해씨" + i.ToString(),

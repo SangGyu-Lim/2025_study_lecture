@@ -10,20 +10,6 @@ public class GameDataManager : Singleton<GameDataManager>
     public List<PokemonShop> pokemonShopList = null;
     public List<Pokemon> myPokemonList = null;
 
-    public class PokemonShop
-    {
-        public int idx;
-        public string name;
-        public string desc;
-        public int price;
-    }
-
-    public class Pokemon
-    {
-        public int idx;
-        public string name;
-        public string desc;
-    }
     protected override void Awake()
     {
         base.Awake();  // ΩÃ±€≈Ê √ ±‚»≠

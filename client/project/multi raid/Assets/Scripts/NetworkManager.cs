@@ -10,30 +10,6 @@ using System.Threading.Tasks;
 
 public class NetworkManager : Singleton<NetworkManager>
 {
-    [System.Serializable]
-    public class LoginPostData
-    {
-        public string username;
-        public string password;
-    }
-
-    [System.Serializable]
-    public class LoginData
-    {
-        public string sessionId;
-        public string username;
-    }
-
-    [System.Serializable]
-    public class PostData
-    {
-        public string sessionId;
-    }
-
-    public class PostData2
-    {
-        public string roomId;
-    }
 
     protected override void Awake()
     {

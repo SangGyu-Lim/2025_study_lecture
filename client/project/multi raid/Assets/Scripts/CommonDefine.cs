@@ -16,3 +16,40 @@ public static class CommonDefine
     public const string WEB_SOCKET_URL = "ws://localhost:3000/rooms";
 
 }
+
+public class LoginPostData
+{
+    public string username;
+    public string password;
+}
+
+public class LoginData
+{
+    public string sessionId;
+    public string username;
+}
+
+public class PostData
+{
+    public string sessionId;
+}
+
+public class PostData2
+{
+    public string roomId;
+}
+
+public class PokemonShop
+{
+    public int idx;
+    public string name;
+    public string desc;
+    public int price;
+}
+
+public class Pokemon
+{
+    public int idx;
+    public string name;
+    public string desc;
+}
