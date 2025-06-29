@@ -111,13 +111,13 @@ public class NetworkManager : Singleton<NetworkManager>
 
 
 
-    public void SendServer(string api, string packetName, string packetData)
+    public void SendServer(string api, string packetName, string packetData, Action<bool> onResult)
     {
         Debug.Log(api);
-        StartCoroutine(ServerCall(api, packetName, packetData));
+        StartCoroutine(ServerCall(api, packetName, packetData, onResult));
     }
 
-    IEnumerator ServerCall(string api, string packetName, string packetData)
+    IEnumerator ServerCall(string api, string packetName, string packetData, Action<bool> onResult)
     {
         PostData data = new PostData
         {
@@ -143,11 +143,12 @@ public class NetworkManager : Singleton<NetworkManager>
             Debug.Log("응답: " + request.downloadHandler.text);
 
             //GameDataManager.Instance.token = res.token;
-
+            onResult?.Invoke(true);
         }
         else
         {
             Debug.LogError("POST 실패: " + request.error);
+            onResult?.Invoke(false);
         }
 
     }

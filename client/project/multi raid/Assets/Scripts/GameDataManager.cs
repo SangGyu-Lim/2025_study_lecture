@@ -15,6 +15,7 @@ public class GameDataManager : Singleton<GameDataManager>
         public int idx;
         public string name;
         public string desc;
+        public int price;
     }
 
     public class Pokemon
