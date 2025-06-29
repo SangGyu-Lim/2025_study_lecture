@@ -202,7 +202,7 @@ public class NetworkManager : Singleton<NetworkManager>
         }
     }
 
-    public async void SendMessageToRoom(string messageText)
+    public async Task SendMessageToRoom(string messageText)
     {
         var payload = new Dictionary<string, string>
         {

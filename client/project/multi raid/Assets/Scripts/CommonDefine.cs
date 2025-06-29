@@ -17,6 +17,19 @@ public static class CommonDefine
 
 }
 
+public enum BATTLE_STATE
+{
+    NONE,
+    WAIT,
+    PLAYER1_TURN,
+    PLAYER2_TURN,
+    PLAYER3_TURN,
+    PLAYER4_TURN,
+    BOSS_TURN,
+    VICTORY,
+    DEFEAT,
+}
+
 public class LoginPostData
 {
     public string username;
@@ -60,4 +73,25 @@ public class Room
     public string title;
     public int level;
     public int masterPokeIdx;
+}
+
+public class BattlePoke
+{
+    public int pokeIdx;
+    public int curHp;
+    public int maxHp;
+}
+
+public class MyPokemon
+{
+    public int idx;
+    public int skill1_idx;
+    public string skill1_name;
+    public int skill1_attack;
+    public int skill2_idx;
+    public string skill2_name;
+    public int skill2_attack;
+    public int skill3_idx;
+    public string skill3_name;
+    public int skill3_attack;
 }

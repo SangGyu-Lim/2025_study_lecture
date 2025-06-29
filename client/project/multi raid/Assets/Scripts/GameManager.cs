@@ -10,6 +10,10 @@ public class GameManager : Singleton<GameManager>
     public Transform canvas;
 
     GameObject lobbyObj = null;
+    GameObject battleObj = null;
+
+    BATTLE_STATE state = BATTLE_STATE.NONE;
+    int myBattleTurn = -1;
 
     protected override void Awake()
     {
@@ -30,7 +34,7 @@ public class GameManager : Singleton<GameManager>
         lobbyObj = Instantiate(prefab, canvas);
 
         lobbyObj.transform.Find("MakeRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickMakeRoom);
-        lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(OnClickRoomList);
+        lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(EnterBattle);
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
     }
@@ -38,7 +42,137 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        BattleState();
+    }
+
+    void EnterBattle()
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Battle");
+        battleObj = Instantiate(prefab, canvas);
+
+        // 보스 세팅
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[158];
+
+        Slider bossHpSlider = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
+        bossHpSlider.maxValue = 150;
+        bossHpSlider.value = 150;
+        battleObj.transform.Find("Boss/HpBar/HpText").GetComponent<TMP_Text>().text = "150 / 150";
+
+        // 유저 세팅
+        List<BattlePoke> userList = new List<BattlePoke>();
+        for (int i = 0; i < 4; ++i)
+        {
+            BattlePoke data = new BattlePoke
+            {
+                pokeIdx = i + 10,
+                curHp = (i + 1) * 10,
+                maxHp = (i + 1) * 10,
+            };
+
+            userList.Add(data);
+        }
+
+        Sprite[] spriteBackAll = Resources.LoadAll<Sprite>("images/pokemon-back");
+        for (int i = 0; i < userList.Count; i++)
+        {
+            var user = userList[i];
+            string player = "4Player/Player" + (i + 1).ToString();
+
+            battleObj.transform.Find(player + "/Image").GetComponent<Image>().sprite = spriteBackAll[user.pokeIdx];
+
+            Slider hpSlider = battleObj.transform.Find(player + "/HpBar").GetComponent<Slider>();
+            hpSlider.maxValue = user.maxHp;
+            hpSlider.value = user.curHp;
+
+            battleObj.transform.Find(player + "/HpBar/HpText").GetComponent<TMP_Text>().text = user.curHp.ToString() + " / " + user.maxHp;
+        }
+
+    }
+
+    void BattleState()
+    {
+        // todo 배틀의 각각 상태 처리
+        switch (state)
+        {
+            case BATTLE_STATE.NONE:
+                {
+                    // 전투 상태 아님.
+                }
+                break;
+            case BATTLE_STATE.WAIT:
+                {
+                    // 다른 사람들 턴.
+                    battleObj.transform.Find("State/state").gameObject.SetActive(true);
+                    battleObj.transform.Find("State/Skill").gameObject.SetActive(false);
+                }
+                break;
+            case BATTLE_STATE.PLAYER1_TURN:
+                {
+                    SetBattleTurn(1);
+                }
+                break;
+            case BATTLE_STATE.PLAYER2_TURN:
+                {
+                    SetBattleTurn(2);
+                }
+                break;
+            case BATTLE_STATE.PLAYER3_TURN:
+                {
+                    SetBattleTurn(3);
+                }
+                break;
+            case BATTLE_STATE.PLAYER4_TURN:
+                {
+                    SetBattleTurn(4);
+                }
+                break;
+            case BATTLE_STATE.BOSS_TURN:
+                {
+                    battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "보스의 순서입니다.";
+                    state = BATTLE_STATE.WAIT;
+                }
+                break;
+            case BATTLE_STATE.VICTORY:
+                {
+                    myBattleTurn = -1;
+                }
+                break;
+            case BATTLE_STATE.DEFEAT:
+                {
+                    myBattleTurn = -1;
+                }
+                break;
+        }
+    }
+
+    void SetBattleTurn(int turn)
+    {
+        if (myBattleTurn == turn)
+        {
+            battleObj.transform.Find("State/Skill").gameObject.SetActive(true);
+
+            var myPokemon = GameDataManager.Instance.myCurPokemon;
+
+            battleObj.transform.Find("State/Skill/skill1Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill1_idx));
+            battleObj.transform.Find("State/Skill/skill2Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill2_idx));
+            battleObj.transform.Find("State/Skill/skill3Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill3_idx));
+
+            battleObj.transform.Find("State/Skill/skill1Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill1_name;
+            battleObj.transform.Find("State/Skill/skill2Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill2_name;
+            battleObj.transform.Find("State/Skill/skill3Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill3_name;
+
+        }
+        else
+        {
+            battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "Player " + turn.ToString() + "의 순서입니다.";
+            state = BATTLE_STATE.WAIT;
+        }
+    }
+
+    async void UseSkill(int skillIdx)
+    {
+        await NetworkManager.Instance.SendMessageToRoom(skillIdx.ToString());
     }
 
     async void ConnectSocket()

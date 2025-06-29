@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
-    [SerializeField] public string sessionId = "8335e46c-4900-45ca-ad25-63c41598269e";
-
-    public string temp = "8335e46c-4900-45ca-ad25-63c41598269e";
+    public string sessionId = null;
 
     public List<PokemonShop> pokemonShopList = null;
     public List<Pokemon> myPokemonList = null;
+    public MyPokemon myCurPokemon = null;
 
     protected override void Awake()
     {
