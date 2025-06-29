@@ -53,3 +53,11 @@ public class Pokemon
     public string name;
     public string desc;
 }
+
+public class Room
+{
+    public int idx;
+    public string title;
+    public int level;
+    public int masterPokeIdx;
+}

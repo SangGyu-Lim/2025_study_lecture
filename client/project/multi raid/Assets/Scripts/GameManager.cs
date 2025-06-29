@@ -49,54 +49,55 @@ public class GameManager : Singleton<GameManager>
     void OnClickRoomList()
     {
         // todo 서버에서 룸리스트 받아오기
-        //ConnectSocket();
-        //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_LIST_URL, title, dropdownText, CallbackRoomList);
-        //if (GameDataManager.Instance.pokemonShopList == null)
-        //{
-        //    GameDataManager.Instance.pokemonShopList = new List<GameDataManager.PokemonShop>();
-        //    for (int i = 0; i < 5; ++i)
-        //    {
-        //        GameDataManager.PokemonShop data = new GameDataManager.PokemonShop
-        //        {
-        //            idx = i,
-        //            name = "이상해씨" + i.ToString(),
-        //            desc = "이상해씨가 이상해" + i.ToString(),
-        //            price = i * 100,
-        //        };
-
-        //        GameDataManager.Instance.pokemonShopList.Add(data);
-        //    }
-
-        //}
-
-
-        //CreateShop();
+        ConnectSocket();
+        NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_LIST_URL, null, null, CallbackRoomList);
+        
 
     }
 
-    void CallbackRoomList()
+    void CallbackRoomList(bool result)
     {
-        GameObject ShopPrefab = Resources.Load<GameObject>("prefabs/Shop");
-        GameObject shopObj = Instantiate(ShopPrefab, canvas);
+        GameObject RoomListPrefab = Resources.Load<GameObject>("prefabs/RoomList");
+        GameObject roomListObj = Instantiate(RoomListPrefab, canvas);
 
-        shopObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(shopObj));
+        roomListObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomListObj));
 
-        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-        for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Count; i++)
+        List<Room> roomList = new List<Room>();
+        for(int i = 0; i < 5; ++i)
         {
-            var pokemon = GameDataManager.Instance.pokemonShopList[i];
+            Room data = new Room
+            {
+                idx = i,
+                title = "이름이름" + i.ToString(),
+                level = i * 2,
+                masterPokeIdx = i * 20,
+            };
 
-            GameObject ShopItemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
-            GameObject itemObj = Instantiate(ShopItemPrefab, shopObj.transform.Find("ShopItemScrollView/Viewport/Content"));
-
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[pokemon.idx];
-
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
-
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => BuyPokemon(pokemon.idx));
+            roomList.Add(data);
         }
 
+        Sprite[] spriteAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            var room = roomList[i];
+
+            GameObject RoomListItemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
+            GameObject itemObj = Instantiate(RoomListItemPrefab, roomListObj.transform.Find("RoomListItemScrollView/Viewport/Content"));
+
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteAll[room.masterPokeIdx];
+
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
+            itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
+
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(room.idx));
+        }
+
+    }
+
+    void JoinRoom(int idx)
+    {
+        // todo 포켓몬 구입후 데이터 갱신
+        Debug.Log("JoinRoom : " + idx);
     }
 
     void OnClickEnterShop()
