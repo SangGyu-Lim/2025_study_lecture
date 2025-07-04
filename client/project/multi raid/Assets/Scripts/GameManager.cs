@@ -154,13 +154,15 @@ public class GameManager : Singleton<GameManager>
 
             var myPokemon = GameDataManager.Instance.myCurPokemon;
 
-            battleObj.transform.Find("State/Skill/skill1Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill1_idx));
-            battleObj.transform.Find("State/Skill/skill2Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill2_idx));
-            battleObj.transform.Find("State/Skill/skill3Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(myPokemon.skill3_idx));
+            for(int i = 0; i < myPokemon.pokemon.skills.Count; ++i)
+            {
+                string idx = (i + 1).ToString();
+                var skill = myPokemon.pokemon.skills[i];
 
-            battleObj.transform.Find("State/Skill/skill1Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill1_name;
-            battleObj.transform.Find("State/Skill/skill2Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill2_name;
-            battleObj.transform.Find("State/Skill/skill3Btn/Text").GetComponent<TMP_Text>().text = myPokemon.skill3_name;
+                battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.id));
+                battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skill.name;
+
+            }
 
         }
         else
@@ -184,7 +186,7 @@ public class GameManager : Singleton<GameManager>
     {
         // todo 서버에서 룸리스트 받아오기
         ConnectSocket();
-        NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_LIST_URL, null, null, CallbackRoomList);
+        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_LIST_URL, null, CallbackRoomList);
         
 
     }
@@ -236,29 +238,27 @@ public class GameManager : Singleton<GameManager>
 
     void OnClickEnterShop()
     {
-        // todo GameDataManager의 포켓몬 데이터 확인후 없으면 서버에서 포켓몬 데이터 받아오기
         if(GameDataManager.Instance.pokemonShopList == null)
         {
-            //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
-            GameDataManager.Instance.pokemonShopList = new List<PokemonShop>();
-            for (int i = 0; i < 5; ++i)
-            {
-                PokemonShop data = new PokemonShop
-                {
-                    idx = i,
-                    name = "이상해씨" + i.ToString(),
-                    desc = "이상해씨가 이상해" + i.ToString(),
-                    price = i * 100,
-                };
-
-                GameDataManager.Instance.pokemonShopList.Add(data);
-            }
-            
+            NetworkManager.Instance.SendServerGet(CommonDefine.SHOP_LIST_URL, null, CallbackShopList);
         }
-        
+        else
+        {
+            CreateShop();
+        }
 
-        CreateShop();
+    }
 
+    void CallbackShopList(bool result)
+    {
+        if (result)
+        {
+            CreateShop();
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("상점 로드 실패");
+        }
     }
 
     void CreateShop()
@@ -269,29 +269,47 @@ public class GameManager : Singleton<GameManager>
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-        for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Count; i++)
+        for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Length; i++)
         {
-            var pokemon = GameDataManager.Instance.pokemonShopList[i];
+            var shopItem = GameDataManager.Instance.pokemonShopList[i];
 
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.idx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[shopItem.pokemon.id];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = shopItem.pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + shopItem.pokemon.hp.ToString() + " / 가격 : " + shopItem.price.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => BuyPokemon(pokemon.idx));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
         }
 
     }
 
-    void BuyPokemon(int idx)
+    void PurchasePokemon(int idx)
     {
-        // todo 포켓몬 구입후 데이터 갱신
-        Debug.Log("BuyPokemon : " + idx);
+        Debug.Log("PurchasePokemon : " + idx);
+        PurchasePostData data = new PurchasePostData
+        {
+            itemId = idx,
+        };
+
+        // todo 포켓몬 구입후 데이터 갱신 + 패킷 오류
+        NetworkManager.Instance.SendServerPost(CommonDefine.SHOP_PURCHASE_URL, data, CallbackPurchasePokemon);
     }
-    
+
+    void CallbackPurchasePokemon(bool result)
+    {
+        if (result)
+        {
+            CreateShop();
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("상점 구매 실패");
+        }
+    }
+
 
     void OnClickMakeRoom()
     {
@@ -320,7 +338,7 @@ public class GameManager : Singleton<GameManager>
         string dropdownText = dropdown.options[dropdown.value].text;
         Debug.Log("title : " + title + " / ropdown : " + dropdownText);
 
-        NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText, CallbackMakeRoom);
+        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_URL, title, CallbackMakeRoom);
 
     }
 
@@ -342,25 +360,26 @@ public class GameManager : Singleton<GameManager>
         // todo GameDataManager의 내 포켓몬 데이터 확인후 없으면 서버에서 포켓몬 데이터 받아오기
         if (GameDataManager.Instance.myPokemonList == null)
         {
-            //NetworkManager.Instance.SendServer(CommonDefine.MAKE_ROOM_URL, title, dropdownText);
-            GameDataManager.Instance.myPokemonList = new List<Pokemon>();
-            for (int i = 0; i < 5; ++i)
-            {
-                Pokemon data = new Pokemon
-                {
-                    idx = i,
-                    name = "이상해씨" + i.ToString(),
-                    desc = "이상해씨가 이상해" + i.ToString(),
-                };
+            NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_POKEMON_URL, null, CallbackMyPokemon);
+        }
+        else
+        {
+            CreateInventory();
+        }
+    }
 
-                GameDataManager.Instance.myPokemonList.Add(data);
-            }
+
+    void CallbackMyPokemon(bool result)
+    {
+        if (result)
+        {
+            CreateInventory();
 
         }
-
-
-        CreateInventory();
-
+        else
+        {
+            CreateMsgBoxOneBtn("내 포켓몬 로드 실패");
+        }
     }
 
     void CreateInventory()
@@ -371,19 +390,19 @@ public class GameManager : Singleton<GameManager>
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-        for (int i = 0; i < GameDataManager.Instance.myPokemonList.Count; i++)
+        for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
 
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.idx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = pokemon.desc;
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon(pokemon.idx));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon(pokemon.id));
         }
 
     }

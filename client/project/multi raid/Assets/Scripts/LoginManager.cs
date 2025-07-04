@@ -42,8 +42,6 @@ public class LoginManager : MonoBehaviour
 
         Debug.Log("id : " + id + " pwd : " + password);
 
-        // todo 로그인 연결 - 임시로 씬전환
-        //SceneManager.LoadScene("GameScene");
         NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, CallbackLogin);
     }
 
@@ -83,7 +81,6 @@ public class LoginManager : MonoBehaviour
 
         Debug.Log("id : " + id + " pwd : " + password);
 
-        // todo 회원가입 연결 + 회원가입 이후 패킷 처리
         NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, CallbackJoin);
     }
 
@@ -91,8 +88,7 @@ public class LoginManager : MonoBehaviour
     {
         if(result)
         {
-            // todo 회원가입 완료창
-            OnClickLoginPage();
+            CreateMsgBoxOneBtn("회원가입 성공", OnClickLoginPage);
         }
         else
         {
@@ -104,12 +100,55 @@ public class LoginManager : MonoBehaviour
     {
         if (result)
         {
-            // todo 로그인 완료 안내창
-            SceneManager.LoadScene("GameScene");
+            CreateMsgBoxOneBtn("로그인 성공", GetMyPokemon);
+            
         }
         else
         {
             CreateMsgBoxOneBtn("로그인 실패");
+        }
+    }
+
+    void GetMyPokemon()
+    {
+        NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_POKEMON_URL, null, CallbackMyPokemon);
+    }
+
+    void CallbackMyPokemon(bool result)
+    {
+        if (result)
+        {
+            GetMyWallet();
+
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("내 포켓몬 로드 실패");
+        }
+    }
+
+    void GetMyWallet()
+    {
+        PostWalletData data = new PostWalletData
+        {
+            privateKey = "",
+        };
+
+        // todo 지갑 정보 알아보기
+        //NetworkManager.Instance.SendServerPost(CommonDefine.GET_MY_WALLET_URL, data, CallbackMyWallet);
+        ChangeScene("GameScene");
+    }
+
+    void CallbackMyWallet(bool result)
+    {
+        if (result)
+        {
+            ChangeScene("GameScene");
+
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("내 지갑 로드 실패");
         }
     }
 
@@ -118,13 +157,18 @@ public class LoginManager : MonoBehaviour
         Destroy(obj);
     }
 
-    void CreateMsgBoxOneBtn(string desc)
+    void CreateMsgBoxOneBtn(string desc, Action checkResult = null)
     {
         GameObject msgBoxPrefabOneBtn = Resources.Load<GameObject>("prefabs/MessageBox_1Button");
         GameObject obj = Instantiate(msgBoxPrefabOneBtn, canvas);
 
         obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
         obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+
+        if (checkResult != null)
+        {
+            obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => checkResult());
+        }
     }
 
     void CreateMsgBoxTwoBtn(string desc, Action<bool> yesResult, Action<bool> noResult)
@@ -135,5 +179,10 @@ public class LoginManager : MonoBehaviour
         obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
         obj.transform.Find("YesBtn").GetComponent<Button>().onClick.AddListener(() => yesResult(obj));
         obj.transform.Find("NoBtn").GetComponent<Button>().onClick.AddListener(() => noResult(obj));
+    }
+
+    void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

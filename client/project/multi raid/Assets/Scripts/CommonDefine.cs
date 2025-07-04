@@ -6,8 +6,15 @@ using UnityEngine;
 public static class CommonDefine
 {
     public const string WEB_POST_BASE_URL = "http://127.0.0.1:3000/";
+
     public const string REGISTER_URL = "users/register";
     public const string LOGIN_URL = "users/login";
+    public const string GET_MY_POKEMON_URL = "users/poketmons";
+    public const string GET_MY_WALLET_URL = "users/wallet/link";
+
+    public const string SHOP_LIST_URL = "shop/items";
+    public const string SHOP_PURCHASE_URL = "shop/purchase";
+
     public const string MAKE_ROOM_URL = "rooms";
     public const string MAKE_ROOM_LIST_URL = "MAKE_ROOM_URL";
     
@@ -39,12 +46,7 @@ public class LoginPostData
 public class LoginData
 {
     public string sessionId;
-    public string username;
-}
-
-public class PostData
-{
-    public string sessionId;
+    public int id;
 }
 
 public class PostData2
@@ -52,19 +54,41 @@ public class PostData2
     public string roomId;
 }
 
+
+[System.Serializable]
 public class PokemonShop
 {
-    public int idx;
-    public string name;
-    public string desc;
+    public int shop_id;
     public int price;
+    public int stock;
+    public Pokemon pokemon;
 }
 
+[System.Serializable]
+public class MyPokemon
+{
+    public int id;
+    public Pokemon pokemon;
+    public List<PokemonSkill> skills;
+}
+
+[System.Serializable]
 public class Pokemon
 {
-    public int idx;
+    public int id;
     public string name;
-    public string desc;
+    public int hp;
+    public List<PokemonSkill> skills;
+}
+
+[System.Serializable]
+public class PokemonSkill
+{
+    public int id;
+    public int pokemon_id;
+    public string name;
+    public int attack;
+    public int cost;
 }
 
 public class Room
@@ -82,16 +106,18 @@ public class BattlePoke
     public int maxHp;
 }
 
-public class MyPokemon
+public class ServerPacket
 {
-    public int idx;
-    public int skill1_idx;
-    public string skill1_name;
-    public int skill1_attack;
-    public int skill2_idx;
-    public string skill2_name;
-    public int skill2_attack;
-    public int skill3_idx;
-    public string skill3_name;
-    public int skill3_attack;
+    public string packetType;
+    public string packetValue;
+}
+
+public class PostWalletData
+{
+    public string privateKey;
+}
+
+public class PurchasePostData
+{
+    public int itemId;
 }

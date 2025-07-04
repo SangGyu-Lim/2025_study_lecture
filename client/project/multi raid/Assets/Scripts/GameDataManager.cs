@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class GameDataManager : Singleton<GameDataManager>
 {
-    public string sessionId = null;
+    public LoginData loginData = null;
 
-    public List<PokemonShop> pokemonShopList = null;
-    public List<Pokemon> myPokemonList = null;
+    public PokemonShop[] pokemonShopList = null;
+    public MyPokemon[] myPokemonList = null;
     public MyPokemon myCurPokemon = null;
 
     protected override void Awake()
