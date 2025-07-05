@@ -9,6 +9,9 @@ public class GameDataManager : Singleton<GameDataManager>
     public MyPokemon[] myPokemonList = null;
     public MyPokemon myCurPokemon = null;
 
+    public Room[] roomList = null;
+    public Room myRoomInfo = null;
+
     protected override void Awake()
     {
         base.Awake();  // ΩÃ±€≈Ê √ ±‚»≠

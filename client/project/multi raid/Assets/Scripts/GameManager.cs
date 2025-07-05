@@ -34,7 +34,7 @@ public class GameManager : Singleton<GameManager>
         lobbyObj = Instantiate(prefab, canvas);
 
         lobbyObj.transform.Find("MakeRoomBtn").GetComponent<Button>().onClick.AddListener(OnClickMakeRoom);
-        lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(EnterBattle);
+        lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(OnClickRoomList);
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
     }
@@ -179,6 +179,7 @@ public class GameManager : Singleton<GameManager>
 
     async void ConnectSocket()
     {
+        // todo 웹소켓 연결
         await NetworkManager.Instance.ConnectSocket();
     }
 
@@ -186,8 +187,7 @@ public class GameManager : Singleton<GameManager>
     {
         // todo 서버에서 룸리스트 받아오기
         ConnectSocket();
-        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_LIST_URL, null, CallbackRoomList);
-        
+        NetworkManager.Instance.SendServerGet(CommonDefine.ROOM_LIST_URL, null, CallbackRoomList);
 
     }
 
@@ -197,43 +197,31 @@ public class GameManager : Singleton<GameManager>
         GameObject obj = Instantiate(prefab, canvas);
 
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
-
-        List<Room> roomList = new List<Room>();
-        for(int i = 0; i < 5; ++i)
-        {
-            Room data = new Room
-            {
-                idx = i,
-                title = "이름이름" + i.ToString(),
-                level = i * 2,
-                masterPokeIdx = i * 20,
-            };
-
-            roomList.Add(data);
-        }
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => { GameDataManager.Instance.roomList = null; });
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-        for (int i = 0; i < roomList.Count; i++)
+        for (int i = 0; i < GameDataManager.Instance.roomList.Length; i++)
         {
-            var room = roomList[i];
+            var room = GameDataManager.Instance.roomList[i];
 
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.masterPokeIdx];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].id];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
-            itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
+            //itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
+            //itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(room.idx));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(room.roomId));
         }
 
     }
 
-    void JoinRoom(int idx)
+    void JoinRoom(string idx)
     {
         // todo 포켓몬 구입후 데이터 갱신
         Debug.Log("JoinRoom : " + idx);
+        NetworkManager.Instance.JoinRoom(idx);
     }
 
     void OnClickEnterShop()
@@ -326,6 +314,7 @@ public class GameManager : Singleton<GameManager>
         dropdown.AddOptions(list);
 
         obj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => MakeRoom(obj));
+        obj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
         obj.transform.Find("CancelBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
 
@@ -338,7 +327,14 @@ public class GameManager : Singleton<GameManager>
         string dropdownText = dropdown.options[dropdown.value].text;
         Debug.Log("title : " + title + " / ropdown : " + dropdownText);
 
-        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_URL, title, CallbackMakeRoom);
+        MakeRoomPostData data = new MakeRoomPostData
+        {
+            roomName = title,
+            roomLevel = dropdownText
+        };
+
+        ConnectSocket();
+        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_URL, data, CallbackMakeRoom);
 
     }
 
@@ -347,7 +343,7 @@ public class GameManager : Singleton<GameManager>
         if (result)
         {
             // todo 로그인 완료 안내창
-            SceneManager.LoadScene("GameScene");
+            CreateMsgBoxOneBtn("방생성 완료");
         }
         else
         {

@@ -193,6 +193,17 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.pokemonShopList = JsonHelper.FromJson<PokemonShop>(data);
                 }
                 break;
+            case CommonDefine.MAKE_ROOM_URL:
+                {
+                    GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(data);
+                }
+                break;
+            case CommonDefine.ROOM_LIST_URL:
+                {
+                    GameDataManager.Instance.roomList = JsonHelper.FromJson<Room>(data);
+                }
+                break;
+                
         }
     }
 
@@ -200,41 +211,54 @@ public class NetworkManager : Singleton<NetworkManager>
 
     #region WEB_SOCKET
 
-    private SocketIO client;
+    private SocketIO client = null;
     public string roomId = "room123";
 
     public async Task ConnectSocket()
     {
-        client = new SocketIO(CommonDefine.WEB_SOCKET_URL + "?sessionId=f5039751-d229-46b2-bfa2-1edc32e092ca", new SocketIOOptions
+        //string packetStr = "?sessionId=" + GameDataManager.Instance.loginData.sessionId;
+        string packetStr = "";
+
+        if (client == null)
         {
-            Reconnection = true,
-            ReconnectionAttempts = 5,
-            ReconnectionDelay = 1000,
-            Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
-        });
+            var payload = new Dictionary<string, string>
+            {
+                { "sessionId", GameDataManager.Instance.loginData.sessionId },
+            };
 
-        // 이벤트 등록
-        client.OnConnected += OnConnected;
-        client.On("RoomUpdate", OnRoomUpdate);
-        client.On("MessageResponse", OnMessageResponse);
+            client = new SocketIO(CommonDefine.WEB_SOCKET_URL + packetStr, new SocketIOOptions
+            {
+                Query = payload,
+                Reconnection = true,
+                ReconnectionAttempts = 5,
+                ReconnectionDelay = 1000,
+                Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
+            });
 
-        await client.ConnectAsync();
+            // 이벤트 등록
+            client.OnConnected += OnConnected;
+            client.On("roomUpdate", OnRoomUpdate);
+            
+            client.On("MessageResponse", OnMessageResponse);
+
+            await client.ConnectAsync();
+        }
     }
 
     private async void OnConnected(object sender, EventArgs e)
     {
         Debug.Log("Connected to Socket.IO server");
+        Debug.Log("Connected : " + client.Connected);
 
+        await client.EmitAsync("getRooms");
+    }
+
+    public async void JoinRoom(string roomId)
+    {
         var payload = new Dictionary<string, string>
         {
-            { "roomId", roomId }
+            { "roomId", roomId },
         };
-
-        PostData2 data = new PostData2
-        {
-            roomId = roomId,
-        };
-        string json = JsonUtility.ToJson(data);
 
         await client.EmitAsync("joinRoom", payload);
     }
@@ -243,7 +267,9 @@ public class NetworkManager : Singleton<NetworkManager>
     {
         try
         {
+            // todo 다른 유저들이 update되지 않음
             string json = response.GetValue().ToString();
+            GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(json);
             Debug.Log($"RoomUpdate: {json}");
         }
         catch (Exception ex)
@@ -309,6 +335,7 @@ public class NetworkManager : Singleton<NetworkManager>
             public T[] array;
         }
     }
+
     async void OnApplicationQuit()
     {
         if (client != null)

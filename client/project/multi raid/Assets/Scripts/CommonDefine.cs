@@ -15,8 +15,8 @@ public static class CommonDefine
     public const string SHOP_LIST_URL = "shop/items";
     public const string SHOP_PURCHASE_URL = "shop/purchase";
 
-    public const string MAKE_ROOM_URL = "rooms";
-    public const string MAKE_ROOM_LIST_URL = "MAKE_ROOM_URL";
+    public const string MAKE_ROOM_URL = "rooms/createRoom";
+    public const string ROOM_LIST_URL = "rooms/getRooms";
     
 
 
@@ -37,11 +37,26 @@ public enum BATTLE_STATE
     DEFEAT,
 }
 
+#region POST_DATA
 public class LoginPostData
 {
     public string username;
     public string password;
 }
+
+public class PurchasePostData
+{
+    public int itemId;
+}
+
+public class MakeRoomPostData
+{
+    public string roomName;
+    public string roomLevel;
+}
+
+
+#endregion
 
 public class LoginData
 {
@@ -49,10 +64,6 @@ public class LoginData
     public int id;
 }
 
-public class PostData2
-{
-    public string roomId;
-}
 
 
 [System.Serializable]
@@ -91,14 +102,6 @@ public class PokemonSkill
     public int cost;
 }
 
-public class Room
-{
-    public int idx;
-    public string title;
-    public int level;
-    public int masterPokeIdx;
-}
-
 public class BattlePoke
 {
     public int pokeIdx;
@@ -117,7 +120,16 @@ public class PostWalletData
     public string privateKey;
 }
 
-public class PurchasePostData
+[System.Serializable]
+public class Room
 {
-    public int itemId;
+    public string roomId;
+    public List<RoomMember> members;
+}
+
+[System.Serializable]
+public class RoomMember
+{
+    public int id;
+    public string username;
 }
