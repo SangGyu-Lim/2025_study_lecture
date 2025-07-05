@@ -343,12 +343,38 @@ public class GameManager : Singleton<GameManager>
         if (result)
         {
             // todo 로그인 완료 안내창
-            CreateMsgBoxOneBtn("방생성 완료");
+            EnterRoom();
         }
         else
         {
             CreateMsgBoxOneBtn("방생성 실패");
         }
+    }
+
+    void EnterRoom()
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Room");
+        GameObject obj = Instantiate(prefab, canvas);
+
+        for(int i = 1; i <= 4; ++i)
+            obj.transform.Find("User/" + i.ToString()).gameObject.SetActive(false);
+
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < GameDataManager.Instance.myRoomInfo.members.Count; ++i)
+        {
+            string idx = (i + 1).ToString();
+            var member = GameDataManager.Instance.myRoomInfo.members[i];
+
+            obj.transform.Find("User/" + idx).gameObject.SetActive(true);
+            obj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.username;
+
+            obj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.id];
+        }
+
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(GameDataManager.Instance.myRoomInfo.roomId));
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+
+
     }
 
     void OnClickEnterInventory()

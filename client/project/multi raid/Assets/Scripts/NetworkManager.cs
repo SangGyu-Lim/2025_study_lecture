@@ -239,8 +239,6 @@ public class NetworkManager : Singleton<NetworkManager>
             client.OnConnected += OnConnected;
             client.On("roomUpdate", OnRoomUpdate);
             
-            client.On("MessageResponse", OnMessageResponse);
-
             await client.ConnectAsync();
         }
     }
@@ -278,23 +276,6 @@ public class NetworkManager : Singleton<NetworkManager>
         }
     }
 
-    private void OnMessageResponse(SocketIOResponse response)
-    {
-        try
-        {
-            JsonElement json = response.GetValue();
-
-            string from = json.GetProperty("from").GetString();
-            string message = json.GetProperty("message").GetString();
-
-            Debug.Log($"Message from {from}: {message}");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"MessageResponse error: {ex.Message}");
-        }
-    }
-
     public async Task SendMessageToRoom(string messageText)
     {
         var payload = new Dictionary<string, string>
@@ -306,7 +287,7 @@ public class NetworkManager : Singleton<NetworkManager>
         await client.EmitAsync("message", payload);
     }
 
-    public async void LeaveRoom()
+    public async void LeaveRoom(string roomId)
     {
         var payload = new Dictionary<string, string>
         {
