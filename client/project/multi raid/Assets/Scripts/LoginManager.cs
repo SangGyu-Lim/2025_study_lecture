@@ -136,14 +136,14 @@ public class LoginManager : MonoBehaviour
 
         // todo 지갑 정보 알아보기
         //NetworkManager.Instance.SendServerPost(CommonDefine.GET_MY_WALLET_URL, data, CallbackMyWallet);
-        ChangeScene("GameScene");
+        LoadScene(CommonDefine.GAME_SCENE);
     }
 
     void CallbackMyWallet(bool result)
     {
         if (result)
         {
-            ChangeScene("GameScene");
+            LoadScene(CommonDefine.GAME_SCENE);
 
         }
         else
@@ -181,8 +181,9 @@ public class LoginManager : MonoBehaviour
         obj.transform.Find("NoBtn").GetComponent<Button>().onClick.AddListener(() => noResult(obj));
     }
 
-    void ChangeScene(string sceneName)
+    void LoadScene(string nextSceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        GameDataManager.Instance.nextScene = nextSceneName;
+        SceneManager.LoadScene(CommonDefine.LOADING_SCENE);
     }
 }

@@ -12,6 +12,8 @@ public class GameDataManager : Singleton<GameDataManager>
     public Room[] roomList = null;
     public Room myRoomInfo = null;
 
+    public string nextScene = "";
+
     protected override void Awake()
     {
         base.Awake();  // ΩÃ±€≈Ê √ ±‚»≠

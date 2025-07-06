@@ -22,6 +22,8 @@ public static class CommonDefine
 
     public const string WEB_SOCKET_URL = "ws://localhost:3000/rooms";
 
+    public const string LOADING_SCENE = "LoadingScene";
+    public const string GAME_SCENE = "GameScene";
 }
 
 public enum BATTLE_STATE
