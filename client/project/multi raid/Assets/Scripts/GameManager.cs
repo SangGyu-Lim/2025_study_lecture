@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -112,10 +113,16 @@ public class GameManager : MonoBehaviour
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[158];
 
-        Slider bossHpSlider = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
-        bossHpSlider.maxValue = 150;
-        bossHpSlider.value = 150;
-        battleObj.transform.Find("Boss/HpBar/HpText").GetComponent<TMP_Text>().text = "150 / 150";
+        Slider bossHpBar = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
+        bossHpBar.maxValue = 1.0f;
+        bossHpBar.value = 1.0f;
+
+        Slider bossManaBar = battleObj.transform.Find("Boss/ManaBar").GetComponent<Slider>();
+        bossManaBar.maxValue = 1.0f;
+        bossManaBar.value = 1.0f;
+
+        battleObj.transform.Find("Boss/HpBar/Text").GetComponent<TMP_Text>().text = "150 / 150";
+        battleObj.transform.Find("Boss/ManaBar/Text").GetComponent<TMP_Text>().text = "100 / 100";
 
         // 유저 세팅
         List<BattlePoke> userList = new List<BattlePoke>();
@@ -126,6 +133,8 @@ public class GameManager : MonoBehaviour
                 pokeIdx = i + 10,
                 curHp = (i + 1) * 10,
                 maxHp = (i + 1) * 10,
+                curMana = (i + 1) * 10,
+                maxMana = (i + 1) * 10,
             };
 
             userList.Add(data);
@@ -139,11 +148,16 @@ public class GameManager : MonoBehaviour
 
             battleObj.transform.Find(player + "/Image").GetComponent<Image>().sprite = spriteBackAll[user.pokeIdx];
 
-            Slider hpSlider = battleObj.transform.Find(player + "/HpBar").GetComponent<Slider>();
-            hpSlider.maxValue = user.maxHp;
-            hpSlider.value = user.curHp;
+            Slider hpBar = battleObj.transform.Find(player + "/HpBar").GetComponent<Slider>();
+            hpBar.maxValue = 1.0f;
+            hpBar.value = 1.0f;
 
-            battleObj.transform.Find(player + "/HpBar/HpText").GetComponent<TMP_Text>().text = user.curHp.ToString() + " / " + user.maxHp;
+            Slider manaBar = battleObj.transform.Find(player + "/ManaBar").GetComponent<Slider>();
+            manaBar.maxValue = 1.0f;
+            manaBar.value = 1.0f;
+
+            battleObj.transform.Find(player + "/HpBar/Text").GetComponent<TMP_Text>().text = user.curHp.ToString() + " / " + user.maxHp;
+            battleObj.transform.Find(player + "/ManaBar/Text").GetComponent<TMP_Text>().text = user.curMana.ToString() + " / " + user.maxMana;
         }
 
     }
@@ -233,6 +247,63 @@ public class GameManager : MonoBehaviour
     async void UseSkill(int skillIdx)
     {
         await NetworkManager.Instance.SendMessageToRoom("roomid", skillIdx.ToString());
+    }
+
+    public void OnClickBarTest()
+    {
+        EnterBattle();
+
+        StartCoroutine(BarTest());
+    }
+
+    public IEnumerator BarTest()
+    {
+        Slider hpBar = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
+        Slider manaBar = battleObj.transform.Find("Boss/ManaBar").GetComponent<Slider>();
+
+        hpBar.value = 1.0f;
+        hpBar.maxValue = 1.0f;
+
+        manaBar.value = 1.0f;
+        manaBar.maxValue = 1.0f;
+
+        yield return new WaitForSeconds(5f);
+
+        StartCoroutine(ReduceBattleBar(hpBar, 90, 90, 30));
+        StartCoroutine(ReduceBattleBar(manaBar, 50, 50, 10));
+
+        yield return new WaitForSeconds(5f);
+
+        StartCoroutine(ReduceBattleBar(hpBar, 90, 60, 20));
+        StartCoroutine(ReduceBattleBar(manaBar, 50, 40, 15));
+
+        yield return new WaitForSeconds(5f);
+
+        StartCoroutine(ReduceBattleBar(hpBar, 90, 40, 40));
+        StartCoroutine(ReduceBattleBar(manaBar, 50, 25, 15));
+
+    }
+
+    private IEnumerator ReduceBattleBar(Slider bar, int maxValue, int curValue, int reduceValue)
+    {
+        float time = 0f;
+        float startValue = bar.value;
+        int chageValue = curValue - reduceValue;
+        if(chageValue < 0)
+            chageValue = 0;
+        float endValue = (float)chageValue / (float)maxValue;
+
+        while (time < CommonDefine.BATTLE_BAR_DURATION)
+        {
+            time += Time.deltaTime;
+            float t = time / CommonDefine.BATTLE_BAR_DURATION;
+            float cur = Mathf.Lerp(startValue, endValue, t);
+            bar.value = cur;
+            bar.transform.Find("Text").GetComponent<TMP_Text>().text = (cur * maxValue).ToString("F0") + " / " + maxValue.ToString();
+            yield return null;
+        }
+
+        bar.value = endValue;
     }
 
     async void ConnectSocket()

@@ -27,6 +27,9 @@ public static class CommonDefine
     public const string LOADING_SCENE = "LoadingScene";
     public const string GAME_SCENE = "GameScene";
     public const string LOGIN_SCENE = "SampleScene";
+
+    public const float BATTLE_BAR_DURATION = 3f;
+
 }
 
 public enum BATTLE_STATE
@@ -121,6 +124,8 @@ public class BattlePoke
     public int pokeIdx;
     public int curHp;
     public int maxHp;
+    public int curMana;
+    public int maxMana;
 }
 
 public class ServerPacket
