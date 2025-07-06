@@ -55,6 +55,10 @@ public class MakeRoomPostData
     public string roomLevel;
 }
 
+public class LinkWalletPostData
+{
+    public string privateKey;
+}
 
 #endregion
 

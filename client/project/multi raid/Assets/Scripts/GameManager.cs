@@ -37,12 +37,50 @@ public class GameManager : Singleton<GameManager>
         lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(OnClickRoomList);
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
+        lobbyObj.transform.Find("WalletBtn").GetComponent<Button>().onClick.AddListener(OnClickLinkWalletPage);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         BattleState();
+    }
+
+    void OnClickLinkWalletPage()
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/LinkWallet");
+        GameObject obj = Instantiate(prefab, canvas);
+
+        obj.transform.Find("CloseBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        obj.transform.Find("LinkBtn").GetComponent<Button>().onClick.AddListener(() => OnClickLinkWallet(obj));
+        obj.transform.Find("LinkBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+    }
+
+    void OnClickLinkWallet(GameObject obj)
+    {
+        string privateKey = obj.transform.Find("PrivateKey").GetComponent<TMP_InputField>().text;
+
+        LinkWalletPostData data = new LinkWalletPostData
+        {
+            privateKey = privateKey,
+        };
+
+        NetworkManager.Instance.SendServerPost(CommonDefine.GET_MY_WALLET_URL, data, CallbackLinkWallet);
+    }
+
+
+    void CallbackLinkWallet(bool result)
+    {
+        if (result)
+        {
+            CreateMsgBoxOneBtn("지갑 연동 성공");
+
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("지갑 연동 실패");
+        }
     }
 
     void EnterBattle()
