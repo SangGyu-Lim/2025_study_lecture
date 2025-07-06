@@ -12,13 +12,15 @@ public static class CommonDefine
     public const string GET_MY_POKEMON_URL = "users/poketmons";
     public const string GET_MY_WALLET_URL = "users/wallet/link";
 
+    public const string BLOCKCHAIN_GRANT_URL = "blockchain/grant";
+
     public const string SHOP_LIST_URL = "shop/items";
     public const string SHOP_PURCHASE_URL = "shop/purchase";
 
     public const string MAKE_ROOM_URL = "rooms/createRoom";
     public const string ROOM_LIST_URL = "rooms/getRooms";
-    
 
+    
 
     public const string WEB_SOCKET_URL = "ws://localhost:3000/rooms";
 
@@ -60,6 +62,11 @@ public class MakeRoomPostData
 public class LinkWalletPostData
 {
     public string privateKey;
+}
+
+public class GrantPostData
+{
+    public string amount;
 }
 
 #endregion

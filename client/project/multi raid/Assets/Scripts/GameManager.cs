@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         Init();
+        EasterEggInit();
     }
 
     void Init()
@@ -45,7 +46,10 @@ public class GameManager : Singleton<GameManager>
     void Update()
     {
         BattleState();
+        EasterEgg();
     }
+
+    
 
     void OnClickLinkWalletPage()
     {
@@ -503,4 +507,64 @@ public class GameManager : Singleton<GameManager>
         obj.transform.Find("NoBtn").GetComponent<Button>().onClick.AddListener(() => noResult(obj));
     }
 
+
+
+
+
+
+
+    #region EasterEgg
+
+    int upArrowCount = 0;
+    void EasterEggInit()
+    {
+        upArrowCount = 0;
+
+        lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(false);
+        lobbyObj.transform.Find("GrantBtn").GetComponent<Button>().onClick.AddListener(OnClickGrant);
+    }
+
+    void OnClickGrant()
+    {
+        GrantPostData data = new GrantPostData
+        {
+            amount = "1000",
+        };
+
+        NetworkManager.Instance.SendServerPost(CommonDefine.BLOCKCHAIN_GRANT_URL, data, CallbackGrant);
+
+    }
+
+    void CallbackGrant(bool result)
+    {
+        if (result)
+        {
+            CreateMsgBoxOneBtn("CallbackGrant ����");
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("CallbackGrant ����");
+        }
+    }
+
+    void EasterEgg()
+    {
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            upArrowCount++;
+            if(upArrowCount >= 3)
+            {
+                lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(false);
+            upArrowCount = 0;
+        }
+      
+    }
+
+    #endregion
 }
