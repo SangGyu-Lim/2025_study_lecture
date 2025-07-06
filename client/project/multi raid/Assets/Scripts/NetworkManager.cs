@@ -51,7 +51,6 @@ public class NetworkManager : Singleton<NetworkManager>
         };
         string json = JsonUtility.ToJson(data);
 
-        Debug.LogError("before return www");
         UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL + api, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -59,8 +58,6 @@ public class NetworkManager : Singleton<NetworkManager>
         request.SetRequestHeader("Content-Type", "application/json");
 
         yield return request.SendWebRequest();
-
-        Debug.LogError("after return www");
 
         // todo REGISTER_URL¿¡¼­ ¿Ö ProtocolError?
         if (request.result == UnityWebRequest.Result.Success)
