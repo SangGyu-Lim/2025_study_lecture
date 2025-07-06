@@ -12,6 +12,8 @@ public class GameDataManager : Singleton<GameDataManager>
     public Room[] roomList = null;
     public Room myRoomInfo = null;
 
+    public double wallet = -1;
+
     public string nextScene = "";
 
     protected override void Awake()
@@ -30,5 +32,19 @@ public class GameDataManager : Singleton<GameDataManager>
     void Update()
     {
         
+    }
+
+    public void ResetData()
+    {
+        loginData = null;
+
+        pokemonShopList = null;
+        myPokemonList = null;
+        myCurPokemon = null;
+
+        roomList = null;
+        myRoomInfo = null;
+
+        wallet = -1;
     }
 }

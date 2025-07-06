@@ -5,14 +5,15 @@ using UnityEngine;
 
 public static class CommonDefine
 {
-    public const string WEB_POST_BASE_URL = "http://127.0.0.1:3000/";
+    public const string WEB_BASE_URL = "http://127.0.0.1:3000/";
 
     public const string REGISTER_URL = "users/register";
     public const string LOGIN_URL = "users/login";
     public const string GET_MY_POKEMON_URL = "users/poketmons";
-    public const string GET_MY_WALLET_URL = "users/wallet/link";
+    public const string LINK_WALLET_URL = "users/wallet/link";
 
     public const string BLOCKCHAIN_GRANT_URL = "blockchain/grant";
+    public const string GET_MY_WALLET_URL = "blockchain/balance";
 
     public const string SHOP_LIST_URL = "shop/items";
     public const string SHOP_PURCHASE_URL = "shop/purchase";
@@ -132,11 +133,6 @@ public class ServerPacket
 {
     public string packetType;
     public string packetValue;
-}
-
-public class PostWalletData
-{
-    public string privateKey;
 }
 
 [System.Serializable]

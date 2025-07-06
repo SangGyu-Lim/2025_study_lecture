@@ -52,7 +52,7 @@ public class NetworkManager : Singleton<NetworkManager>
         };
         string json = JsonUtility.ToJson(data);
 
-        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL + api, "POST");
+        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_BASE_URL + api, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -90,7 +90,7 @@ public class NetworkManager : Singleton<NetworkManager>
     {
         string json = JsonUtility.ToJson(packet);
 
-        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL + api, "POST");
+        UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_BASE_URL + api, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -141,7 +141,7 @@ public class NetworkManager : Singleton<NetworkManager>
             }
         }
 
-        string url = CommonDefine.WEB_POST_BASE_URL + api;
+        string url = CommonDefine.WEB_BASE_URL + api;
         if (packetStr.Length > 0)
         {
             url += "?" + packetStr;
@@ -203,7 +203,14 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.roomList = JsonHelper.FromJson<Room>(data);
                 }
                 break;
+            case CommonDefine.GET_MY_WALLET_URL:
+                {
+                    GameDataManager.Instance.wallet = double.Parse(data);
+                }
+                break;
                 
+
+
         }
     }
 

@@ -45,9 +45,11 @@ public class GameManager : MonoBehaviour
         lobbyObj.transform.Find("RoomListBtn").GetComponent<Button>().onClick.AddListener(OnClickRoomList);
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
-        lobbyObj.transform.Find("WalletBtn").GetComponent<Button>().onClick.AddListener(OnClickLinkWalletPage);
+        lobbyObj.transform.Find("Wallet/LinkWalletBtn").GetComponent<Button>().onClick.AddListener(OnClickLinkWalletPage);
+        lobbyObj.transform.Find("Wallet/UpdateWalletBtn").GetComponent<Button>().onClick.AddListener(OnClickUpdateWallet);
         lobbyObj.transform.Find("LogOutBtn").GetComponent<Button>().onClick.AddListener(OnClickLogOut);
 
+        UpdateWallet(true);
     }
 
     // Update is called once per frame
@@ -66,6 +68,29 @@ public class GameManager : MonoBehaviour
     {
         GameDataManager.Instance.nextScene = nextSceneName;
         SceneManager.LoadScene(CommonDefine.LOADING_SCENE);
+    }
+
+    void OnClickUpdateWallet()
+    {
+        NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_WALLET_URL, null, UpdateWallet);
+    }
+
+    void UpdateWallet(bool result)
+    {
+        if (!result)
+        {
+            Debug.Log("³» Áö°© ·Îµå ½ÇÆÐ");
+        }
+
+        if(GameDataManager.Instance.wallet < 0)
+        {
+            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "Áö°© ¿¬µ¿ ¾ÈµÊ.";
+        }
+        else
+        {
+            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "ÀÜ¾× : " + GameDataManager.Instance.wallet.ToString("F2");
+        }
+
     }
 
     void OnClickLinkWalletPage()
@@ -87,7 +112,7 @@ public class GameManager : MonoBehaviour
             privateKey = privateKey,
         };
 
-        NetworkManager.Instance.SendServerPost(CommonDefine.GET_MY_WALLET_URL, data, CallbackLinkWallet);
+        NetworkManager.Instance.SendServerPost(CommonDefine.LINK_WALLET_URL, data, CallbackLinkWallet);
     }
 
 

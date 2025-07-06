@@ -24,12 +24,7 @@ public class LoginManager : MonoBehaviour
         loginObj = null;
         joinObj = null;
 
-        GameDataManager.Instance.loginData = null;
-        GameDataManager.Instance.pokemonShopList = null;
-        GameDataManager.Instance.myPokemonList = null;
-        GameDataManager.Instance.myCurPokemon = null;
-        GameDataManager.Instance.roomList = null;
-        GameDataManager.Instance.myRoomInfo = null;
+        GameDataManager.Instance.ResetData();
 
         canvas = GameObject.Find("Canvas").transform;
 
@@ -141,27 +136,17 @@ public class LoginManager : MonoBehaviour
 
     void GetMyWallet()
     {
-        PostWalletData data = new PostWalletData
-        {
-            privateKey = "",
-        };
-
-        // todo 지갑 정보 알아보기
-        //NetworkManager.Instance.SendServerPost(CommonDefine.GET_MY_WALLET_URL, data, CallbackMyWallet);
-        LoadScene(CommonDefine.GAME_SCENE);
+        NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_WALLET_URL, null, CallbackMyWallet);
     }
 
     void CallbackMyWallet(bool result)
     {
-        if (result)
+        if (!result)
         {
-            LoadScene(CommonDefine.GAME_SCENE);
+            Debug.Log("내 지갑 로드 실패");
+        }
 
-        }
-        else
-        {
-            CreateMsgBoxOneBtn("내 지갑 로드 실패");
-        }
+        LoadScene(CommonDefine.GAME_SCENE);
     }
 
     void DestroyObject(GameObject obj)
