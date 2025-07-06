@@ -26,6 +26,7 @@ public static class CommonDefine
 
     public const string LOADING_SCENE = "LoadingScene";
     public const string GAME_SCENE = "GameScene";
+    public const string LOGIN_SCENE = "SampleScene";
 }
 
 public enum BATTLE_STATE

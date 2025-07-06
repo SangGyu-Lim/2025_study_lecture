@@ -21,6 +21,18 @@ public class LoginManager : MonoBehaviour
    
     void Init()
     {
+        loginObj = null;
+        joinObj = null;
+
+        GameDataManager.Instance.loginData = null;
+        GameDataManager.Instance.pokemonShopList = null;
+        GameDataManager.Instance.myPokemonList = null;
+        GameDataManager.Instance.myCurPokemon = null;
+        GameDataManager.Instance.roomList = null;
+        GameDataManager.Instance.myRoomInfo = null;
+
+        canvas = GameObject.Find("Canvas").transform;
+
         GameObject prefab = Resources.Load<GameObject>("prefabs/Login");
         loginObj = Instantiate(prefab, canvas);
 

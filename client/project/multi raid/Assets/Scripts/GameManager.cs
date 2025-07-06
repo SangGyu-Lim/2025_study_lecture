@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
     public Transform canvas;
 
@@ -15,10 +15,8 @@ public class GameManager : Singleton<GameManager>
     BATTLE_STATE state = BATTLE_STATE.NONE;
     int myBattleTurn = -1;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();  // ½Ì±ÛÅæ ÃÊ±âÈ­
-
         Debug.Log("GameManager init");
     }
 
@@ -31,6 +29,14 @@ public class GameManager : Singleton<GameManager>
 
     void Init()
     {
+        lobbyObj = null;
+        battleObj = null;
+
+        state = BATTLE_STATE.NONE;
+        myBattleTurn = -1;
+
+        canvas = GameObject.Find("Canvas").transform;
+
         GameObject prefab = Resources.Load<GameObject>("prefabs/GameLobby");
         lobbyObj = Instantiate(prefab, canvas);
 
@@ -39,7 +45,8 @@ public class GameManager : Singleton<GameManager>
         lobbyObj.transform.Find("ShopBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterShop);
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
         lobbyObj.transform.Find("WalletBtn").GetComponent<Button>().onClick.AddListener(OnClickLinkWalletPage);
-        
+        lobbyObj.transform.Find("LogOutBtn").GetComponent<Button>().onClick.AddListener(OnClickLogOut);
+
     }
 
     // Update is called once per frame
@@ -49,7 +56,16 @@ public class GameManager : Singleton<GameManager>
         EasterEgg();
     }
 
-    
+    void OnClickLogOut()
+    {
+        LoadScene(CommonDefine.LOGIN_SCENE);
+    }
+
+    void LoadScene(string nextSceneName)
+    {
+        GameDataManager.Instance.nextScene = nextSceneName;
+        SceneManager.LoadScene(CommonDefine.LOADING_SCENE);
+    }
 
     void OnClickLinkWalletPage()
     {
@@ -539,11 +555,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (result)
         {
-            CreateMsgBoxOneBtn("CallbackGrant ï¿½ï¿½ï¿½ï¿½");
+            CreateMsgBoxOneBtn("CallbackGrant ¼º°ø");
         }
         else
         {
-            CreateMsgBoxOneBtn("CallbackGrant ï¿½ï¿½ï¿½ï¿½");
+            CreateMsgBoxOneBtn("CallbackGrant ½ÇÆÐ");
         }
     }
 
