@@ -9,6 +9,7 @@ using UnityEngine.Networking;
 
 public class NetworkManager : Singleton<NetworkManager>
 {
+    private SocketIO client = null;
 
     protected override void Awake()
     {
@@ -89,7 +90,6 @@ public class NetworkManager : Singleton<NetworkManager>
     {
         string json = JsonUtility.ToJson(packet);
 
-        Debug.LogError("before return www");
         UnityWebRequest request = new UnityWebRequest(CommonDefine.WEB_POST_BASE_URL + api, "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -98,8 +98,6 @@ public class NetworkManager : Singleton<NetworkManager>
         request.SetRequestHeader("authorization", GameDataManager.Instance.loginData.sessionId);
 
         yield return request.SendWebRequest();
-
-        Debug.LogError("after return www");
 
         if (request.result == UnityWebRequest.Result.Success)
         {
@@ -116,6 +114,11 @@ public class NetworkManager : Singleton<NetworkManager>
         }
 
     }
+
+    #endregion
+
+
+    #region WEB_GET
 
     public void SendServerGet(string api, List<ServerPacket> packetList, Action<bool> onResult)
     {
@@ -138,7 +141,6 @@ public class NetworkManager : Singleton<NetworkManager>
             }
         }
 
-        Debug.LogError("before return www");
         string url = CommonDefine.WEB_POST_BASE_URL + api;
         if (packetStr.Length > 0)
         {
@@ -149,8 +151,6 @@ public class NetworkManager : Singleton<NetworkManager>
         request.SetRequestHeader("authorization", GameDataManager.Instance.loginData.sessionId);
 
         yield return request.SendWebRequest();
-
-        Debug.LogError("after return www");
 
         if (request.result == UnityWebRequest.Result.Success)
         {
@@ -167,6 +167,9 @@ public class NetworkManager : Singleton<NetworkManager>
         }
 
     }
+
+    #endregion
+
 
     void HandleResponse(string api, string data)
     {
@@ -204,12 +207,10 @@ public class NetworkManager : Singleton<NetworkManager>
         }
     }
 
-    #endregion
+    
 
     #region WEB_SOCKET
 
-    private SocketIO client = null;
-    public string roomId = "room123";
 
     public async Task ConnectSocket()
     {
@@ -273,7 +274,7 @@ public class NetworkManager : Singleton<NetworkManager>
         }
     }
 
-    public async Task SendMessageToRoom(string messageText)
+    public async Task SendMessageToRoom(string roomId, string messageText)
     {
         var payload = new Dictionary<string, string>
         {

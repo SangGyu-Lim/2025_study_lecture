@@ -216,7 +216,7 @@ public class GameManager : Singleton<GameManager>
 
     async void UseSkill(int skillIdx)
     {
-        await NetworkManager.Instance.SendMessageToRoom(skillIdx.ToString());
+        await NetworkManager.Instance.SendMessageToRoom("roomid", skillIdx.ToString());
     }
 
     async void ConnectSocket()
