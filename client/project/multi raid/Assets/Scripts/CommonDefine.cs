@@ -12,8 +12,9 @@ public static class CommonDefine
     public const string GET_MY_POKEMON_URL = "users/poketmons";
     public const string LINK_WALLET_URL = "users/wallet/link";
 
-    public const string BLOCKCHAIN_GRANT_URL = "blockchain/grant";
     public const string GET_MY_WALLET_URL = "blockchain/balance";
+    public const string BLOCKCHAIN_GRANT_URL = "blockchain/grant";
+    public const string BLOCKCHAIN_DEDUCT_URL = "blockchain/deduct";
 
     public const string SHOP_LIST_URL = "shop/items";
     public const string SHOP_PURCHASE_URL = "shop/purchase";
@@ -69,7 +70,7 @@ public class LinkWalletPostData
     public string privateKey;
 }
 
-public class GrantPostData
+public class WalletGetSetPostData
 {
     public string amount;
 }

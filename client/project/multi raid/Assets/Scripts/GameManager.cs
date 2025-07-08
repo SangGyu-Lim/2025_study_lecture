@@ -633,18 +633,43 @@ public class GameManager : MonoBehaviour
         upArrowCount = 0;
 
         lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(false);
+        lobbyObj.transform.Find("DeductBtn").gameObject.SetActive(false);
+
         lobbyObj.transform.Find("GrantBtn").GetComponent<Button>().onClick.AddListener(OnClickGrant);
+        lobbyObj.transform.Find("DeductBtn").GetComponent<Button>().onClick.AddListener(OnClickDeduct);
+    }
+
+    void OnClickDeduct()
+    {
+        WalletGetSetPostData data = new WalletGetSetPostData
+        {
+            amount = "1000",
+        };
+
+        NetworkManager.Instance.SendServerPost(CommonDefine.BLOCKCHAIN_DEDUCT_URL, data, CallbackDeduct);
+    }
+
+    void CallbackDeduct(bool result)
+    {
+        if (result)
+        {
+            CreateMsgBoxOneBtn("CallbackDeduct 성공");
+            OnClickUpdateWallet();
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("CallbackDeduct 실패");
+        }
     }
 
     void OnClickGrant()
     {
-        GrantPostData data = new GrantPostData
+        WalletGetSetPostData data = new WalletGetSetPostData
         {
             amount = "1000",
         };
 
         NetworkManager.Instance.SendServerPost(CommonDefine.BLOCKCHAIN_GRANT_URL, data, CallbackGrant);
-
     }
 
     void CallbackGrant(bool result)
@@ -652,6 +677,7 @@ public class GameManager : MonoBehaviour
         if (result)
         {
             CreateMsgBoxOneBtn("CallbackGrant 성공");
+            OnClickUpdateWallet();
         }
         else
         {
@@ -667,13 +693,16 @@ public class GameManager : MonoBehaviour
             if(upArrowCount >= 3)
             {
                 lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(true);
+                lobbyObj.transform.Find("DeductBtn").gameObject.SetActive(true);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(false);
             upArrowCount = 0;
+
+            lobbyObj.transform.Find("GrantBtn").gameObject.SetActive(false);
+            lobbyObj.transform.Find("DeductBtn").gameObject.SetActive(false);
         }
       
     }
