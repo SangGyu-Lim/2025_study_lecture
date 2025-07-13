@@ -274,6 +274,88 @@ public class GameManager : MonoBehaviour
         await NetworkManager.Instance.SendMessageToRoom("roomid", skillIdx.ToString());
     }
 
+
+    public void OnClickAttackTest()
+    {
+        EnterBattle();
+
+        StartCoroutine(AttackTest());
+    }
+
+    public IEnumerator AttackTest()
+    {
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+        
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+        
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+        
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+
+
+    }
+
+    private IEnumerator TackleCoroutine(Vector3 originalPosition, float moveDuration, float waitAfterHit, Transform attacker, Transform target)
+    {
+        // 1. 목표 방향 계산
+        Vector3 targetPosition = target.position;
+
+        // 2. 약간 덜 도착하도록 조정 (중앙까지 가면 겹치므로)
+        Vector3 approachPosition = Vector3.Lerp(originalPosition, targetPosition, 0.8f);
+
+        // 3. 돌진
+        yield return MoveToPosition(attacker, approachPosition, moveDuration);
+
+        // 4. 맞은 효과 (흔들리기 등) — 선택
+        // 예: 타겟 살짝 흔들기
+        StartCoroutine(HitEffect(target));
+
+        // 5. 대기
+        yield return new WaitForSeconds(waitAfterHit);
+
+        // 6. 제자리로 복귀
+        yield return MoveToPosition(attacker, originalPosition, moveDuration);
+    }
+
+    private IEnumerator MoveToPosition(Transform obj, Vector3 destination, float duration)
+    {
+        float elapsed = 0f;
+        Vector3 start = obj.position;
+
+        while (elapsed < duration)
+        {
+            obj.position = Vector3.Lerp(start, destination, elapsed / duration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        obj.position = destination;
+    }
+
+    private IEnumerator HitEffect(Transform target)
+    {
+        Vector3 original = target.position;
+        float shakeAmount = 1.5f;
+        float duration = 0.1f;
+
+        for (int i = 0; i < 3; i++)
+        {
+            target.position = original + (Vector3.right * shakeAmount);
+            yield return new WaitForSeconds(duration);
+            target.position = original - (Vector3.right * shakeAmount);
+            yield return new WaitForSeconds(duration);
+        }
+
+        target.position = original;
+    }
+
     public void OnClickBarTest()
     {
         EnterBattle();
