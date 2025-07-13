@@ -448,16 +448,45 @@ public class GameManager : MonoBehaviour
             //itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
             //itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(room.roomId));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_JoinRoom(room.roomId));
         }
 
     }
 
-    void JoinRoom(string idx)
+    void SelectPokemon_JoinRoom(string roomId)
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Inventory");
+        GameObject obj = Instantiate(prefab, canvas);
+
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+
+        obj.transform.Find("Title").GetComponent<TMP_Text>().text = "포켓몬 선택";
+
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
+        {
+            var pokemon = GameDataManager.Instance.myPokemonList[i];
+
+            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
+
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
+
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(roomId, pokemon));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        }
+
+    }
+
+
+    void JoinRoom(string roomId, MyPokemon pokemon)
     {
         // todo 포켓몬 구입후 데이터 갱신
-        Debug.Log("JoinRoom : " + idx);
-        NetworkManager.Instance.JoinRoom(idx);
+        Debug.Log("JoinRoom : " + roomId);
+        NetworkManager.Instance.JoinRoom(roomId, pokemon);
     }
 
     void OnClickEnterShop()
@@ -564,14 +593,54 @@ public class GameManager : MonoBehaviour
         }
         dropdown.AddOptions(list);
 
-        obj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => MakeRoom(obj));
-        obj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        
         obj.transform.Find("CancelBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        obj.transform.Find("Select/SelectBtn").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_MakeRoom(obj));
 
+        obj.transform.Find("Select/Context").GetComponent<TMP_Text>().text = "포켓몬을\n선택해주세요.";
 
     }
 
-    void MakeRoom(GameObject obj)
+    void SelectPokemon_MakeRoom(GameObject makeRoomObj)
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Inventory");
+        GameObject obj = Instantiate(prefab, canvas);
+
+        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+
+        obj.transform.Find("Title").GetComponent<TMP_Text>().text = "포켓몬 선택";
+
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
+        {
+            var pokemon = GameDataManager.Instance.myPokemonList[i];
+
+            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
+
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
+
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon_MakeRoom(pokemon, makeRoomObj));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        }
+
+    }
+
+    void UsePokemon_MakeRoom(MyPokemon pokemon, GameObject makeRoomObj)
+    {
+        // todo 내 포켓몬 설정후 데이터 갱신
+        makeRoomObj.transform.Find("Select/Icon/IconImage").GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("images/pokemon-front")[pokemon.pokemon.id];
+        makeRoomObj.transform.Find("Select/Context").GetComponent<TMP_Text>().text = pokemon.pokemon.name + "\nhp : " + pokemon.pokemon.hp.ToString();
+
+        makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+        makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => MakeRoom(makeRoomObj, pokemon.id));
+        makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(makeRoomObj));
+    }
+
+    void MakeRoom(GameObject obj, int pokemonId)
     {
         string title = obj.transform.Find("Title/InputField").GetComponent<TMP_InputField>().text;
         var dropdown = obj.transform.Find("Level/Dropdown").GetComponent<TMP_Dropdown>();
@@ -581,7 +650,8 @@ public class GameManager : MonoBehaviour
         MakeRoomPostData data = new MakeRoomPostData
         {
             roomName = title,
-            roomLevel = dropdownText
+            roomLevel = dropdownText,
+            pokemonId = pokemonId
         };
 
         ConnectSocket();
@@ -662,6 +732,8 @@ public class GameManager : MonoBehaviour
 
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
 
+        obj.transform.Find("Title").GetComponent<TMP_Text>().text = "인벤토리";
+
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
         {
@@ -675,16 +747,11 @@ public class GameManager : MonoBehaviour
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon(pokemon.id));
+            itemObj.transform.Find("Button").gameObject.SetActive(false);
         }
 
     }
 
-    void UsePokemon(int idx)
-    {
-        // todo 내 포켓몬 설정후 데이터 갱신
-        Debug.Log("UsePokemon : " + idx);
-    }
 
     void SetTransformTwoBtn(Transform trans, Action<bool> firstResult, Action<bool> secondResult)
     {

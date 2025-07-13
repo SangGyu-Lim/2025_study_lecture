@@ -258,7 +258,7 @@ public class NetworkManager : Singleton<NetworkManager>
         await client.EmitAsync("getRooms");
     }
 
-    public async void JoinRoom(string roomId)
+    public async void JoinRoom(string roomId, MyPokemon pokemon)
     {
         var payload = new Dictionary<string, string>
         {

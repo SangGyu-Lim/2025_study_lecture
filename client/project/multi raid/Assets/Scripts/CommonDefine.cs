@@ -63,6 +63,7 @@ public class MakeRoomPostData
 {
     public string roomName;
     public string roomLevel;
+    public int pokemonId;
 }
 
 public class LinkWalletPostData
