@@ -2,6 +2,7 @@ using SocketIOClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -186,6 +187,7 @@ public class NetworkManager : Singleton<NetworkManager>
             case CommonDefine.GET_MY_POKEMON_URL:
                 {
                     GameDataManager.Instance.myPokemonList = JsonHelper.FromJson<MyPokemon>(data);
+                    GameDataManager.Instance.myPokemonIds = new HashSet<int>(GameDataManager.Instance.myPokemonList.Select(p => p.pokemon.id));
                 }
                 break;
             case CommonDefine.SHOP_LIST_URL:

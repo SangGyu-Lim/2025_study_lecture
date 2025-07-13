@@ -497,6 +497,12 @@ public class GameManager : MonoBehaviour
         {
             var shopItem = GameDataManager.Instance.pokemonShopList[i];
 
+            bool isHave = false;
+            if(GameDataManager.Instance.myPokemonIds != null && GameDataManager.Instance.myPokemonIds.Contains(shopItem.pokemon.id))
+            {
+                isHave = true;
+            }
+
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
@@ -505,7 +511,16 @@ public class GameManager : MonoBehaviour
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = shopItem.pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + shopItem.pokemon.hp.ToString() + " / 가격 : " + shopItem.price.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
+            if (isHave)
+            {
+                itemObj.transform.Find("Button/buyText").GetComponent<TMP_Text>().text = "보유";
+            }
+            else
+            {
+                itemObj.transform.Find("Button/buyText").GetComponent<TMP_Text>().text = "구매";
+                itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
+            }
+
         }
 
     }
