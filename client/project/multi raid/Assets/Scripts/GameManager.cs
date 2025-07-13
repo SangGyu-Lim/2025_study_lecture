@@ -79,16 +79,16 @@ public class GameManager : MonoBehaviour
     {
         if (!result)
         {
-            Debug.Log("³» Áö°© ·Îµå ½ÇÆĞ");
+            Debug.Log("ë‚´ ì§€ê°‘ ë¡œë“œ ì‹¤íŒ¨");
         }
 
         if(GameDataManager.Instance.wallet < 0)
         {
-            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "Áö°© ¿¬µ¿ ¾ÈµÊ.";
+            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "ì§€ê°‘ ì—°ë™ ì•ˆë¨.";
         }
         else
         {
-            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "ÀÜ¾× : " + GameDataManager.Instance.wallet.ToString("F2");
+            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "ì”ì•¡ : " + GameDataManager.Instance.wallet.ToString("F2");
         }
 
     }
@@ -120,12 +120,12 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            CreateMsgBoxOneBtn("Áö°© ¿¬µ¿ ¼º°ø");
+            CreateMsgBoxOneBtn("ì§€ê°‘ ì—°ë™ ì„±ê³µ");
 
         }
         else
         {
-            CreateMsgBoxOneBtn("Áö°© ¿¬µ¿ ½ÇÆĞ");
+            CreateMsgBoxOneBtn("ì§€ê°‘ ì—°ë™ ì‹¤íŒ¨");
         }
     }
 
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         GameObject prefab = Resources.Load<GameObject>("prefabs/Battle");
         battleObj = Instantiate(prefab, canvas);
 
-        // º¸½º ¼¼ÆÃ
+        // ë³´ìŠ¤ ì„¸íŒ…
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
         battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[158];
 
@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
         battleObj.transform.Find("Boss/HpBar/Text").GetComponent<TMP_Text>().text = "150 / 150";
         battleObj.transform.Find("Boss/ManaBar/Text").GetComponent<TMP_Text>().text = "100 / 100";
 
-        // À¯Àú ¼¼ÆÃ
+        // ìœ ì € ì„¸íŒ…
         List<BattlePoke> userList = new List<BattlePoke>();
         for (int i = 0; i < 4; ++i)
         {
@@ -189,17 +189,17 @@ public class GameManager : MonoBehaviour
 
     void BattleState()
     {
-        // todo ¹èÆ²ÀÇ °¢°¢ »óÅÂ Ã³¸®
+        // todo ë°°í‹€ì˜ ê°ê° ìƒíƒœ ì²˜ë¦¬
         switch (state)
         {
             case BATTLE_STATE.NONE:
                 {
-                    // ÀüÅõ »óÅÂ ¾Æ´Ô.
+                    // ì „íˆ¬ ìƒíƒœ ì•„ë‹˜.
                 }
                 break;
             case BATTLE_STATE.WAIT:
                 {
-                    // ´Ù¸¥ »ç¶÷µé ÅÏ.
+                    // ë‹¤ë¥¸ ì‚¬ëŒë“¤ í„´.
                     battleObj.transform.Find("State/state").gameObject.SetActive(true);
                     battleObj.transform.Find("State/Skill").gameObject.SetActive(false);
                 }
@@ -226,7 +226,7 @@ public class GameManager : MonoBehaviour
                 break;
             case BATTLE_STATE.BOSS_TURN:
                 {
-                    battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "º¸½ºÀÇ ¼ø¼­ÀÔ´Ï´Ù.";
+                    battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "ë³´ìŠ¤ì˜ ìˆœì„œì…ë‹ˆë‹¤.";
                     state = BATTLE_STATE.WAIT;
                 }
                 break;
@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "Player " + turn.ToString() + "ÀÇ ¼ø¼­ÀÔ´Ï´Ù.";
+            battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "Player " + turn.ToString() + "ì˜ ìˆœì„œì…ë‹ˆë‹¤.";
             state = BATTLE_STATE.WAIT;
         }
     }
@@ -415,13 +415,13 @@ public class GameManager : MonoBehaviour
 
     async void ConnectSocket()
     {
-        // todo À¥¼ÒÄÏ ¿¬°á
+        // todo ì›¹ì†Œì¼“ ì—°ê²°
         await NetworkManager.Instance.ConnectSocket();
     }
 
     void OnClickRoomList()
     {
-        // todo ¼­¹ö¿¡¼­ ·ë¸®½ºÆ® ¹Ş¾Æ¿À±â
+        // todo ì„œë²„ì—ì„œ ë£¸ë¦¬ìŠ¤íŠ¸ ë°›ì•„ì˜¤ê¸°
         ConnectSocket();
         NetworkManager.Instance.SendServerGet(CommonDefine.ROOM_LIST_URL, null, CallbackRoomList);
 
@@ -455,7 +455,7 @@ public class GameManager : MonoBehaviour
 
     void JoinRoom(string idx)
     {
-        // todo Æ÷ÄÏ¸ó ±¸ÀÔÈÄ µ¥ÀÌÅÍ °»½Å
+        // todo í¬ì¼“ëª¬ êµ¬ì…í›„ ë°ì´í„° ê°±ì‹ 
         Debug.Log("JoinRoom : " + idx);
         NetworkManager.Instance.JoinRoom(idx);
     }
@@ -481,7 +481,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            CreateMsgBoxOneBtn("»óÁ¡ ·Îµå ½ÇÆĞ");
+            CreateMsgBoxOneBtn("ìƒì  ë¡œë“œ ì‹¤íŒ¨");
         }
     }
 
@@ -503,7 +503,7 @@ public class GameManager : MonoBehaviour
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[shopItem.pokemon.id];
 
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = shopItem.pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + shopItem.pokemon.hp.ToString() + " / °¡°İ : " + shopItem.price.ToString();
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + shopItem.pokemon.hp.ToString() + " / ê°€ê²© : " + shopItem.price.ToString();
 
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
         }
@@ -518,7 +518,7 @@ public class GameManager : MonoBehaviour
             itemId = idx,
         };
 
-        // todo Æ÷ÄÏ¸ó ±¸ÀÔÈÄ µ¥ÀÌÅÍ °»½Å + ÆĞÅ¶ ¿À·ù
+        // todo í¬ì¼“ëª¬ êµ¬ì…í›„ ë°ì´í„° ê°±ì‹  + íŒ¨í‚· ì˜¤ë¥˜
         NetworkManager.Instance.SendServerPost(CommonDefine.SHOP_PURCHASE_URL, data, CallbackPurchasePokemon);
     }
 
@@ -530,7 +530,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            CreateMsgBoxOneBtn("»óÁ¡ ±¸¸Å ½ÇÆĞ");
+            CreateMsgBoxOneBtn("ìƒì  êµ¬ë§¤ ì‹¤íŒ¨");
         }
     }
 
@@ -578,12 +578,12 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            // todo ·Î±×ÀÎ ¿Ï·á ¾È³»Ã¢
+            // todo ë¡œê·¸ì¸ ì™„ë£Œ ì•ˆë‚´ì°½
             EnterRoom();
         }
         else
         {
-            CreateMsgBoxOneBtn("¹æ»ı¼º ½ÇÆĞ");
+            CreateMsgBoxOneBtn("ë°©ìƒì„± ì‹¤íŒ¨");
         }
     }
 
@@ -615,7 +615,7 @@ public class GameManager : MonoBehaviour
 
     void OnClickEnterInventory()
     {
-        // todo GameDataManagerÀÇ ³» Æ÷ÄÏ¸ó µ¥ÀÌÅÍ È®ÀÎÈÄ ¾øÀ¸¸é ¼­¹ö¿¡¼­ Æ÷ÄÏ¸ó µ¥ÀÌÅÍ ¹Ş¾Æ¿À±â
+        // todo GameDataManagerì˜ ë‚´ í¬ì¼“ëª¬ ë°ì´í„° í™•ì¸í›„ ì—†ìœ¼ë©´ ì„œë²„ì—ì„œ í¬ì¼“ëª¬ ë°ì´í„° ë°›ì•„ì˜¤ê¸°
         if (GameDataManager.Instance.myPokemonList == null)
         {
             NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_POKEMON_URL, null, CallbackMyPokemon);
@@ -636,7 +636,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            CreateMsgBoxOneBtn("³» Æ÷ÄÏ¸ó ·Îµå ½ÇÆĞ");
+            CreateMsgBoxOneBtn("ë‚´ í¬ì¼“ëª¬ ë¡œë“œ ì‹¤íŒ¨");
         }
     }
 
@@ -667,7 +667,7 @@ public class GameManager : MonoBehaviour
 
     void UsePokemon(int idx)
     {
-        // todo ³» Æ÷ÄÏ¸ó ¼³Á¤ÈÄ µ¥ÀÌÅÍ °»½Å
+        // todo ë‚´ í¬ì¼“ëª¬ ì„¤ì •í›„ ë°ì´í„° ê°±ì‹ 
         Debug.Log("UsePokemon : " + idx);
     }
 
@@ -735,12 +735,12 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            CreateMsgBoxOneBtn("CallbackDeduct ¼º°ø");
+            CreateMsgBoxOneBtn("CallbackDeduct ì„±ê³µ");
             OnClickUpdateWallet();
         }
         else
         {
-            CreateMsgBoxOneBtn("CallbackDeduct ½ÇÆĞ");
+            CreateMsgBoxOneBtn("CallbackDeduct ì‹¤íŒ¨");
         }
     }
 
@@ -758,12 +758,12 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            CreateMsgBoxOneBtn("CallbackGrant ¼º°ø");
+            CreateMsgBoxOneBtn("CallbackGrant ì„±ê³µ");
             OnClickUpdateWallet();
         }
         else
         {
-            CreateMsgBoxOneBtn("CallbackGrant ½ÇÆĞ");
+            CreateMsgBoxOneBtn("CallbackGrant ì‹¤íŒ¨");
         }
     }
 
