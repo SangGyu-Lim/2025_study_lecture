@@ -7,17 +7,36 @@ using UnityEngine.UI;
 
 public class Loading : MonoBehaviour
 {
-    [SerializeField] Slider loadingBar;
-    [SerializeField] TMP_Text loadingBarText;
-    [SerializeField] TMP_Text loadingText;
+    public Transform canvas;
+
+    Slider loadingBar;
+    TMP_Text loadingBarText;
+    TMP_Text loadingText;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Init();
+    }
+
+    void Init()
+    {
+        GameDataManager.Instance.ResetData();
+
+        canvas = GameObject.Find("Canvas").transform;
+
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Loading");
+        GameObject obj = Instantiate(prefab, canvas);
+
+        loadingBar = obj.transform.Find("LoadingBar").GetComponent<Slider>();
+        loadingBarText = obj.transform.Find("LoadingBar/LoadingText").GetComponent<TMP_Text>();
+        loadingText = obj.transform.Find("LoadingText").GetComponent<TMP_Text>();
+
+
         loadingBar.value = 0f;
         loadingBar.maxValue = 1.0f;
-        StartCoroutine(LoadScene());
-        //StartCoroutine(LoadSceneTime(3.0f));
+        //StartCoroutine(LoadScene());
+        StartCoroutine(LoadSceneTime(3.0f));
         StartCoroutine(LoadingText(0.3f, 3));
     }
 
