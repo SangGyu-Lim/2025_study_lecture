@@ -50,7 +50,7 @@ public enum BATTLE_STATE
 #region POST_DATA
 public class LoginPostData
 {
-    public string username;
+    public string id;
     public string password;
 }
 
@@ -81,7 +81,7 @@ public class WalletGetSetPostData
 public class LoginData
 {
     public string sessionId;
-    public int id;
+    public string id;
 }
 
 

@@ -38,17 +38,17 @@ public class NetworkManager : Singleton<NetworkManager>
 
     
 
-    public void SendLoginServer(string api, string username, string password, Action<bool> onResult)
+    public void SendLoginServer(string api, string id, string password, Action<bool> onResult)
     {
         Debug.Log(api);
-        StartCoroutine(ServerLoginCall(api, username, password, onResult));
+        StartCoroutine(ServerLoginCall(api, id, password, onResult));
     }
 
-    IEnumerator ServerLoginCall(string api, string username, string password, Action<bool> onResult)
+    IEnumerator ServerLoginCall(string api, string id, string password, Action<bool> onResult)
     {
         LoginPostData data = new LoginPostData
         {
-            username = username,
+            id = id,
             password = password
         };
         string json = JsonUtility.ToJson(data);
