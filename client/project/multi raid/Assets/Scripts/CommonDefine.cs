@@ -84,6 +84,11 @@ public class LoginData
     public string id;
 }
 
+public class WalletData
+{
+    public string balance;
+}
+
 
 
 [System.Serializable]

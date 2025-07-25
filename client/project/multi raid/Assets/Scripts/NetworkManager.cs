@@ -207,12 +207,11 @@ public class NetworkManager : Singleton<NetworkManager>
                 break;
             case CommonDefine.GET_MY_WALLET_URL:
                 {
-                    GameDataManager.Instance.wallet = double.Parse(data);
+                    WalletData wallet = JsonUtility.FromJson<WalletData>(data);
+                    GameDataManager.Instance.walletBalance = double.Parse(wallet.balance);
                 }
                 break;
-                
-
-
+         
         }
     }
 

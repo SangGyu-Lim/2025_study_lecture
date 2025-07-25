@@ -13,7 +13,7 @@ public class GameDataManager : Singleton<GameDataManager>
     public Room[] roomList = null;
     public Room myRoomInfo = null;
 
-    public double wallet = -1;
+    public double walletBalance = -1;
 
     public string nextScene = "";
 
@@ -47,6 +47,6 @@ public class GameDataManager : Singleton<GameDataManager>
         roomList = null;
         myRoomInfo = null;
 
-        wallet = -1;
+        walletBalance = -1;
     }
 }

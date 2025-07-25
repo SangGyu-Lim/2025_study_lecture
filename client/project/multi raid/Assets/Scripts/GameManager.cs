@@ -82,13 +82,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("내 지갑 로드 실패");
         }
 
-        if(GameDataManager.Instance.wallet < 0)
+        if(GameDataManager.Instance.walletBalance < 0)
         {
             lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "지갑 연동 안됨.";
         }
         else
         {
-            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "잔액 : " + GameDataManager.Instance.wallet.ToString("F2");
+            lobbyObj.transform.Find("Wallet/balance").GetComponent<TMP_Text>().text = "잔액 : " + GameDataManager.Instance.walletBalance.ToString("F2");
         }
 
     }
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            CreateMsgBoxOneBtn("지갑 연동 성공");
+            CreateMsgBoxOneBtn("지갑 연동 성공", OnClickUpdateWallet);
 
         }
         else
@@ -764,13 +764,18 @@ public class GameManager : MonoBehaviour
         Destroy(obj);
     }
 
-    void CreateMsgBoxOneBtn(string desc)
+    void CreateMsgBoxOneBtn(string desc, Action checkResult = null)
     {
         GameObject msgBoxPrefabOneBtn = Resources.Load<GameObject>("prefabs/MessageBox_1Button");
         GameObject obj = Instantiate(msgBoxPrefabOneBtn, canvas);
 
         obj.transform.Find("desc").GetComponent<TMP_Text>().text = desc;
         obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+
+        if (checkResult != null)
+        {
+            obj.transform.Find("CheckBtn").GetComponent<Button>().onClick.AddListener(() => checkResult());
+        }
     }
 
     void CreateMsgBoxTwoBtn(string desc, Action<bool> yesResult, Action<bool> noResult)
