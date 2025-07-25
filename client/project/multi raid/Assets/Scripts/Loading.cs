@@ -21,8 +21,6 @@ public class Loading : MonoBehaviour
 
     void Init()
     {
-        GameDataManager.Instance.ResetData();
-
         canvas = GameObject.Find("Canvas").transform;
 
         GameObject prefab = Resources.Load<GameObject>("prefabs/Loading");
