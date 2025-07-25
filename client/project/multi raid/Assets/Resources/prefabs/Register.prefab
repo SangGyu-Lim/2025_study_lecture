@@ -62,7 +62,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9083129525639009043}
   m_Layer: 0
-  m_Name: Join
+  m_Name: Register
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 5742804132248176395}
   - component: {fileID: 1355335212645326965}
   m_Layer: 5
-  m_Name: JoinBtn
+  m_Name: RegisterBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

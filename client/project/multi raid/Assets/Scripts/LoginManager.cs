@@ -10,7 +10,7 @@ public class LoginManager : MonoBehaviour
     public Transform canvas;
 
     GameObject loginObj = null;
-    GameObject joinObj = null;
+    GameObject registerObj = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +22,7 @@ public class LoginManager : MonoBehaviour
     void Init()
     {
         loginObj = null;
-        joinObj = null;
+        registerObj = null;
 
         GameDataManager.Instance.ResetData();
 
@@ -32,7 +32,7 @@ public class LoginManager : MonoBehaviour
         loginObj = Instantiate(prefab, canvas);
 
         loginObj.transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
-        loginObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoinPage);
+        loginObj.transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegisterPage);
 
     }
 
@@ -52,46 +52,46 @@ public class LoginManager : MonoBehaviour
         NetworkManager.Instance.SendLoginServer(CommonDefine.LOGIN_URL, id, password, CallbackLogin);
     }
 
-    void OnClickJoinPage()
+    void OnClickRegisterPage()
     {
-        if(joinObj == null)
+        if(registerObj == null)
         {
-            GameObject prefab = Resources.Load<GameObject>("prefabs/Join");
-            joinObj = Instantiate(prefab, canvas);
+            GameObject prefab = Resources.Load<GameObject>("prefabs/Register");
+            registerObj = Instantiate(prefab, canvas);
 
-            joinObj.transform.Find("BackBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginPage);
-            joinObj.transform.Find("JoinBtn").GetComponent<Button>().onClick.AddListener(OnClickJoin);
+            registerObj.transform.Find("BackBtn").GetComponent<Button>().onClick.AddListener(OnClickLoginPage);
+            registerObj.transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegister);
         }
         else
         {
-            joinObj.SetActive(true);
+            registerObj.SetActive(true);
         }
 
-        joinObj.transform.Find("ID").GetComponent<TMP_InputField>().text = "";
-        joinObj.transform.Find("Password").GetComponent<TMP_InputField>().text = "";
+        registerObj.transform.Find("ID").GetComponent<TMP_InputField>().text = "";
+        registerObj.transform.Find("Password").GetComponent<TMP_InputField>().text = "";
 
     }
 
     void OnClickLoginPage()
     {
-        joinObj.SetActive(false);
+        registerObj.SetActive(false);
 
         loginObj.transform.Find("ID").GetComponent<TMP_InputField>().text = "";
         loginObj.transform.Find("Password").GetComponent<TMP_InputField>().text = "";
 
     }
 
-    void OnClickJoin()
+    void OnClickRegister()
     {
-        string id = joinObj.transform.Find("ID").GetComponent<TMP_InputField>().text;
-        string password = joinObj.transform.Find("Password").GetComponent<TMP_InputField>().text;
+        string id = registerObj.transform.Find("ID").GetComponent<TMP_InputField>().text;
+        string password = registerObj.transform.Find("Password").GetComponent<TMP_InputField>().text;
 
         Debug.Log("id : " + id + " pwd : " + password);
 
-        NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, CallbackJoin);
+        NetworkManager.Instance.SendLoginServer(CommonDefine.REGISTER_URL, id, password, CallbackRegister);
     }
 
-    void CallbackJoin(bool result)
+    void CallbackRegister(bool result)
     {
         if(result)
         {
