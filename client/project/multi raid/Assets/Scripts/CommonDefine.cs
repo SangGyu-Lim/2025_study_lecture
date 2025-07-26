@@ -103,8 +103,9 @@ public class PokemonShop
 [System.Serializable]
 public class MyPokemon
 {
-    public int id;
-    public Pokemon pokemon;
+    public int poketmonId;
+    public string name;
+    public int hp;
     public List<PokemonSkill> skills;
 }
 
@@ -120,11 +121,13 @@ public class Pokemon
 [System.Serializable]
 public class PokemonSkill
 {
-    public int id;
     public int pokemon_id;
+    public int skill_id;
     public string name;
-    public int attack;
-    public int cost;
+    public string type;
+    public string target;
+    public int damage;
+    public int pp;
 }
 
 public class BattlePoke

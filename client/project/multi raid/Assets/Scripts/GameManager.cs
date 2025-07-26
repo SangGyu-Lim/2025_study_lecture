@@ -251,12 +251,12 @@ public class GameManager : MonoBehaviour
 
             var myPokemon = GameDataManager.Instance.myCurPokemon;
 
-            for(int i = 0; i < myPokemon.pokemon.skills.Count; ++i)
+            for (int i = 0; i < myPokemon.skills.Count; ++i)
             {
                 string idx = (i + 1).ToString();
-                var skill = myPokemon.pokemon.skills[i];
+                var skill = myPokemon.skills[i];
 
-                battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.id));
+                battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.skill_id));
                 battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skill.name;
 
             }
@@ -470,10 +470,10 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.hp.ToString();
 
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(roomId, pokemon));
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
@@ -535,7 +535,7 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[shopItem.pokemon.id];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[shopItem.pokemon.id - 1];
 
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = shopItem.pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + shopItem.pokemon.hp.ToString() + " / 가격 : " + shopItem.price.ToString();
@@ -618,10 +618,10 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.hp.ToString();
 
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => UsePokemon_MakeRoom(pokemon, makeRoomObj));
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
@@ -632,11 +632,11 @@ public class GameManager : MonoBehaviour
     void UsePokemon_MakeRoom(MyPokemon pokemon, GameObject makeRoomObj)
     {
         // todo 내 포켓몬 설정후 데이터 갱신
-        makeRoomObj.transform.Find("Select/Icon/IconImage").GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("images/pokemon-front")[pokemon.pokemon.id];
-        makeRoomObj.transform.Find("Select/Context").GetComponent<TMP_Text>().text = pokemon.pokemon.name + "\nhp : " + pokemon.pokemon.hp.ToString();
+        makeRoomObj.transform.Find("Select/Icon/IconImage").GetComponent<Image>().sprite = Resources.LoadAll<Sprite>("images/pokemon-front")[pokemon.poketmonId - 1];
+        makeRoomObj.transform.Find("Select/Context").GetComponent<TMP_Text>().text = pokemon.name + "\nhp : " + pokemon.hp.ToString();
 
         makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.RemoveAllListeners();
-        makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => MakeRoom(makeRoomObj, pokemon.id));
+        makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => MakeRoom(makeRoomObj, pokemon.poketmonId));
         makeRoomObj.transform.Find("MakeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(makeRoomObj));
     }
 
@@ -742,10 +742,10 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.pokemon.id];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
-            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.pokemon.name;
-            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.pokemon.hp.ToString();
+            itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
+            itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.hp.ToString();
 
             itemObj.transform.Find("Button").gameObject.SetActive(false);
         }

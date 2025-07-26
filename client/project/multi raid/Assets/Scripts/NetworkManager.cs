@@ -187,7 +187,7 @@ public class NetworkManager : Singleton<NetworkManager>
             case CommonDefine.GET_MY_POKEMON_URL:
                 {
                     GameDataManager.Instance.myPokemonList = JsonHelper.FromJson<MyPokemon>(data);
-                    GameDataManager.Instance.myPokemonIds = new HashSet<int>(GameDataManager.Instance.myPokemonList.Select(p => p.pokemon.id));
+                    GameDataManager.Instance.myPokemonIds = new HashSet<int>(GameDataManager.Instance.myPokemonList.Select(p => p.poketmonId));
                 }
                 break;
             case CommonDefine.SHOP_LIST_URL:
