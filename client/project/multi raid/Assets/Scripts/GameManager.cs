@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
         EasterEggInit();
     }
 
-    void Init()
+    async void Init()
     {
         lobbyObj = null;
         battleObj = null;
@@ -47,9 +48,12 @@ public class GameManager : MonoBehaviour
         lobbyObj.transform.Find("InvenBtn").GetComponent<Button>().onClick.AddListener(OnClickEnterInventory);
         lobbyObj.transform.Find("Wallet/LinkWalletBtn").GetComponent<Button>().onClick.AddListener(OnClickLinkWalletPage);
         lobbyObj.transform.Find("Wallet/UpdateWalletBtn").GetComponent<Button>().onClick.AddListener(OnClickUpdateWallet);
-        lobbyObj.transform.Find("LogOutBtn").GetComponent<Button>().onClick.AddListener(OnClickAttackTest);
+        lobbyObj.transform.Find("LogOutBtn").GetComponent<Button>().onClick.AddListener(OnClickLogOut);
 
         UpdateWallet(true);
+
+        await NetworkManager.Instance.ConnectSocket();
+
     }
 
     // Update is called once per frame
@@ -280,6 +284,7 @@ public class GameManager : MonoBehaviour
         EnterBattle();
 
         StartCoroutine(AttackTest());
+        StartCoroutine(BarTest());
     }
 
     public IEnumerator AttackTest()
@@ -293,12 +298,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
         
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
-        
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
-
 
     }
 
@@ -374,17 +373,17 @@ public class GameManager : MonoBehaviour
         manaBar.value = 1.0f;
         manaBar.maxValue = 1.0f;
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(ReduceBattleBar(hpBar, 90, 90, 30));
         StartCoroutine(ReduceBattleBar(manaBar, 50, 50, 10));
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(ReduceBattleBar(hpBar, 90, 60, 20));
         StartCoroutine(ReduceBattleBar(manaBar, 50, 40, 15));
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(ReduceBattleBar(hpBar, 90, 40, 40));
         StartCoroutine(ReduceBattleBar(manaBar, 50, 25, 15));
@@ -413,18 +412,10 @@ public class GameManager : MonoBehaviour
         bar.value = endValue;
     }
 
-    async void ConnectSocket()
-    {
-        // todo 웹소켓 연결
-        await NetworkManager.Instance.ConnectSocket();
-    }
-
-    void OnClickRoomList()
+    async void OnClickRoomList()
     {
         // todo 서버에서 룸리스트 받아오기
-        ConnectSocket();
         NetworkManager.Instance.SendServerGet(CommonDefine.ROOM_LIST_URL, null, CallbackRoomList);
-
     }
 
     void CallbackRoomList(bool result)
@@ -443,7 +434,7 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].id];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].userSeq];
 
             //itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
             //itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
@@ -645,18 +636,10 @@ public class GameManager : MonoBehaviour
         string title = obj.transform.Find("Title/InputField").GetComponent<TMP_InputField>().text;
         var dropdown = obj.transform.Find("Level/Dropdown").GetComponent<TMP_Dropdown>();
         string dropdownText = dropdown.options[dropdown.value].text;
-        Debug.Log("title : " + title + " / ropdown : " + dropdownText);
+        string level = Regex.Replace(dropdownText, "[^0-9]", "");
+        Debug.Log("title : " + title + " / ropdown : " + level);
 
-        MakeRoomPostData data = new MakeRoomPostData
-        {
-            roomName = title,
-            roomLevel = dropdownText,
-            pokemonId = pokemonId
-        };
-
-        ConnectSocket();
-        NetworkManager.Instance.SendServerPost(CommonDefine.MAKE_ROOM_URL, data, CallbackMakeRoom);
-
+        NetworkManager.Instance.CreateRoom(int.Parse(level), pokemonId);
     }
 
     void CallbackMakeRoom(bool result)
@@ -687,9 +670,9 @@ public class GameManager : MonoBehaviour
             var member = GameDataManager.Instance.myRoomInfo.members[i];
 
             obj.transform.Find("User/" + idx).gameObject.SetActive(true);
-            obj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.username;
+            obj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.userSeq.ToString();
 
-            obj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.id];
+            obj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.pokemonId];
         }
 
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(GameDataManager.Instance.myRoomInfo.roomId));

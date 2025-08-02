@@ -195,11 +195,6 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.pokemonShopList = JsonHelper.FromJson<PokemonShop>(data);
                 }
                 break;
-            case CommonDefine.MAKE_ROOM_URL:
-                {
-                    GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(data);
-                }
-                break;
             case CommonDefine.ROOM_LIST_URL:
                 {
                     GameDataManager.Instance.roomList = JsonHelper.FromJson<Room>(data);
@@ -211,7 +206,16 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.walletBalance = double.Parse(wallet.balance);
                 }
                 break;
-         
+            case CommonDefine.BLOCKCHAIN_GRANT_URL:
+            case CommonDefine.BLOCKCHAIN_DEDUCT_URL:
+            case CommonDefine.SHOP_PURCHASE_URL:
+                {
+                    string temp = data;
+                }
+                break;
+                
+                    
+
         }
     }
 
@@ -225,16 +229,16 @@ public class NetworkManager : Singleton<NetworkManager>
         //string packetStr = "?sessionId=" + GameDataManager.Instance.loginData.sessionId;
         string packetStr = "";
 
-        if (client == null)
+        if (client == null || client.Connected == false)
         {
             var payload = new Dictionary<string, string>
             {
-                { "sessionId", GameDataManager.Instance.loginData.sessionId },
+                { "sessionid", GameDataManager.Instance.loginData.sessionId },
             };
 
             client = new SocketIO(CommonDefine.WEB_SOCKET_URL + packetStr, new SocketIOOptions
             {
-                Query = payload,
+                ExtraHeaders = payload,
                 Reconnection = true,
                 ReconnectionAttempts = 5,
                 ReconnectionDelay = 1000,
@@ -254,7 +258,19 @@ public class NetworkManager : Singleton<NetworkManager>
         Debug.Log("Connected to Socket.IO server");
         Debug.Log("Connected : " + client.Connected);
 
-        await client.EmitAsync("getRooms");
+    }
+
+    public async void CreateRoom(int boosId, int pokemon)
+    {
+        await ConnectSocket();
+
+        var payload = new Dictionary<string, int>
+        {
+            { "boosId", boosId },
+            { "myPoketmonId", pokemon },
+        };
+
+        await client.EmitAsync("createRoom", payload);
     }
 
     public async void JoinRoom(string roomId, MyPokemon pokemon)

@@ -26,7 +26,8 @@ public class LoginManager : MonoBehaviour
 
         GameDataManager.Instance.ResetData();
 
-        canvas = GameObject.Find("Canvas").transform;
+        if (canvas == null)
+            canvas = GameObject.Find("Canvas").transform;
 
         GameObject prefab = Resources.Load<GameObject>("prefabs/Login");
         loginObj = Instantiate(prefab, canvas);

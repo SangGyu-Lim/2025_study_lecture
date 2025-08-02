@@ -33,8 +33,8 @@ public class Loading : MonoBehaviour
 
         loadingBar.value = 0f;
         loadingBar.maxValue = 1.0f;
-        //StartCoroutine(LoadScene());
-        StartCoroutine(LoadSceneTime(3.0f));
+        StartCoroutine(LoadScene());
+        //StartCoroutine(LoadSceneTime(3.0f));
         StartCoroutine(LoadingText(0.3f, 3));
     }
 

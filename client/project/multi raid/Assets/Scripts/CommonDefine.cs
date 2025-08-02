@@ -9,7 +9,7 @@ public static class CommonDefine
 
     public const string REGISTER_URL = "users/register";
     public const string LOGIN_URL = "users/login";
-    public const string GET_MY_POKEMON_URL = "users/poketmons";
+    public const string GET_MY_POKEMON_URL = "users/pokemons";
     public const string LINK_WALLET_URL = "users/wallet/link";
 
     public const string GET_MY_WALLET_URL = "blockchain/balance";
@@ -19,8 +19,7 @@ public static class CommonDefine
     public const string SHOP_LIST_URL = "shop/items";
     public const string SHOP_PURCHASE_URL = "shop/purchase";
 
-    public const string MAKE_ROOM_URL = "rooms/createRoom";
-    public const string ROOM_LIST_URL = "rooms/getRooms";
+    public const string ROOM_LIST_URL = "rooms";
 
     
 
@@ -149,12 +148,16 @@ public class ServerPacket
 public class Room
 {
     public string roomId;
+    public int leaderId;
+    public int bossPokemonId;
     public List<RoomMember> members;
+    public string eventType;
 }
 
 [System.Serializable]
 public class RoomMember
 {
-    public int id;
-    public string username;
+    public int userSeq;
+    public int pokemonId;
+    public int order;
 }
