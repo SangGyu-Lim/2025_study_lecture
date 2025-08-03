@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -224,7 +223,7 @@ public class NetworkManager : Singleton<NetworkManager>
     #region WEB_SOCKET
 
 
-    public async Task ConnectSocket()
+    public async Task ConnectSocket(Action<SocketIOResponse> OnRoomUpdate)
     {
         //string packetStr = "?sessionId=" + GameDataManager.Instance.loginData.sessionId;
         string packetStr = "";
@@ -247,76 +246,76 @@ public class NetworkManager : Singleton<NetworkManager>
 
             // 이벤트 등록
             client.OnConnected += OnConnected;
-            client.On("roomUpdate", OnRoomUpdate);
+            client.On(CommonDefine.SOCKET_ROOM_UPDATE, OnRoomUpdate);
             
             await client.ConnectAsync();
         }
     }
 
-    private async void OnConnected(object sender, EventArgs e)
+    private void OnConnected(object sender, EventArgs e)
     {
         Debug.Log("Connected to Socket.IO server");
         Debug.Log("Connected : " + client.Connected);
 
     }
 
-    public async void CreateRoom(int boosId, int pokemon)
+    public async void CreateRoom(Action<SocketIOResponse> OnRoomUpdate, int boosId, int pokemonId)
     {
-        await ConnectSocket();
+        await ConnectSocket(OnRoomUpdate);
 
         var payload = new Dictionary<string, int>
         {
             { "boosId", boosId },
-            { "myPoketmonId", pokemon },
+            { "myPoketmonId", pokemonId },
         };
 
-        await client.EmitAsync("createRoom", payload);
+        await client.EmitAsync(CommonDefine.SOCKET_CREATE_ROOM, payload);
     }
 
-    public async void JoinRoom(string roomId, MyPokemon pokemon)
+    public async void JoinRoom(Action<SocketIOResponse> OnRoomUpdate, string roomId, int pokemonId)
     {
-        var payload = new Dictionary<string, string>
+        await ConnectSocket(OnRoomUpdate);
+
+        var payload = new Dictionary<string, object>
         {
             { "roomId", roomId },
+            { "myPoketmonId", pokemonId },
         };
 
-        await client.EmitAsync("joinRoom", payload);
+        await client.EmitAsync(CommonDefine.SOCKET_JOIN_ROOM, payload);
     }
 
-    private void OnRoomUpdate(SocketIOResponse response)
+    public async void LeaveRoom(Action<SocketIOResponse> OnRoomUpdate, string roomId)
     {
-        try
-        {
-            // todo 다른 유저들이 update되지 않음
-            string json = response.GetValue().ToString();
-            GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(json);
-            Debug.Log($"RoomUpdate: {json}");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"RoomUpdate error: {ex.Message}");
-        }
-    }
+        await ConnectSocket(OnRoomUpdate);
 
-    public async Task SendMessageToRoom(string roomId, string messageText)
-    {
         var payload = new Dictionary<string, string>
         {
-            { "roomId", roomId },
-            { "message", messageText }
+            { "roomId", roomId }
         };
 
-        await client.EmitAsync("message", payload);
+        await client.EmitAsync(CommonDefine.SOCKET_LEAVE_ROOM, payload);
     }
 
-    public async void LeaveRoom(string roomId)
+    public async void StartRaid(string roomId)
     {
         var payload = new Dictionary<string, string>
         {
             { "roomId", roomId }
         };
 
-        await client.EmitAsync("leaveRoom", payload);
+        await client.EmitAsync(CommonDefine.SOCKET_START_RAID, payload);
+    }
+
+    public async void RaidAction(string roomId, int skillSeq)
+    {
+        var payload = new Dictionary<string, object>
+        {
+            { "roomId", roomId },
+            { "skillSeq", skillSeq },
+        };
+
+        await client.EmitAsync(CommonDefine.SOCKET_RAID_ACTION, payload);
     }
 
 

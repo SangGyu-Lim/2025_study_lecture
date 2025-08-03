@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 
 public static class CommonDefine
@@ -28,6 +26,13 @@ public static class CommonDefine
     public const string LOADING_SCENE = "LoadingScene";
     public const string GAME_SCENE = "GameScene";
     public const string LOGIN_SCENE = "SampleScene";
+
+    public const string SOCKET_CREATE_ROOM = "createRoom";
+    public const string SOCKET_ROOM_UPDATE = "roomUpdate";
+    public const string SOCKET_JOIN_ROOM = "joinRoom";
+    public const string SOCKET_LEAVE_ROOM = "leaveRoom";
+    public const string SOCKET_START_RAID = "startRaid";
+    public const string SOCKET_RAID_ACTION = "action";
 
     public const float BATTLE_BAR_DURATION = 3f;
 

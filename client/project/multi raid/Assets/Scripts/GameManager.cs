@@ -1,3 +1,4 @@
+using SocketIOClient;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,10 +13,13 @@ public class GameManager : MonoBehaviour
     public Transform canvas;
 
     GameObject lobbyObj = null;
+    GameObject roomObj = null;
     GameObject battleObj = null;
 
     BATTLE_STATE state = BATTLE_STATE.NONE;
     int myBattleTurn = -1;
+
+    private static Queue<Action> mainThreadActions = new Queue<Action>();
 
     void Awake()
     {
@@ -52,7 +56,7 @@ public class GameManager : MonoBehaviour
 
         UpdateWallet(true);
 
-        await NetworkManager.Instance.ConnectSocket();
+        await NetworkManager.Instance.ConnectSocket(OnRoomUpdate);
 
     }
 
@@ -61,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         BattleState();
         EasterEgg();
+        CheckMainThreadActions();
     }
 
     void OnClickLogOut()
@@ -273,9 +278,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    async void UseSkill(int skillIdx)
+    void UseSkill(int skillIdx)
     {
-        await NetworkManager.Instance.SendMessageToRoom("roomid", skillIdx.ToString());
+        //NetworkManager.Instance.RaidAction(OnRoomUpdate, roomId, pokemonId);
     }
 
 
@@ -412,7 +417,7 @@ public class GameManager : MonoBehaviour
         bar.value = endValue;
     }
 
-    async void OnClickRoomList()
+    void OnClickRoomList()
     {
         // todo 서버에서 룸리스트 받아오기
         NetworkManager.Instance.SendServerGet(CommonDefine.ROOM_LIST_URL, null, CallbackRoomList);
@@ -434,17 +439,17 @@ public class GameManager : MonoBehaviour
             GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
             GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
 
-            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].userSeq];
+            itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].pokemonId - 1];
 
             //itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
-            //itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "level " + room.level.ToString();
+            itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "Level " + room.bossPokemonId.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_JoinRoom(room.roomId));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_JoinRoom(room.roomId, obj));
         }
 
     }
 
-    void SelectPokemon_JoinRoom(string roomId)
+    void SelectPokemon_JoinRoom(string roomId, GameObject roomListObj)
     {
         GameObject prefab = Resources.Load<GameObject>("prefabs/Inventory");
         GameObject obj = Instantiate(prefab, canvas);
@@ -466,18 +471,19 @@ public class GameManager : MonoBehaviour
             itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = pokemon.name;
             itemObj.transform.Find("Context").GetComponent<TMP_Text>().text = "hp : " + pokemon.hp.ToString();
 
-            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(roomId, pokemon));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => JoinRoom(roomId, pokemon.poketmonId));
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomListObj));
         }
 
     }
 
 
-    void JoinRoom(string roomId, MyPokemon pokemon)
+    void JoinRoom(string roomId, int pokemonId)
     {
         // todo 포켓몬 구입후 데이터 갱신
         Debug.Log("JoinRoom : " + roomId);
-        NetworkManager.Instance.JoinRoom(roomId, pokemon);
+        NetworkManager.Instance.JoinRoom(OnRoomUpdate, roomId, pokemonId);
     }
 
     void OnClickEnterShop()
@@ -639,44 +645,78 @@ public class GameManager : MonoBehaviour
         string level = Regex.Replace(dropdownText, "[^0-9]", "");
         Debug.Log("title : " + title + " / ropdown : " + level);
 
-        NetworkManager.Instance.CreateRoom(int.Parse(level), pokemonId);
+        NetworkManager.Instance.CreateRoom(OnRoomUpdate, int.Parse(level), pokemonId);
     }
 
-    void CallbackMakeRoom(bool result)
+    void OnRoomUpdate(SocketIOResponse response)
     {
-        if (result)
+        try
         {
-            // todo 로그인 완료 안내창
-            EnterRoom();
+            // todo 다른 유저들이 update되지 않음
+            string json = response.GetValue().ToString();
+            GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(json);
+            Debug.Log($"RoomUpdate: {json}");
+
+            SocketHandleResponse(GameDataManager.Instance.myRoomInfo.eventType);
         }
-        else
+        catch (Exception ex)
         {
-            CreateMsgBoxOneBtn("방생성 실패");
+            Debug.LogError($"RoomUpdate error: {ex.Message}");
         }
     }
+
+    void SocketHandleResponse(string eventType)
+    {
+        switch (eventType)
+        {
+            case CommonDefine.SOCKET_CREATE_ROOM:
+            case CommonDefine.SOCKET_JOIN_ROOM:
+            case CommonDefine.SOCKET_LEAVE_ROOM:
+                {
+                    mainThreadActions.Enqueue(EnterRoom);
+                }
+                break;
+        }
+    }
+
+    void CheckMainThreadActions()
+    {
+        while (mainThreadActions.Count > 0)
+        {
+            mainThreadActions.Dequeue()?.Invoke();
+        }
+    }
+
 
     void EnterRoom()
     {
-        GameObject prefab = Resources.Load<GameObject>("prefabs/Room");
-        GameObject obj = Instantiate(prefab, canvas);
-
-        for(int i = 1; i <= 4; ++i)
-            obj.transform.Find("User/" + i.ToString()).gameObject.SetActive(false);
+        if(roomObj == null)
+        {
+            GameObject prefab = Resources.Load<GameObject>("prefabs/Room");
+            roomObj = Instantiate(prefab, canvas);
+        }
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+
+        roomObj.transform.Find("Boss/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[GameDataManager.Instance.myRoomInfo.bossPokemonId - 1];
+        roomObj.transform.Find("Boss/Level").GetComponent<TMP_Text>().text = "Level " + GameDataManager.Instance.myRoomInfo.bossPokemonId.ToString();
+        
+        for (int i = 1; i <= 4; ++i)
+            roomObj.transform.Find("User/" + i.ToString()).gameObject.SetActive(false);
+
         for (int i = 0; i < GameDataManager.Instance.myRoomInfo.members.Count; ++i)
         {
             string idx = (i + 1).ToString();
             var member = GameDataManager.Instance.myRoomInfo.members[i];
 
-            obj.transform.Find("User/" + idx).gameObject.SetActive(true);
-            obj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.userSeq.ToString();
+            roomObj.transform.Find("User/" + idx).gameObject.SetActive(true);
+            roomObj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.userSeq.ToString();
 
-            obj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.pokemonId];
+            roomObj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.pokemonId - 1];
         }
 
-        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(GameDataManager.Instance.myRoomInfo.roomId));
-        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(OnRoomUpdate, GameDataManager.Instance.myRoomInfo.roomId));
+        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomObj));
 
 
     }
