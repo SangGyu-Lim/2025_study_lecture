@@ -13,8 +13,12 @@ public class GameManager : MonoBehaviour
     public Transform canvas;
 
     GameObject lobbyObj = null;
+    GameObject shopObj = null;
     GameObject roomObj = null;
     GameObject battleObj = null;
+    GameObject loadingCircleObj = null;
+
+    List<GameObject> shopItemsObjList = new List<GameObject>();
 
     BATTLE_STATE state = BATTLE_STATE.NONE;
     int myBattleTurn = -1;
@@ -36,6 +40,8 @@ public class GameManager : MonoBehaviour
     async void Init()
     {
         lobbyObj = null;
+        shopObj = null;
+        roomObj = null;
         battleObj = null;
 
         state = BATTLE_STATE.NONE;
@@ -432,12 +438,14 @@ public class GameManager : MonoBehaviour
         obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => { GameDataManager.Instance.roomList = null; });
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
+        Transform content = obj.transform.Find("ScrollView/Viewport/Content");
+
         for (int i = 0; i < GameDataManager.Instance.roomList.Length; i++)
         {
             var room = GameDataManager.Instance.roomList[i];
 
-            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/RoomListItem");
-            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+            GameObject itemObj = Instantiate(itemPrefab, content);
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].pokemonId - 1];
 
@@ -459,12 +467,14 @@ public class GameManager : MonoBehaviour
         obj.transform.Find("Title").GetComponent<TMP_Text>().text = "포켓몬 선택";
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+        Transform content = obj.transform.Find("ScrollView/Viewport/Content");
+
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
 
-            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
-            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+            GameObject itemObj = Instantiate(itemPrefab, content);
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
@@ -513,12 +523,24 @@ public class GameManager : MonoBehaviour
 
     void CreateShop()
     {
-        GameObject prefab = Resources.Load<GameObject>("prefabs/Shop");
-        GameObject obj = Instantiate(prefab, canvas);
+        if(shopObj == null)
+        {
+            GameObject prefab = Resources.Load<GameObject>("prefabs/Shop");
+            shopObj = Instantiate(prefab, canvas);
+        }
 
-        obj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
+        shopObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(shopObj));
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
+        Transform content = shopObj.transform.Find("ScrollView/Viewport/Content");
+
+        foreach (Transform child in content)
+        {
+            Destroy(child.gameObject);
+        }
+        shopItemsObjList.Clear();
+
         for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Length; i++)
         {
             var shopItem = GameDataManager.Instance.pokemonShopList[i];
@@ -529,8 +551,7 @@ public class GameManager : MonoBehaviour
                 isHave = true;
             }
 
-            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/ShopItem");
-            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+            GameObject itemObj = Instantiate(itemPrefab, content);
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[shopItem.pokemon.id - 1];
 
@@ -547,12 +568,15 @@ public class GameManager : MonoBehaviour
                 itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
             }
 
+            shopItemsObjList.Add(itemObj);
         }
 
     }
 
     void PurchasePokemon(int idx)
     {
+        CreateLoadingCircle();
+
         Debug.Log("PurchasePokemon : " + idx);
         PurchasePostData data = new PurchasePostData
         {
@@ -567,14 +591,67 @@ public class GameManager : MonoBehaviour
     {
         if (result)
         {
-            CreateShop();
+            NetworkManager.Instance.SendServerGet(CommonDefine.GET_MY_POKEMON_URL, null, CallbackMyPokemonAfterPurchasePokemon);
         }
         else
         {
+            DestroyLoadingCircle();
             CreateMsgBoxOneBtn("상점 구매 실패");
         }
     }
 
+    void CallbackMyPokemonAfterPurchasePokemon(bool result)
+    {
+        DestroyLoadingCircle();
+
+        if (result)
+        {
+            CreateMsgBoxOneBtn("구매 완료");
+            UpdateshopItems();
+        }
+        else
+        {
+            CreateMsgBoxOneBtn("상점 구매후 포켓몬 로드 실패");
+        }
+    }
+
+    void UpdateshopItems()
+    {
+        for (int i = 0; i < GameDataManager.Instance.pokemonShopList.Length; i++)
+        {
+            var shopItem = GameDataManager.Instance.pokemonShopList[i];
+
+            bool isHave = false;
+            if(GameDataManager.Instance.myPokemonIds != null && GameDataManager.Instance.myPokemonIds.Contains(shopItem.pokemon.id))
+            {
+                isHave = true;
+            }
+
+            GameObject itemObj = shopItemsObjList[i];
+
+            if (isHave)
+            {
+                itemObj.transform.Find("Button/buyText").GetComponent<TMP_Text>().text = "보유";
+                itemObj.transform.Find("Button").GetComponent<Button>().onClick.RemoveAllListeners();
+            }
+            else
+            {
+                itemObj.transform.Find("Button/buyText").GetComponent<TMP_Text>().text = "구매";
+                itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => PurchasePokemon(shopItem.shop_id));
+            }
+        }
+    }
+
+    void CreateLoadingCircle()
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/LoadingCircle");
+        loadingCircleObj = Instantiate(prefab, canvas);
+    }
+
+    void DestroyLoadingCircle()
+    {
+        DestroyObject(loadingCircleObj);
+    }
 
     void OnClickMakeRoom()
     {
@@ -608,12 +685,14 @@ public class GameManager : MonoBehaviour
         obj.transform.Find("Title").GetComponent<TMP_Text>().text = "포켓몬 선택";
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+        Transform content = obj.transform.Find("ScrollView/Viewport/Content");
+
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
 
-            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
-            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+            GameObject itemObj = Instantiate(itemPrefab, content);
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
@@ -758,12 +837,14 @@ public class GameManager : MonoBehaviour
         obj.transform.Find("Title").GetComponent<TMP_Text>().text = "인벤토리";
 
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+        GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
+        Transform content = obj.transform.Find("ScrollView/Viewport/Content");
+
         for (int i = 0; i < GameDataManager.Instance.myPokemonList.Length; i++)
         {
             var pokemon = GameDataManager.Instance.myPokemonList[i];
 
-            GameObject itemPrefab = Resources.Load<GameObject>("prefabs/InventoryItem");
-            GameObject itemObj = Instantiate(itemPrefab, obj.transform.Find("ScrollView/Viewport/Content"));
+            GameObject itemObj = Instantiate(itemPrefab, content);
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[pokemon.poketmonId - 1];
 
@@ -833,6 +914,8 @@ public class GameManager : MonoBehaviour
 
     void OnClickDeduct()
     {
+        CreateLoadingCircle();
+
         WalletGetSetPostData data = new WalletGetSetPostData
         {
             amount = "1000",
@@ -843,6 +926,8 @@ public class GameManager : MonoBehaviour
 
     void CallbackDeduct(bool result)
     {
+        DestroyLoadingCircle();
+
         if (result)
         {
             CreateMsgBoxOneBtn("CallbackDeduct 성공");
@@ -856,6 +941,8 @@ public class GameManager : MonoBehaviour
 
     void OnClickGrant()
     {
+        CreateLoadingCircle();
+
         WalletGetSetPostData data = new WalletGetSetPostData
         {
             amount = "1000",
@@ -866,6 +953,8 @@ public class GameManager : MonoBehaviour
 
     void CallbackGrant(bool result)
     {
+        DestroyLoadingCircle();
+
         if (result)
         {
             CreateMsgBoxOneBtn("CallbackGrant 성공");
