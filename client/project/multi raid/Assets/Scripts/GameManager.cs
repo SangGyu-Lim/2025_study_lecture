@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
         state = BATTLE_STATE.NONE;
         myBattleTurn = -1;
 
-        canvas = GameObject.Find("Canvas").transform;
+        if (canvas == null)
+            canvas = GameObject.Find("Canvas").transform;
 
         GameObject prefab = Resources.Load<GameObject>("prefabs/GameLobby");
         lobbyObj = Instantiate(prefab, canvas);
