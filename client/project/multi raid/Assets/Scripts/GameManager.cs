@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
         UpdateWallet(true);
 
-        await NetworkManager.Instance.ConnectSocket(OnRoomUpdate);
+        await NetworkManager.Instance.ConnectSocket(OnRoomUpdate, OnChangeTurn);
 
     }
 
@@ -450,7 +450,15 @@ public class GameManager : MonoBehaviour
 
             itemObj.transform.Find("Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[room.members[0].pokemonId - 1];
 
-            //itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = room.title;
+            for (int k = 0; k < room.members.Count; ++k)
+            {
+                var member = room.members[k];
+                if (room.leaderId == member.userSeq)
+                {
+                    itemObj.transform.Find("Title").GetComponent<TMP_Text>().text = member.userId + "의 방";
+                }
+            }
+
             itemObj.transform.Find("Level").GetComponent<TMP_Text>().text = "Level " + room.bossPokemonId.ToString();
 
             itemObj.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_JoinRoom(room.roomId, obj));
@@ -494,7 +502,7 @@ public class GameManager : MonoBehaviour
     {
         // todo 포켓몬 구입후 데이터 갱신
         Debug.Log("JoinRoom : " + roomId);
-        NetworkManager.Instance.JoinRoom(OnRoomUpdate, roomId, pokemonId);
+        NetworkManager.Instance.JoinRoom(OnRoomUpdate, OnChangeTurn, roomId, pokemonId);
     }
 
     void OnClickEnterShop()
@@ -654,6 +662,8 @@ public class GameManager : MonoBehaviour
         GameObject prefab = Resources.Load<GameObject>("prefabs/MakeRoom");
         GameObject obj = Instantiate(prefab, canvas);
 
+        obj.transform.Find("Title/detail").GetComponent<TMP_Text>().text = GameDataManager.Instance.loginData.id +  "의 방";
+
         var dropdown = obj.transform.Find("Level/Dropdown").GetComponent<TMP_Dropdown>();
         dropdown.ClearOptions();
         List<string> list = new List<string>();
@@ -662,16 +672,15 @@ public class GameManager : MonoBehaviour
             list.Add("level " + (i + 1));
         }
         dropdown.AddOptions(list);
-
         
         obj.transform.Find("CancelBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(obj));
-        obj.transform.Find("Select/SelectBtn").GetComponent<Button>().onClick.AddListener(() => SelectPokemon_MakeRoom(obj));
+        obj.transform.Find("Select/SelectBtn").GetComponent<Button>().onClick.AddListener(() => SelectPokemonMakeRoom(obj));
 
         obj.transform.Find("Select/Context").GetComponent<TMP_Text>().text = "포켓몬을\n선택해주세요.";
 
     }
 
-    void SelectPokemon_MakeRoom(GameObject makeRoomObj)
+    void SelectPokemonMakeRoom(GameObject makeRoomObj)
     {
         GameObject prefab = Resources.Load<GameObject>("prefabs/Inventory");
         GameObject obj = Instantiate(prefab, canvas);
@@ -714,16 +723,32 @@ public class GameManager : MonoBehaviour
 
     void MakeRoom(GameObject obj, int pokemonId)
     {
-        string title = obj.transform.Find("Title/InputField").GetComponent<TMP_InputField>().text;
         var dropdown = obj.transform.Find("Level/Dropdown").GetComponent<TMP_Dropdown>();
         string dropdownText = dropdown.options[dropdown.value].text;
         string level = Regex.Replace(dropdownText, "[^0-9]", "");
-        Debug.Log("title : " + title + " / ropdown : " + level);
+        Debug.Log("level : " + level);
 
-        NetworkManager.Instance.CreateRoom(OnRoomUpdate, int.Parse(level), pokemonId);
+        NetworkManager.Instance.CreateRoom(OnRoomUpdate, OnChangeTurn, int.Parse(level), pokemonId);
     }
 
     void OnRoomUpdate(SocketIOResponse response)
+    {
+        try
+        {
+            // todo 다른 유저들이 update되지 않음
+            string json = response.GetValue().ToString();
+            GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(json);
+            Debug.Log($"RoomUpdate: {json}");
+
+            SocketHandleResponse(GameDataManager.Instance.myRoomInfo.eventType);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"RoomUpdate error: {ex.Message}");
+        }
+    }
+
+    void OnChangeTurn(SocketIOResponse response)
     {
         try
         {
@@ -775,7 +800,7 @@ public class GameManager : MonoBehaviour
 
         roomObj.transform.Find("Boss/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[GameDataManager.Instance.myRoomInfo.bossPokemonId - 1];
         roomObj.transform.Find("Boss/Level").GetComponent<TMP_Text>().text = "Level " + GameDataManager.Instance.myRoomInfo.bossPokemonId.ToString();
-        
+
         for (int i = 1; i <= 4; ++i)
             roomObj.transform.Find("User/" + i.ToString()).gameObject.SetActive(false);
 
@@ -784,15 +809,30 @@ public class GameManager : MonoBehaviour
             string idx = (i + 1).ToString();
             var member = GameDataManager.Instance.myRoomInfo.members[i];
 
+            if(GameDataManager.Instance.myRoomInfo.leaderId == member.userSeq)
+            {
+                roomObj.transform.Find("Title").GetComponent<TMP_Text>().text = member.userId + "의 방";
+            }
+
             roomObj.transform.Find("User/" + idx).gameObject.SetActive(true);
-            roomObj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.userSeq.ToString();
+            roomObj.transform.Find("User/" + idx + "/Name").GetComponent<TMP_Text>().text = member.userId;
 
             roomObj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.pokemonId - 1];
         }
 
-        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(OnRoomUpdate, GameDataManager.Instance.myRoomInfo.roomId));
+        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
         roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomObj));
 
+        if(GameDataManager.Instance.loginData.seq == GameDataManager.Instance.myRoomInfo.leaderId)
+        {
+            roomObj.transform.Find("startBtn").gameObject.SetActive(true);
+            roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.StartRaid(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
+        }
+        else
+        {
+            roomObj.transform.Find("startBtn").gameObject.SetActive(false);
+            roomObj.transform.Find("startBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+        }
 
     }
 

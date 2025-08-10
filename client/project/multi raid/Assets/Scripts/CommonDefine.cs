@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 
-
 public static class CommonDefine
 {
     public const string WEB_BASE_URL = "http://127.0.0.1:3000/";
@@ -33,6 +32,7 @@ public static class CommonDefine
     public const string SOCKET_LEAVE_ROOM = "leaveRoom";
     public const string SOCKET_START_RAID = "startRaid";
     public const string SOCKET_RAID_ACTION = "action";
+    public const string SOCKET_CHANGE_TURN = "changeTurn";
 
     public const float BATTLE_BAR_DURATION = 3f;
 
@@ -82,9 +82,11 @@ public class WalletGetSetPostData
 
 #endregion
 
+[System.Serializable]
 public class LoginData
 {
     public string sessionId;
+    public int seq;
     public string id;
 }
 
@@ -163,6 +165,7 @@ public class Room
 public class RoomMember
 {
     public int userSeq;
+    public string userId;
     public int pokemonId;
     public int order;
 }
