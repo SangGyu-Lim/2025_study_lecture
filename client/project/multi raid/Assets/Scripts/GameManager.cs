@@ -576,8 +576,6 @@ public class GameManager : MonoBehaviour
 
     void PurchasePokemon(int idx)
     {
-        CreateLoadingCircle();
-
         Debug.Log("PurchasePokemon : " + idx);
         PurchasePostData data = new PurchasePostData
         {
@@ -596,15 +594,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            DestroyLoadingCircle();
             CreateMsgBoxOneBtn("상점 구매 실패");
         }
     }
 
     void CallbackMyPokemonAfterPurchasePokemon(bool result)
     {
-        DestroyLoadingCircle();
-
         if (result)
         {
             CreateMsgBoxOneBtn("구매 완료");
@@ -629,11 +624,11 @@ public class GameManager : MonoBehaviour
             }
 
             GameObject itemObj = shopItemsObjList[i];
+            itemObj.transform.Find("Button").GetComponent<Button>().onClick.RemoveAllListeners();
 
             if (isHave)
             {
                 itemObj.transform.Find("Button/buyText").GetComponent<TMP_Text>().text = "보유";
-                itemObj.transform.Find("Button").GetComponent<Button>().onClick.RemoveAllListeners();
             }
             else
             {
@@ -931,8 +926,7 @@ public class GameManager : MonoBehaviour
 
         if (result)
         {
-            CreateMsgBoxOneBtn("CallbackDeduct 성공");
-            OnClickUpdateWallet();
+            CreateMsgBoxOneBtn("CallbackDeduct 성공", OnClickUpdateWallet);
         }
         else
         {
@@ -958,8 +952,7 @@ public class GameManager : MonoBehaviour
 
         if (result)
         {
-            CreateMsgBoxOneBtn("CallbackGrant 성공");
-            OnClickUpdateWallet();
+            CreateMsgBoxOneBtn("CallbackGrant 성공", OnClickUpdateWallet);
         }
         else
         {
