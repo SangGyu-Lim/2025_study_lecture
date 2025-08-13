@@ -34,6 +34,10 @@ public static class CommonDefine
     public const string SOCKET_RAID_ACTION = "action";
     public const string SOCKET_CHANGE_TURN = "changeTurn";
 
+    public const float BATTLE_MOVE_DURATION = 0.2f;
+    public const float BATTLE_HIT_WAIT_DURATION = 0.1f;
+    public const float BATTLE_HIT_SHAKE_AMOUNT = 1.5f;
+    public const float BATTLE_HIT_SHAKE_DURATION = 0.1f;
     public const float BATTLE_BAR_DURATION = 3f;
 
 }
@@ -42,12 +46,11 @@ public enum BATTLE_STATE
 {
     NONE,
     WAIT,
-    PLAYER1_TURN,
-    PLAYER2_TURN,
-    PLAYER3_TURN,
-    PLAYER4_TURN,
+    MY_TURN,
+    MY_TURN_ACTION,
+    ANOTHER_PLAYER_TURN,
     BOSS_TURN,
-    VICTORY,
+    WIN,
     DEFEAT,
 }
 
@@ -169,3 +172,63 @@ public class RoomMember
     public int pokemonId;
     public int order;
 }
+
+[System.Serializable]
+public class Battle
+{
+    public List<BattleMember> members;
+    public BattleTurn turn;
+    public BattleAction action;
+    public string status;
+    public string eventType;
+}
+
+[System.Serializable]
+public class BattleMember
+{
+    public int order;
+    public int userSeq;
+    public string connectionStatus;
+    public BattlePokemon poketmon;
+    public string resPath;
+}
+
+[System.Serializable]
+public class BattlePokemon
+{
+    public int seq;
+    public int hp;
+    public List<BattlePokemonSkill> skills;
+}
+
+[System.Serializable]
+public class BattlePokemonSkill
+{
+    public int seq;
+    public int pp;
+}
+
+[System.Serializable]
+public class BattleTurn
+{
+    public int count;
+    public int next;
+}
+
+[System.Serializable]
+public class BattleAction
+{
+    public int actor;
+    public int skill;
+    public List<int> target;
+}
+
+[System.Serializable]
+public class BattleAddInfo
+{
+    public int curHp;
+    public int maxHp;
+    public int reduceHp;
+    public string resPath;
+}
+

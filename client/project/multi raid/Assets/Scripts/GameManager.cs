@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> shopItemsObjList = new List<GameObject>();
 
-    BATTLE_STATE state = BATTLE_STATE.NONE;
-    int myBattleTurn = -1;
+    BATTLE_STATE battleState = BATTLE_STATE.NONE;
 
     private static Queue<Action> mainThreadActions = new Queue<Action>();
+
+    bool checkBattleCoroutine = false;
+    bool isBattleActionCoroutine = false;
+    bool isBattleBarCoroutine = false;
 
     void Awake()
     {
@@ -44,8 +47,7 @@ public class GameManager : MonoBehaviour
         roomObj = null;
         battleObj = null;
 
-        state = BATTLE_STATE.NONE;
-        myBattleTurn = -1;
+        battleState = BATTLE_STATE.NONE;
 
         if (canvas == null)
             canvas = GameObject.Find("Canvas").transform;
@@ -70,9 +72,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        BattleState();
         EasterEgg();
+        BattleState();
         CheckMainThreadActions();
+        CheckBattleCoroutine();
     }
 
     void OnClickLogOut()
@@ -147,198 +150,280 @@ public class GameManager : MonoBehaviour
 
     void EnterBattle()
     {
+        GameDataManager.Instance.curBattleAddInfo = new Dictionary<int, BattleAddInfo>();
+
         GameObject prefab = Resources.Load<GameObject>("prefabs/Battle");
         battleObj = Instantiate(prefab, canvas);
 
-        // 보스 세팅
         Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-        battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[158];
-
-        Slider bossHpBar = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
-        bossHpBar.maxValue = 1.0f;
-        bossHpBar.value = 1.0f;
-
-        Slider bossManaBar = battleObj.transform.Find("Boss/ManaBar").GetComponent<Slider>();
-        bossManaBar.maxValue = 1.0f;
-        bossManaBar.value = 1.0f;
-
-        battleObj.transform.Find("Boss/HpBar/Text").GetComponent<TMP_Text>().text = "150 / 150";
-        battleObj.transform.Find("Boss/ManaBar/Text").GetComponent<TMP_Text>().text = "100 / 100";
-
-        // 유저 세팅
-        List<BattlePoke> userList = new List<BattlePoke>();
-        for (int i = 0; i < 4; ++i)
-        {
-            BattlePoke data = new BattlePoke
-            {
-                pokeIdx = i + 10,
-                curHp = (i + 1) * 10,
-                maxHp = (i + 1) * 10,
-                curMana = (i + 1) * 10,
-                maxMana = (i + 1) * 10,
-            };
-
-            userList.Add(data);
-        }
-
         Sprite[] spriteBackAll = Resources.LoadAll<Sprite>("images/pokemon-back");
-        for (int i = 0; i < userList.Count; i++)
+
+        int playerCnt = 1;
+        for (int i = 0; i < GameDataManager.Instance.curBattle.members.Count; i++)
         {
-            var user = userList[i];
-            string player = "4Player/Player" + (i + 1).ToString();
+            var members = GameDataManager.Instance.curBattle.members[i];
+            int userSeq = members.userSeq;
+            // boss
+            if (userSeq == 0)
+            {
+                //battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[members.poketmon.seq - 1];
+                battleObj.transform.Find("Boss/Image").GetComponent<Image>().sprite = spriteFrontAll[158];
 
-            battleObj.transform.Find(player + "/Image").GetComponent<Image>().sprite = spriteBackAll[user.pokeIdx];
+                Slider bossHpBar = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
+                bossHpBar.maxValue = 1.0f;
+                bossHpBar.value = 1.0f;
 
-            Slider hpBar = battleObj.transform.Find(player + "/HpBar").GetComponent<Slider>();
-            hpBar.maxValue = 1.0f;
-            hpBar.value = 1.0f;
+                //Slider bossManaBar = battleObj.transform.Find("Boss/ManaBar").GetComponent<Slider>();
+                //bossManaBar.maxValue = 1.0f;
+                //bossManaBar.value = 1.0f;
 
-            Slider manaBar = battleObj.transform.Find(player + "/ManaBar").GetComponent<Slider>();
-            manaBar.maxValue = 1.0f;
-            manaBar.value = 1.0f;
+                BattleAddInfo addInfo = new BattleAddInfo
+                {
+                    curHp = members.poketmon.hp,
+                    maxHp = members.poketmon.hp,
+                    resPath = "Boss"
+                };
+                GameDataManager.Instance.curBattleAddInfo.Add(userSeq, addInfo);
 
-            battleObj.transform.Find(player + "/HpBar/Text").GetComponent<TMP_Text>().text = user.curHp.ToString() + " / " + user.maxHp;
-            battleObj.transform.Find(player + "/ManaBar/Text").GetComponent<TMP_Text>().text = user.curMana.ToString() + " / " + user.maxMana;
+                battleObj.transform.Find("Boss/HpBar/Text").GetComponent<TMP_Text>().text = members.poketmon.hp.ToString() + " / " + GameDataManager.Instance.curBattleAddInfo[userSeq].maxHp.ToString();
+                //battleObj.transform.Find("Boss/ManaBar/Text").GetComponent<TMP_Text>().text = "100 / 100";
+            }
+            else
+            {
+                string player = "4Player/Player" + playerCnt.ToString();
+                playerCnt++;
+
+                if(GameDataManager.Instance.loginData.seq == userSeq)
+                {
+                    for (int k = 0; k < members.poketmon.skills.Count; ++k)
+                    {
+                        string idx = (k + 1).ToString();
+                        var skill = members.poketmon.skills[k];
+
+                        battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.seq));
+                        battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skill.seq.ToString();
+                    }
+                }
+
+                battleObj.transform.Find(player).gameObject.SetActive(true);
+                battleObj.transform.Find(player + "/Image").GetComponent<Image>().sprite = spriteBackAll[members.poketmon.seq - 1];
+
+                Slider hpBar = battleObj.transform.Find(player + "/HpBar").GetComponent<Slider>();
+                hpBar.maxValue = 1.0f;
+                hpBar.value = 1.0f;
+
+                //Slider manaBar = battleObj.transform.Find(player + "/ManaBar").GetComponent<Slider>();
+                //manaBar.maxValue = 1.0f;
+                //manaBar.value = 1.0f;
+
+                BattleAddInfo addInfo = new BattleAddInfo
+                {
+                    curHp = members.poketmon.hp,
+                    maxHp = members.poketmon.hp,
+                    resPath = player
+                };
+                GameDataManager.Instance.curBattleAddInfo.Add(userSeq, addInfo);
+
+                battleObj.transform.Find(player + "/HpBar/Text").GetComponent<TMP_Text>().text = members.poketmon.hp.ToString() + " / " + GameDataManager.Instance.curBattleAddInfo[userSeq].maxHp.ToString();
+                //battleObj.transform.Find(player + "/ManaBar/Text").GetComponent<TMP_Text>().text = user.curMana.ToString() + " / " + members.poketmon.maxMana;
+            }
+
         }
 
+        SetBattleTurn(GameDataManager.Instance.curBattle.turn.next);
+    }
+
+    void CheckBattleCoroutine()
+    {
+        if(checkBattleCoroutine)
+        {
+            if(isBattleActionCoroutine == false && isBattleBarCoroutine == false)
+            {
+                checkBattleCoroutine = false;
+                UpdateBattle();
+            }
+        }
     }
 
     void BattleState()
     {
         // todo 배틀의 각각 상태 처리
-        switch (state)
+        switch (battleState)
         {
             case BATTLE_STATE.NONE:
+            case BATTLE_STATE.WAIT:
                 {
                     // 전투 상태 아님.
                 }
                 break;
-            case BATTLE_STATE.WAIT:
+            case BATTLE_STATE.MY_TURN:
                 {
-                    // 다른 사람들 턴.
-                    battleObj.transform.Find("State/state").gameObject.SetActive(true);
-                    battleObj.transform.Find("State/Skill").gameObject.SetActive(false);
+                    SetStateActive(false, true);
+
+                    battleState = BATTLE_STATE.WAIT;
                 }
                 break;
-            case BATTLE_STATE.PLAYER1_TURN:
+            case BATTLE_STATE.MY_TURN_ACTION:
                 {
-                    SetBattleTurn(1);
+                    SetStateActive(true, false, "공격합니다.");
+
+                    battleState = BATTLE_STATE.WAIT;
                 }
                 break;
-            case BATTLE_STATE.PLAYER2_TURN:
+            case BATTLE_STATE.ANOTHER_PLAYER_TURN:
                 {
-                    SetBattleTurn(2);
-                }
-                break;
-            case BATTLE_STATE.PLAYER3_TURN:
-                {
-                    SetBattleTurn(3);
-                }
-                break;
-            case BATTLE_STATE.PLAYER4_TURN:
-                {
-                    SetBattleTurn(4);
+                    SetStateActive(true, false, "다른 유저의 순서입니다.");
+
+                    battleState = BATTLE_STATE.WAIT;
                 }
                 break;
             case BATTLE_STATE.BOSS_TURN:
                 {
-                    battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "보스의 순서입니다.";
-                    state = BATTLE_STATE.WAIT;
+                    SetStateActive(true, false, "보스의 순서입니다.");
+                    
+                    battleState = BATTLE_STATE.WAIT;
                 }
                 break;
-            case BATTLE_STATE.VICTORY:
+            case BATTLE_STATE.WIN:
                 {
-                    myBattleTurn = -1;
+                    SetStateActive(false, false);
+                    battleObj.transform.Find("State/Result").gameObject.SetActive(true);
+                    battleObj.transform.Find("State/Result/Win").gameObject.SetActive(true);
+                    battleObj.transform.Find("State/Result/Win/Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(battleObj));
+
+                    battleState = BATTLE_STATE.NONE;
+                    GameDataManager.Instance.ResetBattleData();
                 }
                 break;
             case BATTLE_STATE.DEFEAT:
                 {
-                    myBattleTurn = -1;
+                    SetStateActive(false, false);
+                    battleObj.transform.Find("State/Result").gameObject.SetActive(true);
+                    battleObj.transform.Find("State/Result/Defeat").gameObject.SetActive(true);
+                    battleObj.transform.Find("State/Result/Defeat/Button").GetComponent<Button>().onClick.AddListener(() => DestroyObject(battleObj));
+                   
+                    battleState = BATTLE_STATE.NONE;
+                    GameDataManager.Instance.ResetBattleData();
                 }
                 break;
         }
     }
 
+    void UpdateBattle()
+    {
+        string battleStatus = GameDataManager.Instance.curBattle.status;
+        if (battleStatus == "win")
+        {
+            battleState = BATTLE_STATE.WIN;
+        }
+        else if (battleStatus == "defeat")
+        {
+            battleState = BATTLE_STATE.DEFEAT;
+        }
+        else if (battleStatus == "fighting")
+        {
+            SetBattleTurn(GameDataManager.Instance.curBattle.turn.next);
+        }
+
+    }
+
     void SetBattleTurn(int turn)
     {
-        if (myBattleTurn == turn)
+        if(turn == 0)
         {
-            battleObj.transform.Find("State/Skill").gameObject.SetActive(true);
-
-            var myPokemon = GameDataManager.Instance.myCurPokemon;
-
-            for (int i = 0; i < myPokemon.skills.Count; ++i)
-            {
-                string idx = (i + 1).ToString();
-                var skill = myPokemon.skills[i];
-
-                battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.skill_id));
-                battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skill.name;
-
-            }
-
+            battleState = BATTLE_STATE.BOSS_TURN;
+        }
+        else if(GameDataManager.Instance.loginData.seq == turn)
+        {
+            battleState = BATTLE_STATE.MY_TURN;
         }
         else
         {
-            battleObj.transform.Find("State/state").GetComponent<TMP_Text>().text = "Player " + turn.ToString() + "의 순서입니다.";
-            state = BATTLE_STATE.WAIT;
+            battleState = BATTLE_STATE.ANOTHER_PLAYER_TURN;
         }
     }
 
-    void UseSkill(int skillIdx)
+    void SetStateActive(bool isStateText, bool isSkill, string stateText = null)
     {
-        //NetworkManager.Instance.RaidAction(OnRoomUpdate, roomId, pokemonId);
+        battleObj.transform.Find("State/StateText").gameObject.SetActive(isStateText);
+        battleObj.transform.Find("State/Skill").gameObject.SetActive(isSkill);
+
+        if(stateText != null)
+        {
+            battleObj.transform.Find("State/StateText").GetComponent<TMP_Text>().text = stateText;
+        }
     }
 
-
-    public void OnClickAttackTest()
+    void UseSkill(int skillSeq)
     {
-        EnterBattle();
-
-        StartCoroutine(AttackTest());
-        StartCoroutine(BarTest());
+        battleState = BATTLE_STATE.MY_TURN_ACTION;
+        NetworkManager.Instance.RaidAction(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId, skillSeq);
     }
 
-    public IEnumerator AttackTest()
+    void BattleAction()
     {
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
+        checkBattleCoroutine = true;
 
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
-        
-        yield return new WaitForSeconds(2f);
-        StartCoroutine(TackleCoroutine(battleObj.transform.Find("Boss/Image").position, 0.2f, 0.1f, battleObj.transform.Find("Boss/Image"), battleObj.transform.Find("4Player/Player1/Image")));
-        
+        for (int i = 0; i < GameDataManager.Instance.curBattle.members.Count; i++)
+        {
+            var members = GameDataManager.Instance.curBattle.members[i];
+            var addInfo = GameDataManager.Instance.curBattleAddInfo[members.userSeq];
 
+            GameDataManager.Instance.curBattleAddInfo[members.userSeq].reduceHp = addInfo.curHp - members.poketmon.hp;
+            GameDataManager.Instance.curBattleAddInfo[members.userSeq].curHp = members.poketmon.hp;
+        }
+
+        int attacker = GameDataManager.Instance.curBattle.action.actor;
+        string attackerResPath = GameDataManager.Instance.curBattleAddInfo[attacker].resPath;
+        Transform attackerTrans = battleObj.transform.Find(attackerResPath + "/Image");
+
+        var targetList = GameDataManager.Instance.curBattle.action.target;
+
+        for(int i = 0; i < targetList.Count; ++i)
+        {
+            var target = targetList[i];
+            var targetAddInfo = GameDataManager.Instance.curBattleAddInfo[target];
+
+            Transform targetTrans = battleObj.transform.Find(targetAddInfo.resPath + "/Image");
+            Slider hpBar = battleObj.transform.Find(targetAddInfo.resPath + "/HpBar").GetComponent<Slider>();
+
+            StartCoroutine(TackleCoroutine(attackerTrans, targetTrans));
+            StartCoroutine(ReduceBattleBar(hpBar, targetAddInfo.maxHp, targetAddInfo.curHp, targetAddInfo.reduceHp));
+        }
     }
 
-    private IEnumerator TackleCoroutine(Vector3 originalPosition, float moveDuration, float waitAfterHit, Transform attacker, Transform target)
+    private IEnumerator TackleCoroutine(Transform attacker, Transform target)
     {
+        isBattleActionCoroutine = true;
+
         // 1. 목표 방향 계산
+        Vector3 originalPosition = attacker.position;
         Vector3 targetPosition = target.position;
 
         // 2. 약간 덜 도착하도록 조정 (중앙까지 가면 겹치므로)
         Vector3 approachPosition = Vector3.Lerp(originalPosition, targetPosition, 0.8f);
 
         // 3. 돌진
-        yield return MoveToPosition(attacker, approachPosition, moveDuration);
+        yield return MoveToPosition(attacker, approachPosition);
 
         // 4. 맞은 효과 (흔들리기 등) — 선택
         // 예: 타겟 살짝 흔들기
         StartCoroutine(HitEffect(target));
 
         // 5. 대기
-        yield return new WaitForSeconds(waitAfterHit);
+        yield return new WaitForSeconds(CommonDefine.BATTLE_HIT_WAIT_DURATION);
 
         // 6. 제자리로 복귀
-        yield return MoveToPosition(attacker, originalPosition, moveDuration);
+        yield return MoveToPosition(attacker, originalPosition);
+
+        isBattleActionCoroutine = false;
     }
 
-    private IEnumerator MoveToPosition(Transform obj, Vector3 destination, float duration)
+    private IEnumerator MoveToPosition(Transform obj, Vector3 destination)
     {
         float elapsed = 0f;
         Vector3 start = obj.position;
+        float duration = CommonDefine.BATTLE_MOVE_DURATION;
 
         while (elapsed < duration)
         {
@@ -353,8 +438,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator HitEffect(Transform target)
     {
         Vector3 original = target.position;
-        float shakeAmount = 1.5f;
-        float duration = 0.1f;
+        float shakeAmount = CommonDefine.BATTLE_HIT_SHAKE_AMOUNT;
+        float duration = CommonDefine.BATTLE_HIT_SHAKE_DURATION;
 
         for (int i = 0; i < 3; i++)
         {
@@ -367,43 +452,10 @@ public class GameManager : MonoBehaviour
         target.position = original;
     }
 
-    public void OnClickBarTest()
-    {
-        EnterBattle();
-
-        StartCoroutine(BarTest());
-    }
-
-    public IEnumerator BarTest()
-    {
-        Slider hpBar = battleObj.transform.Find("Boss/HpBar").GetComponent<Slider>();
-        Slider manaBar = battleObj.transform.Find("Boss/ManaBar").GetComponent<Slider>();
-
-        hpBar.value = 1.0f;
-        hpBar.maxValue = 1.0f;
-
-        manaBar.value = 1.0f;
-        manaBar.maxValue = 1.0f;
-
-        yield return new WaitForSeconds(2f);
-
-        StartCoroutine(ReduceBattleBar(hpBar, 90, 90, 30));
-        StartCoroutine(ReduceBattleBar(manaBar, 50, 50, 10));
-
-        yield return new WaitForSeconds(2f);
-
-        StartCoroutine(ReduceBattleBar(hpBar, 90, 60, 20));
-        StartCoroutine(ReduceBattleBar(manaBar, 50, 40, 15));
-
-        yield return new WaitForSeconds(2f);
-
-        StartCoroutine(ReduceBattleBar(hpBar, 90, 40, 40));
-        StartCoroutine(ReduceBattleBar(manaBar, 50, 25, 15));
-
-    }
-
     private IEnumerator ReduceBattleBar(Slider bar, int maxValue, int curValue, int reduceValue)
     {
+        isBattleBarCoroutine = true;
+
         float time = 0f;
         float startValue = bar.value;
         int chageValue = curValue - reduceValue;
@@ -422,6 +474,8 @@ public class GameManager : MonoBehaviour
         }
 
         bar.value = endValue;
+
+        isBattleBarCoroutine = false;
     }
 
     void OnClickRoomList()
@@ -754,14 +808,14 @@ public class GameManager : MonoBehaviour
         {
             // todo 다른 유저들이 update되지 않음
             string json = response.GetValue().ToString();
-            GameDataManager.Instance.myRoomInfo = JsonUtility.FromJson<Room>(json);
-            Debug.Log($"RoomUpdate: {json}");
+            GameDataManager.Instance.curBattle = JsonUtility.FromJson<Battle>(json);
+            Debug.Log($"OnChangeTurn: {json}");
 
-            SocketHandleResponse(GameDataManager.Instance.myRoomInfo.eventType);
+            SocketHandleResponse(GameDataManager.Instance.curBattle.eventType);
         }
         catch (Exception ex)
         {
-            Debug.LogError($"RoomUpdate error: {ex.Message}");
+            Debug.LogError($"OnChangeTurn error: {ex.Message}");
         }
     }
 
@@ -780,6 +834,20 @@ public class GameManager : MonoBehaviour
                     mainThreadActions.Enqueue(LeaveRoom);
                 }
                 break;
+            case CommonDefine.SOCKET_START_RAID:
+                {
+                    mainThreadActions.Enqueue(DestroyRoomObject);
+                    mainThreadActions.Enqueue(EnterBattle);
+                }
+                break;
+            case CommonDefine.SOCKET_RAID_ACTION:
+                {
+                    mainThreadActions.Enqueue(BattleAction);
+                }
+                break;
+                
+
+
         }
     }
 
@@ -1089,4 +1157,9 @@ public class GameManager : MonoBehaviour
     }
 
     #endregion
+
+    async void OnDestroy()
+    {
+        await NetworkManager.Instance.DisconnectSocket();
+    }
 }

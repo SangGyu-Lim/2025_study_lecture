@@ -310,8 +310,10 @@ public class NetworkManager : Singleton<NetworkManager>
         await client.EmitAsync(CommonDefine.SOCKET_START_RAID, payload);
     }
 
-    public async void RaidAction(string roomId, int skillSeq)
+    public async void RaidAction(Action<SocketIOResponse> OnRoomUpdate, Action<SocketIOResponse> OnChangeTurn, string roomId, int skillSeq)
     {
+        await ConnectSocket(OnRoomUpdate, OnChangeTurn);
+
         var payload = new Dictionary<string, object>
         {
             { "roomId", roomId },
@@ -321,6 +323,11 @@ public class NetworkManager : Singleton<NetworkManager>
         await client.EmitAsync(CommonDefine.SOCKET_RAID_ACTION, payload);
     }
 
+    public async Task DisconnectSocket()
+    {
+        if (client != null)
+            await client.DisconnectAsync();
+    }
 
 
     #endregion
@@ -343,7 +350,6 @@ public class NetworkManager : Singleton<NetworkManager>
 
     async void OnApplicationQuit()
     {
-        if (client != null)
-            await client.DisconnectAsync();
+        await DisconnectSocket();
     }
 }
