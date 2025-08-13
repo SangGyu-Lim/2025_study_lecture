@@ -771,9 +771,13 @@ public class GameManager : MonoBehaviour
         {
             case CommonDefine.SOCKET_CREATE_ROOM:
             case CommonDefine.SOCKET_JOIN_ROOM:
-            case CommonDefine.SOCKET_LEAVE_ROOM:
                 {
                     mainThreadActions.Enqueue(EnterRoom);
+                }
+                break;
+            case CommonDefine.SOCKET_LEAVE_ROOM:
+                {
+                    mainThreadActions.Enqueue(LeaveRoom);
                 }
                 break;
         }
@@ -790,19 +794,35 @@ public class GameManager : MonoBehaviour
 
     void EnterRoom()
     {
-        if(roomObj == null)
+        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
+
+        if (roomObj == null)
         {
             GameObject prefab = Resources.Load<GameObject>("prefabs/Room");
             roomObj = Instantiate(prefab, canvas);
+
+            roomObj.transform.Find("Boss/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[GameDataManager.Instance.myRoomInfo.bossPokemonId - 1];
+            roomObj.transform.Find("Boss/Level").GetComponent<TMP_Text>().text = "Level " + GameDataManager.Instance.myRoomInfo.bossPokemonId.ToString();
+
+            roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
+            roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomObj));
+
+            if (GameDataManager.Instance.loginData.seq == GameDataManager.Instance.myRoomInfo.leaderId)
+            {
+                roomObj.transform.Find("startBtn").gameObject.SetActive(true);
+                roomObj.transform.Find("startBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.StartRaid(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
+            }
+            else
+            {
+                roomObj.transform.Find("startBtn").gameObject.SetActive(false);
+                roomObj.transform.Find("startBtn").GetComponent<Button>().onClick.RemoveAllListeners();
+            }
         }
 
-        Sprite[] spriteFrontAll = Resources.LoadAll<Sprite>("images/pokemon-front");
-
-        roomObj.transform.Find("Boss/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[GameDataManager.Instance.myRoomInfo.bossPokemonId - 1];
-        roomObj.transform.Find("Boss/Level").GetComponent<TMP_Text>().text = "Level " + GameDataManager.Instance.myRoomInfo.bossPokemonId.ToString();
-
         for (int i = 1; i <= 4; ++i)
+        {
             roomObj.transform.Find("User/" + i.ToString()).gameObject.SetActive(false);
+        }
 
         for (int i = 0; i < GameDataManager.Instance.myRoomInfo.members.Count; ++i)
         {
@@ -819,21 +839,67 @@ public class GameManager : MonoBehaviour
 
             roomObj.transform.Find("User/" + idx + "/Icon/IconImage").GetComponent<Image>().sprite = spriteFrontAll[member.pokemonId - 1];
         }
+    }
 
-        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.LeaveRoom(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
-        roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => DestroyObject(roomObj));
-
-        if(GameDataManager.Instance.loginData.seq == GameDataManager.Instance.myRoomInfo.leaderId)
+    void LeaveRoom()
+    {
+        int mySeq = GameDataManager.Instance.loginData.seq;
+        int leaderSeq = GameDataManager.Instance.myRoomInfo.leaderId;
+        if (mySeq == leaderSeq)
         {
-            roomObj.transform.Find("startBtn").gameObject.SetActive(true);
-            roomObj.transform.Find("closeBtn").GetComponent<Button>().onClick.AddListener(() => NetworkManager.Instance.StartRaid(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId));
+            bool leaveMe = true;
+            for (int i = 0; i < GameDataManager.Instance.myRoomInfo.members.Count; ++i)
+            {
+                int userSeq = GameDataManager.Instance.myRoomInfo.members[i].userSeq;
+                if (mySeq == userSeq)
+                {
+                    leaveMe = false;
+                    break;
+                }
+            }
+
+            if (leaveMe == false)
+            {
+                EnterRoom();
+            }
         }
         else
         {
-            roomObj.transform.Find("startBtn").gameObject.SetActive(false);
-            roomObj.transform.Find("startBtn").GetComponent<Button>().onClick.RemoveAllListeners();
-        }
+            bool leaveMe = true;
+            bool leaveLeader = true;
+            for (int i = 0; i < GameDataManager.Instance.myRoomInfo.members.Count; ++i)
+            {
+                int userSeq = GameDataManager.Instance.myRoomInfo.members[i].userSeq;
+                if (mySeq == userSeq)
+                {
+                    leaveMe = false;
+                }
 
+                if (leaderSeq == userSeq)
+                {
+                    leaveLeader = false;
+                }
+            }
+
+            if (leaveMe == false)
+            {
+                if (leaveLeader)
+                {
+                    NetworkManager.Instance.LeaveRoom(OnRoomUpdate, OnChangeTurn, GameDataManager.Instance.myRoomInfo.roomId);
+                    DestroyRoomObject();
+                    CreateMsgBoxOneBtn("방장이 방을 나갔습니다.");
+                }
+                else
+                {
+                    EnterRoom();
+                }
+            }
+        }
+    }
+
+    void DestroyRoomObject()
+    {
+        DestroyObject(roomObj);
     }
 
     void OnClickEnterInventory()
