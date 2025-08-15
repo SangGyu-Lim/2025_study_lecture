@@ -32,9 +32,6 @@ public class NetworkManager : Singleton<NetworkManager>
     }
 
     #region WEB_POST
-
-    
-
     
 
     public void SendLoginServer(string api, string id, string password, Action<bool> onResult)
@@ -60,7 +57,6 @@ public class NetworkManager : Singleton<NetworkManager>
 
         yield return request.SendWebRequest();
 
-        // todo REGISTER_URL에서 왜 ProtocolError?
         if (request.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("응답: " + request.downloadHandler.text);
@@ -170,7 +166,6 @@ public class NetworkManager : Singleton<NetworkManager>
 
     #endregion
 
-
     void HandleResponse(string api, string data)
     {
         if (string.IsNullOrEmpty(api) || string.IsNullOrEmpty(data))
@@ -189,6 +184,12 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.myPokemonIds = new HashSet<int>(GameDataManager.Instance.myPokemonList.Select(p => p.poketmonId));
                 }
                 break;
+            case CommonDefine.GET_MY_WALLET_URL:
+                {
+                    WalletData wallet = JsonUtility.FromJson<WalletData>(data);
+                    GameDataManager.Instance.walletBalance = double.Parse(wallet.balance);
+                }
+                break;
             case CommonDefine.SHOP_LIST_URL:
                 {
                     GameDataManager.Instance.pokemonShopList = JsonHelper.FromJson<PokemonShop>(data);
@@ -199,21 +200,6 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.roomList = JsonHelper.FromJson<Room>(data);
                 }
                 break;
-            case CommonDefine.GET_MY_WALLET_URL:
-                {
-                    WalletData wallet = JsonUtility.FromJson<WalletData>(data);
-                    GameDataManager.Instance.walletBalance = double.Parse(wallet.balance);
-                }
-                break;
-            case CommonDefine.BLOCKCHAIN_GRANT_URL:
-            case CommonDefine.BLOCKCHAIN_DEDUCT_URL:
-            case CommonDefine.SHOP_PURCHASE_URL:
-                {
-                    string temp = data;
-                }
-                break;
-                
-                    
 
         }
     }
