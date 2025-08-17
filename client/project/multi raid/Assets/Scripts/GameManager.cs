@@ -199,9 +199,10 @@ public class GameManager : MonoBehaviour
                     {
                         string idx = (k + 1).ToString();
                         var skill = members.poketmon.skills[k];
+                        var skillData = GameDataManager.Instance.allPokemonData[members.poketmon.seq - 1].skills;
 
                         battleObj.transform.Find("State/Skill/skill" + idx + "Btn").GetComponent<Button>().onClick.AddListener(() => UseSkill(skill.seq));
-                        battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skill.seq.ToString();
+                        battleObj.transform.Find("State/Skill/skill" + idx + "Btn/Text").GetComponent<TMP_Text>().text = skillData[skill.seq - 1].name;
                     }
                 }
 
@@ -241,6 +242,16 @@ public class GameManager : MonoBehaviour
             {
                 checkBattleCoroutine = false;
                 UpdateBattle();
+            }
+        }
+        else
+        {
+            if(GameDataManager.Instance.bossBattle != null)
+            {
+                GameDataManager.Instance.curBattle = GameDataManager.Instance.bossBattle;
+                GameDataManager.Instance.bossBattle = null;
+
+                BattleAction();
             }
         }
     }
@@ -807,14 +818,41 @@ public class GameManager : MonoBehaviour
         {
             // todo 다른 유저들이 update되지 않음
             string json = response.GetValue().ToString();
-            GameDataManager.Instance.curBattle = JsonUtility.FromJson<Battle>(json);
+            Battle battle = JsonUtility.FromJson<Battle>(json);
             Debug.Log($"OnChangeTurn: {json}");
 
-            SocketHandleResponse(GameDataManager.Instance.curBattle.eventType);
+            SocketBattleHandleResponse(battle);
         }
         catch (Exception ex)
         {
             Debug.LogError($"OnChangeTurn error: {ex.Message}");
+        }
+    }
+
+    void SocketBattleHandleResponse(Battle battle)
+    {
+        switch (battle.eventType)
+        {
+            case CommonDefine.SOCKET_START_RAID:
+                {
+                    GameDataManager.Instance.curBattle = battle;
+
+                    mainThreadActions.Enqueue(DestroyRoomObject);
+                    mainThreadActions.Enqueue(EnterBattle);
+                }
+                break;
+            case CommonDefine.SOCKET_RAID_ACTION:
+                {
+                    GameDataManager.Instance.curBattle = battle;
+
+                    mainThreadActions.Enqueue(BattleAction);
+                }
+                break;
+            case CommonDefine.SOCKET_RAID_BOSS_ACTION:
+                {
+                    GameDataManager.Instance.bossBattle = battle;
+                }
+                break;
         }
     }
 
@@ -833,20 +871,6 @@ public class GameManager : MonoBehaviour
                     mainThreadActions.Enqueue(LeaveRoom);
                 }
                 break;
-            case CommonDefine.SOCKET_START_RAID:
-                {
-                    mainThreadActions.Enqueue(DestroyRoomObject);
-                    mainThreadActions.Enqueue(EnterBattle);
-                }
-                break;
-            case CommonDefine.SOCKET_RAID_ACTION:
-                {
-                    mainThreadActions.Enqueue(BattleAction);
-                }
-                break;
-                
-
-
         }
     }
 

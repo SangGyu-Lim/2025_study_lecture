@@ -33,6 +33,7 @@ public static class CommonDefine
     public const string SOCKET_LEAVE_ROOM = "leaveRoom";
     public const string SOCKET_START_RAID = "startRaid";
     public const string SOCKET_RAID_ACTION = "action";
+    public const string SOCKET_RAID_BOSS_ACTION = "boss_action";
     public const string SOCKET_CHANGE_TURN = "changeTurn";
 
     public const float BATTLE_MOVE_DURATION = 0.2f;

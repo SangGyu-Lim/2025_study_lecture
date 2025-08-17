@@ -14,6 +14,7 @@ public class GameDataManager : Singleton<GameDataManager>
     public Room myRoomInfo = null;
 
     public Battle curBattle = null;
+    public Battle bossBattle = null;
     public Dictionary<int, BattleAddInfo> curBattleAddInfo = null;
 
     public double walletBalance = -1;
@@ -51,6 +52,7 @@ public class GameDataManager : Singleton<GameDataManager>
         myRoomInfo = null;
 
         curBattle = null;
+        bossBattle = null;
         curBattleAddInfo = null;
 
         walletBalance = -1;
@@ -62,6 +64,7 @@ public class GameDataManager : Singleton<GameDataManager>
         myRoomInfo = null;
 
         curBattle = null;
+        bossBattle = null;
         curBattleAddInfo = null;
     }
 }
