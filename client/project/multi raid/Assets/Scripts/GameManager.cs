@@ -480,7 +480,6 @@ public class GameManager : MonoBehaviour
 
     void OnClickRoomList()
     {
-        // todo 서버에서 룸리스트 받아오기
         NetworkManager.Instance.SendServerGet(CommonDefine.ROOM_LIST_URL, null, CallbackRoomList);
     }
 

@@ -66,13 +66,6 @@ public class PurchasePostData
     public int itemId;
 }
 
-public class MakeRoomPostData
-{
-    public string roomName;
-    public string roomLevel;
-    public int pokemonId;
-}
-
 public class LinkWalletPostData
 {
     public string privateKey;
@@ -137,15 +130,6 @@ public class PokemonSkill
     public string target;
     public int damage;
     public int pp;
-}
-
-public class BattlePoke
-{
-    public int pokeIdx;
-    public int curHp;
-    public int maxHp;
-    public int curMana;
-    public int maxMana;
 }
 
 public class ServerPacket
