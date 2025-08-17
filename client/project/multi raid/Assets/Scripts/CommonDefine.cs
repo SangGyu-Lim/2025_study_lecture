@@ -18,6 +18,7 @@ public static class CommonDefine
 
     public const string ROOM_LIST_URL = "rooms";
 
+    public const string GET_ALL_POKEMON_DATA_URL = "pokemons/all";
     
 
     public const string WEB_SOCKET_URL = "ws://localhost:3000/rooms";

@@ -146,6 +146,21 @@ public class LoginManager : MonoBehaviour
             Debug.Log("³» Áö°© ·Îµå ½ÇÆÐ");
         }
 
+        GetAllPokemonData();
+    }
+
+    void GetAllPokemonData()
+    {
+        NetworkManager.Instance.SendServerGet(CommonDefine.GET_ALL_POKEMON_DATA_URL, null, CallbackAllPokemonData);
+    }
+
+    void CallbackAllPokemonData(bool result)
+    {
+        if (!result)
+        {
+            Debug.Log("ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
+        }
+
         LoadScene(CommonDefine.GAME_SCENE);
     }
 

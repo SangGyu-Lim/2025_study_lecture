@@ -200,7 +200,11 @@ public class NetworkManager : Singleton<NetworkManager>
                     GameDataManager.Instance.roomList = JsonHelper.FromJson<Room>(data);
                 }
                 break;
-
+            case CommonDefine.GET_ALL_POKEMON_DATA_URL:
+                {
+                    GameDataManager.Instance.allPokemonData = JsonHelper.FromJson<Pokemon>(data);
+                }
+                break;
         }
     }
 
