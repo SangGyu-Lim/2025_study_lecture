@@ -31,15 +31,61 @@ public class LoginManager : MonoBehaviour
         GameObject prefab = Resources.Load<GameObject>("prefabs/Login");
         loginObj = Instantiate(prefab, canvas);
 
-        loginObj.transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickLogin);
+        loginObj.transform.Find("LoginBtn").GetComponent<Button>().onClick.AddListener(OnClickSkillTest);
         loginObj.transform.Find("RegisterBtn").GetComponent<Button>().onClick.AddListener(OnClickRegisterPage);
-
     }
+
+    void OnClickSkillTest()
+    {
+        GameObject prefab = Resources.Load<GameObject>("prefabs/Skills/bell1");
+        skillObj = Instantiate(prefab, canvas);
+
+        animator = skillObj.transform.GetComponent<Animator>();
+        // Animator¿¡¼­ »ç¿ëÇÏ´Â Ã¹ ¹øÂ° AnimationClip °¡Á®¿À±â
+        //AnimationClip clip = anim.runtimeAnimatorController.animationClips[0];
+
+        //// Loop ²ô±â
+        //clip.wrapMode = WrapMode.Once;
+
+        //// Àç»ý
+        //anim.Play(clip.name, 0, 0f);
+
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+        Debug.Log(info.normalizedTime);
+    }
+
+    void OnClickSkillAgainTest()
+    {
+        AnimationClip clip = animator.runtimeAnimatorController.animationClips[0];
+        Debug.Log(animator.runtimeAnimatorController);
+
+        animator.Play(clip.name, 0, 0f);
+
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+        Debug.Log(info.normalizedTime);
+    }
+
+    GameObject skillObj = null;
+    public Animator animator = null;
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (animator != null)
+        {
+            Debug.Log("¾Ö´Ï¸ÞÀÌ¼Ç ½ÃÀÛ");
+
+            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+            if (info.normalizedTime >= 1.0f)
+            {
+                Debug.Log("¾Ö´Ï¸ÞÀÌ¼Ç Á¾·á!");
+                DestroyObject(skillObj);
+            }
+        }
+        else
+        {
+            Debug.Log("animator null");
+        }
     }
 
     void OnClickLogin()
@@ -158,7 +204,7 @@ public class LoginManager : MonoBehaviour
     {
         if (!result)
         {
-            Debug.Log("ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
+            Debug.Log("Æ÷ÄÏ¸ó µ¥ÀÌÅÍ ·Îµå ½ÇÆÐ");
         }
 
         LoadScene(CommonDefine.GAME_SCENE);
